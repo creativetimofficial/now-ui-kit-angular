@@ -1,0 +1,25 @@
+// display flex was causing errors
+.carousel-item-next,
+.carousel-item-prev,
+.carousel-item.active{
+    display: block;
+}
+
+.carousel{
+    .carousel-inner{
+        box-shadow: $box-shadow-raised;
+    }
+    .now-ui-icons{
+        font-size: 2em;
+    }
+}
+ngb-carousel{
+  &:focus{
+    outline: none;
+  }
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon{
+    width: 12px;
+    height: 12px;
+  }
+}
