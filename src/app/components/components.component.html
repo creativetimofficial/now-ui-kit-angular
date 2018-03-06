@@ -366,24 +366,24 @@
                               </div>
                           </div>
                           <div class="card-body">
-                              <div class="input-group form-group-no-border">
-                                  <span class="input-group-addon">
-                                      <i class="now-ui-icons users_circle-08"></i>
-                                  </span>
-                                  <input type="text" class="form-control" placeholder="First Name...">
+                            <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus===true}">
+                              <div class="input-group-prepend">
+                                  <span class="input-group-text">  <i class="now-ui-icons users_circle-08"></i></span>
                               </div>
-                              <div class="input-group form-group-no-border">
-                                  <span class="input-group-addon">
-                                      <i class="now-ui-icons text_caps-small"></i>
-                                  </span>
-                                  <input type="text" placeholder="Last Name..." class="form-control" />
+                                <input type="text" class="form-control" placeholder="First Name..." (focus)="focus=true" (blur)="focus=false" >
+                            </div>
+                            <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus1===true}">
+                              <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="now-ui-icons text_caps-small"></i></span>
                               </div>
-                              <div class="input-group form-group-no-border">
-                                  <span class="input-group-addon">
-                                      <i class="now-ui-icons ui-1_email-85"></i>
-                                  </span>
-                                  <input type="text" class="form-control" placeholder="Email...">
+                                <input type="text" placeholder="Last Name..." class="form-control" (focus)="focus1=true" (blur)="focus1=false"/>
+                            </div>
+                            <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus2===true}">
+                              <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="now-ui-icons ui-1_email-85"></i></span>
                               </div>
+                                <input type="text" placeholder="Email..." class="form-control" (focus)="focus2=true" (blur)="focus2=false"/>
+                            </div>
                               <!-- If you want to add a checkbox to this form, uncomment this code -->
                               <!-- <div class="checkbox">
               <input id="checkboxSignup" type="checkbox">

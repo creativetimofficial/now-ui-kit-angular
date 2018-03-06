@@ -19,7 +19,9 @@ export class ComponentsComponent implements OnInit, OnDestroy {
     page = 4;
     page1 = 5;
     page2 = 3;
-
+    focus;
+    focus1;
+    focus2;
 
     date: {year: number, month: number};
     model: NgbDateStruct;
