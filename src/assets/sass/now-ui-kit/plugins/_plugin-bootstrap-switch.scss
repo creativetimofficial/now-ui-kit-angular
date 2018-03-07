@@ -18,7 +18,7 @@
 
 
 
- //* IMPORTANT! Creative Tim Notice: this file has major changes to fit the NOW UI Kit's design. If you want to use the plugin as it was before our changes, please get the old files from http://www.bootstrap-switch.org
+ //* IMPORTANT! Creative Tim Notice: this file has major changes to fit the Now Ui Kit's design. If you want to use the plugin as it was before our changes, please get the old files from http://www.bootstrap-switch.org
 
 
 
@@ -52,6 +52,8 @@
   border: 0;
   position: relative;
   text-align: left;
+  overflow: hidden;
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.13);
   margin-bottom: 10px;
   line-height: 8px;
   width: 59px !important;
@@ -65,7 +67,6 @@
   vertical-align: middle;
   -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-  margin-right: 20px;
   background: rgba($black-color, .2);
 }
 
@@ -88,7 +89,7 @@
   display: inline-block !important;
   height: 100%;
   color: #fff;
-  padding: 6px 12px;
+  padding: 6px 10px;
   font-size: 11px;
   text-indent: -5px;
   line-height: 15px;
@@ -295,10 +296,8 @@
     background-color: $light-gray;
 }
 
+.bootstrap-switch-on .bootstrap-switch-handle-off,
 .bootstrap-switch-off .bootstrap-switch-handle-on{
     opacity: 0;
-}
-
-.bootstrap-switch-on .bootstrap-switch-handle-off{
-    opacity: 0;
+    visibility: hidden;
 }

@@ -595,6 +595,9 @@ ngb-datepicker{
                     border: none !important;
                     background: transparent!important;
                     -webkit-appearance: menulist !important;
+                    &:focus{
+                      box-shadow: none;
+                    }
                 }
             }
 
