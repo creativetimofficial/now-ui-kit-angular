@@ -563,6 +563,8 @@ ngb-datepicker{
         ngb-datepicker-navigation{
           color: $primary-color;
             .ngb-dp-arrow-btn{
+              margin-top: 0px;
+
                 .ngb-dp-navigation-chevron{
                     height: 27px;
                     width: 27px;
