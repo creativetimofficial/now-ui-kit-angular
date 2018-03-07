@@ -93,59 +93,67 @@
 
       <div class="row" id="checkRadios">
         <div class="col-sm-6 col-lg-3">
-              <p class="category">Checkboxes</p>
-              <div class="checkbox">
-                  <input id="checkbox1" type="checkbox">
-                  <label for="checkbox1">
-                      Unchecked
-                  </label>
-              </div>
-              <div class="checkbox">
-                  <input id="checkbox2" type="checkbox" checked="">
-                  <label for="checkbox2">
-                      Checked
-                  </label>
-              </div>
-              <div class="checkbox">
-                  <input id="checkbox3" type="checkbox" disabled="">
-                  <label for="checkbox3">
-                      Disabled unchecked
-                  </label>
-              </div>
-              <div class="checkbox">
-                  <input id="checkbox4" type="checkbox" checked="" disabled="">
-                  <label for="checkbox4">
-                      Disabled checked
-                  </label>
-              </div>
-          </div>
-          <div class="col-sm-6 col-lg-3">
-              <p class="category">Radios</p>
-              <div class="radio">
-                  <input type="radio" name="radio1" id="radio1" value="option1">
-                  <label for="radio1">
-                      Radio is off
-                  </label>
-              </div>
-              <div class="radio">
-                  <input type="radio" name="radio1" id="radio2" value="option2" checked="">
-                  <label for="radio2">
-                      Radio is on
-                  </label>
-              </div>
-              <div class="radio">
-                  <input type="radio" name="radio3" id="radio3" value="option3" disabled="">
-                  <label for="radio3">
-                      Disabled radio is off
-                  </label>
-              </div>
-              <div class="radio">
-                  <input type="radio" name="radio4" id="radio4" value="option4" checked="" disabled="">
-                  <label for="radio4">
-                      Disabled radio is on
-                  </label>
-              </div>
-          </div>
+            <p class="category">Checkboxes</p>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox">
+                    <span class="form-check-sign"></span>
+                    Unchecked
+                </label>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" checked>
+                    <span class="form-check-sign"></span>
+                    Checked
+                </label>
+            </div>
+            <div class="form-check disabled">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" disabled>
+                    <span class="form-check-sign"></span>
+                    Disabled Unchecked
+                </label>
+            </div>
+            <div class="form-check disabled">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" checked disabled>
+                    <span class="form-check-sign"></span>
+                    Disabled Checked
+                </label>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <p class="category">Radios</p>
+            <div class="form-check form-check-radio">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
+                    <span class="form-check-sign"></span>
+                    Radio is off
+                </label>
+            </div>
+            <div class="form-check form-check-radio">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option2" checked>
+                    <span class="form-check-sign"></span>
+                    Radio is on
+                </label>
+            </div>
+            <div class="form-check form-check-radio disabled">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="exampleRadios1" id="exampleRadios2" value="option3" disabled>
+                    <span class="form-check-sign"></span>
+                    Disabled radio is off
+                </label>
+            </div>
+            <div class="form-check form-check-radio disabled">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="exampleRadios1" id="exampleRadios2" value="option4" disabled checked>
+                    <span class="form-check-sign"></span>
+                    Disabled radio is on
+                </label>
+            </div>
+        </div>
           <div class="col-sm-6 col-lg-3">
               <p class="category">Toggle Buttons</p>
               <bSwitch
