@@ -561,7 +561,7 @@ ngb-datepicker{
     .ngb-dp-header{
         border-bottom: none !important;
         ngb-datepicker-navigation{
-          color: $default-color;
+          color: $primary-color;
             .ngb-dp-arrow-btn{
                 .ngb-dp-navigation-chevron{
                     height: 27px;
@@ -578,18 +578,18 @@ ngb-datepicker{
                         text-rendering: auto;
                         -webkit-font-smoothing: anitialised;
                         transform: none!important;
-                        color: $default-color;
+                        color: $primary-color;
                     }
                 }
             }
             .right .ngb-dp-navigation-chevron:before{
               content: "\f054"!important;
-                color: $default-color;
+                color: $primary-color;
             }
             ngb-datepicker-navigation-select{
                 .custom-select{
                   font-weight: 300;
-                  color: $default-color;
+                  color: $primary-color;
                     border: none !important;
                     background: transparent!important;
                     -webkit-appearance: menulist !important;
@@ -603,7 +603,7 @@ ngb-datepicker{
             .ngb-dp-week{
               border: none;
                 .ngb-dp-weekday{
-                    color: $default-color;
+                    color: $primary-color;
                     padding-top: 10px;
                     opacity: 0.8;
                     font-style: normal !important;
