@@ -32,7 +32,7 @@
     "jquery": "3.2.1",
     "jw-bootstrap-switch-ng2": "1.0.10",
     "ng2-nouislider": "1.7.7",
-    "nouislider": "^10.0.0",
+    "nouislider": "9.2.0",
     "popper.js": "1.12.9",
     "rellax": "1.4.0",
     "rxjs": "5.5.6",
