@@ -1,0 +1,96 @@
+<div>
+    <h2>Modals</h2>
+    <legend></legend>
+    <p>We restyled the classic Twitter Bootstrap modal and gave it a more simple look. You can see an example below.
+    </p>
+    <b>For more informations, see documentation <a href="https://ng-bootstrap.github.io/#/components/modal/examples">here.</a></b><br><br>
+    <!-- Button trigger modal -->
+    <button class="btn btn-primary" (click)="open(classic,'')">
+         Launch demo modal
+    </button>
+    <ng-template #classic let-c="close" let-d="dismiss">
+        <div class="modal-header justify-content-center">
+            <button type="button" class="close" (click)="d('Cross click')">
+                <i class="now-ui-icons ui-1_simple-remove"></i>
+            </button>
+            <h4 class="title title-up">Modal title</h4>
+        </div>
+        <div class="modal-body">
+            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.
+            </p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default">Nice Button</button>
+            <button type="button" class="btn btn-danger" (click)="c('Close click')">Close</button>
+        </div>
+    </ng-template>
+
+<div id="modals" >
+ <pre class="prettyprint">
+In HTML:
+&#x3C;button class=&#x22;btn btn-primary btn-round&#x22; (click)=&#x22;open(classic)&#x22;&#x3E;Launch demo modal&#x3C;/button&#x3E;
+&#x3C;ng-template #classic let-c=&#x22;close&#x22; let-d=&#x22;dismiss&#x22;&#x3E;
+ &#x3C;div class=&#x22;modal-header&#x22;&#x3E;
+     &#x3C;h5 class=&#x22;modal-title text-center&#x22;&#x3E;Modal title&#x3C;/h5&#x3E;
+     &#x3C;button type=&#x22;button&#x22; class=&#x22;close&#x22; (click)=&#x22;d(&#x27;Cross click&#x27;)&#x22;&#x3E;
+         &#x3C;span aria-hidden=&#x22;true&#x22;&#x3E;&#x26;times;&#x3C;/span&#x3E;
+     &#x3C;/button&#x3E;
+ &#x3C;/div&#x3E;
+ &#x3C;div class=&#x22;modal-body&#x22;&#x3E;
+     Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.
+ &#x3C;/div&#x3E;
+ &#x3C;div class=&#x22;modal-footer&#x22;&#x3E;
+     &#x3C;div class=&#x22;left-side&#x22;&#x3E;
+         &#x3C;button type=&#x22;button&#x22; class=&#x22;btn btn-default btn-link&#x22; (click)=&#x22;c(&#x27;Close click&#x27;)&#x22;&#x3E;Never mind&#x3C;/button&#x3E;
+     &#x3C;/div&#x3E;
+     &#x3C;div class=&#x22;divider&#x22;&#x3E;&#x3C;/div&#x3E;
+     &#x3C;div class=&#x22;right-side&#x22;&#x3E;
+         &#x3C;button type=&#x22;button&#x22; class=&#x22;btn btn-danger btn-link&#x22; (click)=&#x22;c(&#x27;Close click&#x27;)&#x22;&#x3E;Delete&#x3C;/button&#x3E;
+     &#x3C;/div&#x3E;
+ &#x3C;/div&#x3E;
+&#x3C;/ng-template&#x3E;
+
+In Typescript:
+import {{'{'}} Component, OnInit {{'}'}} from &#x27;@angular/core&#x27;;
+import {{'{'}}NgbModal, ModalDismissReasons {{'}'}}from &#x27;@ng-bootstrap/ng-bootstrap&#x27;;
+
+@Component({{'{'}}
+    selector: &#x27;ngbd-modal-component&#x27;,
+    templateUrl: &#x27;./modals.component.html&#x27;,
+    styleUrls: [&#x27;./modals.component.scss&#x27;]
+{{'}'}})
+export class ModalsComponent{{'{'}}
+    closeResult: string;
+
+    constructor(private modalService: NgbModal) {{'{'}}}
+
+    open(content, type) {{'{'}}
+        if (type === &#x27;sm&#x27;) {{'{'}}
+            console.log(&#x27;aici&#x27;);
+            this.modalService.open(content, {{'{'}} size: &#x27;sm&#x27; {{'}'}}).result.then((result) =&#x3E; {{'{'}}
+                this.closeResult = &#x60;Closed with: ${{'{'}}result{{'}'}}&#x60;;
+            {{'}'}}, (reason) =&#x3E; {{'{'}}
+                this.closeResult = &#x60;Dismissed ${{'{'}}this.getDismissReason(reason){{'}'}}&#x60;;
+            {{'}'}});
+        {{'}'}} else {{'{'}}
+            this.modalService.open(content).result.then((result) =&#x3E; {{'{'}}
+                this.closeResult = &#x60;Closed with: ${{'{'}}result{{'}'}}&#x60;;
+            {{'}'}}, (reason) =&#x3E; {{'{'}}
+                this.closeResult = &#x60;Dismissed ${{'{'}}this.getDismissReason(reason){{'}'}}&#x60;;
+            {{'}'}});
+        {{'}'}}
+    {{'}'}}
+
+    private getDismissReason(reason: any): string {{'{'}}
+        if (reason === ModalDismissReasons.ESC) {{'{'}}
+            return &#x27;by pressing ESC&#x27;;
+        {{'}'}} else if (reason === ModalDismissReasons.BACKDROP_CLICK) {{'{'}}
+            return &#x27;by clicking on a backdrop&#x27;;
+        {{'}'}} else {{'{'}}
+            return  &#x60;with: ${{'{'}}reason{{'}'}}&#x60;;
+        {{'}'}}
+    {{'}'}}
+{{'}'}}
+</pre>
+</div>
+</div>

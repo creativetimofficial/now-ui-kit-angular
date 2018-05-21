@@ -1,0 +1,28 @@
+<div>
+        <h2> Sliders</h2>
+        <legend></legend>
+        <p class="space-top">Install</p>
+        <code>npm i --save nouislider ng2-nouislider</code>
+        <br><br>
+        <p>Import</p>
+        <code>import {{'{'}} NouisliderModule {{'}'}} from 'ng2-nouislider';</code>
+        <br><br>
+        <b>For more informations, see documentation <a href="https://github.com/tb/ng2-nouislider">here.</a></b>
+        <nouislider class="slider slider-danger" [min]="0" [max]="10000" [step]="10" [(ngModel)]="simpleSlider" [tooltips]="true"></nouislider>
+        <br/>
+        <nouislider class="slider slider-info" [connect]="true" [min]="0" [max]="10000" [step]="10" [(ngModel)]="doubleSlider" [tooltips]="true"></nouislider>
+        <div class="area-line">
+
+<div id="sliderMarkup">
+<pre class="prettyprint">
+In HTML:
+&#x3C;nouislider class=&#x22;slider slider-danger&#x22; [min]=&#x22;0&#x22; [max]=&#x22;10000&#x22; [step]=&#x22;10&#x22; [(ngModel)]=&#x22;simpleSlider&#x22; [tooltips]=&#x22;true&#x22;&#x3E;&#x3C;/nouislider&#x3E;
+&#x3C;br/&#x3E;
+&#x3C;nouislider class=&#x22;slider slider-info&#x22; [connect]=&#x22;true&#x22; [min]=&#x22;0&#x22; [max]=&#x22;10000&#x22; [step]=&#x22;10&#x22; [(ngModel)]=&#x22;doubleSlider&#x22; [tooltips]=&#x22;true&#x22;&#x3E;&#x3C;/nouislider&#x3E;
+
+In Typescript:
+doubleSlider = [1000, 5000];
+simpleSlider = 3000;</pre>
+</div>
+        </div>
+</div>

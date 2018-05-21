@@ -1,0 +1,25 @@
+<div>
+    <h2>Datetimepicker</h2>
+    <legend></legend>
+    <p class="space-top">We re-styled the Bootstrap datetimepicker. For more information please check <b><a href="https://ng-bootstrap.github.io/#/components/datepicker/examples" target="_blank">Full Documentation</a></b>.
+    <div class="row">
+        <div class="col-md-4">
+          <div class="datepicker-container">
+              <div class="form-group">
+                <input class="form-control datetimepicker" placeholder="06/07/2017"
+                     name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+              </div>
+          </div>
+        </div>
+    </div>
+    <div id="datepicker">
+        <pre class="prettyprint">
+  &#x3C;div class=&#x22;datepicker-container&#x22;&#x3E;
+      &#x3C;div class=&#x22;form-group&#x22;&#x3E;
+        &#x3C;input class=&#x22;form-control datetimepicker&#x22; placeholder=&#x22;06/07/2017&#x22;
+             name=&#x22;dp&#x22; [(ngModel)]=&#x22;model&#x22; ngbDatepicker #d=&#x22;ngbDatepicker&#x22; (click)=&#x22;d.toggle()&#x22;&#x3E;
+      &#x3C;/div&#x3E;
+  &#x3C;/div&#x3E;
+        </pre>
+    </div>
+</div>

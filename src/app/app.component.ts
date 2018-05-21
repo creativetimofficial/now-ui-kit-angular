@@ -6,6 +6,9 @@ import { DOCUMENT } from '@angular/platform-browser';
 import { LocationStrategy, PlatformLocation, Location } from '@angular/common';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 
+declare var _gaq: Function;
+declare var fbq: Function;
+
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
@@ -13,9 +16,27 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 })
 export class AppComponent implements OnInit {
     private _router: Subscription;
+    private currentRoute:string;
+    _location: Location;
     @ViewChild(NavbarComponent) navbar: NavbarComponent;
 
-    constructor( private renderer : Renderer, private router: Router, @Inject(DOCUMENT,) private document: any, private element : ElementRef, public location: Location) {}
+    constructor( private renderer : Renderer, private router: Router, @Inject(DOCUMENT,) private document: any, private element : ElementRef, public location: Location) {
+      this._location = location;
+      router.events.subscribe((event:any) => {
+          // Send GA tracking on NavigationEnd event. You may wish to add other
+          // logic here too or change which event to work with
+          if (event instanceof NavigationEnd) {
+              // When the route is '/', location.path actually returns ''.
+              let newRoute = location.path() || '/';
+              // If the route has changed, send the new route to analytics.
+              if (this.currentRoute != newRoute) {
+                  _gaq('send', 'pageview', newRoute);
+                  fbq('track', 'PageView');
+                  this.currentRoute = newRoute;
+              }
+          }
+      });
+    }
     ngOnInit() {
         var navbar : HTMLElement = this.element.nativeElement.children[0].children[0];
         this._router = this.router.events.filter(event => event instanceof NavigationEnd).subscribe((event: NavigationEnd) => {
@@ -33,7 +54,7 @@ export class AppComponent implements OnInit {
 
                 if (number > 150 || window.pageYOffset > 150) {
                     navbar.classList.remove('navbar-transparent');
-                } else if (_location !== 'login' && this.location.path() !== '/nucleoicons') {
+                } else if (_location !== 'login' && this.location.path() !== '/nucleoicons' && this.location.path().split('/')[1] !== 'documentation') {
                     // remove logic
                     navbar.classList.add('navbar-transparent');
                 }

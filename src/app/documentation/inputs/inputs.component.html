@@ -1,0 +1,78 @@
+<div>
+    <h2>Inputs </h2>
+
+    <p>
+      We restyled the Bootstrap input to give it a more flat, minimal look. You can use them with regular labels, states or input groups.
+    </p>
+    <div class="row">
+        <div class="col-sm-6 col-lg-4">
+            <div class="form-group">
+                <input type="text" value="" placeholder="Regular" class="form-control" />
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-4">
+            <div class="form-group has-success">
+                <input type="text" value="Success" class="form-control form-control-success" />
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-4">
+            <div class="form-group has-danger">
+                <input type="email" value="Error Input" class="form-control form-control-danger" />
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-4">
+            <div class="input-group" [ngClass]="{'input-group-focus':focus===true}">
+              <div class="input-group-prepend" >
+                  <span class="input-group-text"><i class="fa fa-user-circle"></i></span>
+              </div>
+              <input type="text" class="form-control" placeholder="Left Font Awesome Icon" (focus)="focus=true" (blur)="focus=false" >
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-4">
+            <div class="input-group" [ngClass]="{'input-group-focus':focus1===true}">
+              <input type="text" class="form-control" placeholder="Right Nucleo Icon" (focus)="focus1=true" (blur)="focus1=false">
+              <div class="input-group-append">
+                  <span class="input-group-text"><i class="now-ui-icons users_single-02"></i></span>
+              </div>
+            </div>
+        </div>
+    </div>
+	<div class="area-line">
+		<div>
+			<pre class="prettyprint">
+&#x3C;div class=&#x22;row&#x22;&#x3E;
+  &#x3C;div class=&#x22;col-sm-6 col-lg-4&#x22;&#x3E;
+      &#x3C;div class=&#x22;form-group&#x22;&#x3E;
+          &#x3C;input type=&#x22;text&#x22; value=&#x22;&#x22; placeholder=&#x22;Regular&#x22; class=&#x22;form-control&#x22; /&#x3E;
+      &#x3C;/div&#x3E;
+  &#x3C;/div&#x3E;
+  &#x3C;div class=&#x22;col-sm-6 col-lg-4&#x22;&#x3E;
+      &#x3C;div class=&#x22;form-group has-success&#x22;&#x3E;
+          &#x3C;input type=&#x22;text&#x22; value=&#x22;Success&#x22; class=&#x22;form-control form-control-success&#x22; /&#x3E;
+      &#x3C;/div&#x3E;
+  &#x3C;/div&#x3E;
+  &#x3C;div class=&#x22;col-sm-6 col-lg-4&#x22;&#x3E;
+      &#x3C;div class=&#x22;form-group has-danger&#x22;&#x3E;
+          &#x3C;input type=&#x22;email&#x22; value=&#x22;Error Input&#x22; class=&#x22;form-control form-control-danger&#x22; /&#x3E;
+      &#x3C;/div&#x3E;
+  &#x3C;/div&#x3E;
+  &#x3C;div class=&#x22;col-sm-6 col-lg-4&#x22;&#x3E;
+      &#x3C;div class=&#x22;input-group&#x22; [ngClass]=&#x22;{{'{'}}&#x27;input-group-focus&#x27;:focus===true{{'}'}}&#x22;&#x3E;
+        &#x3C;div class=&#x22;input-group-prepend&#x22; &#x3E;
+            &#x3C;span class=&#x22;input-group-text&#x22;&#x3E;&#x3C;i class=&#x22;fa fa-user-circle&#x22;&#x3E;&#x3C;/i&#x3E;&#x3C;/span&#x3E;
+        &#x3C;/div&#x3E;
+        &#x3C;input type=&#x22;text&#x22; class=&#x22;form-control&#x22; placeholder=&#x22;Left Font Awesome Icon&#x22; (focus)=&#x22;focus=true&#x22; (blur)=&#x22;focus=false&#x22; &#x3E;
+      &#x3C;/div&#x3E;
+  &#x3C;/div&#x3E;
+  &#x3C;div class=&#x22;col-sm-6 col-lg-4&#x22;&#x3E;
+      &#x3C;div class=&#x22;input-group&#x22; [ngClass]=&#x22;{{'{'}}&#x27;input-group-focus&#x27;:focus1===true{{'}'}}&#x22;&#x3E;
+        &#x3C;input type=&#x22;text&#x22; class=&#x22;form-control&#x22; placeholder=&#x22;Right Nucleo Icon&#x22; (focus)=&#x22;focus1=true&#x22; (blur)=&#x22;focus1=false&#x22;&#x3E;
+        &#x3C;div class=&#x22;input-group-append&#x22;&#x3E;
+            &#x3C;span class=&#x22;input-group-text&#x22;&#x3E;&#x3C;i class=&#x22;now-ui-icons users_single-02&#x22;&#x3E;&#x3C;/i&#x3E;&#x3C;/span&#x3E;
+        &#x3C;/div&#x3E;
+      &#x3C;/div&#x3E;
+  &#x3C;/div&#x3E;
+&#x3C;/div&#x3E;</pre>
+		</div>
+	</div>
+</div>
