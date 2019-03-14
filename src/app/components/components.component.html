@@ -146,14 +146,14 @@
                       <ngb-tabset type="pills" class="nav nav-pills nav-pills-primary justify-content-start tab-space nav-pills-just-icons">
                           <ngb-tab>
                             <ng-template ngbTabTitle>
-                                <i class="fa fa-diamond"></i>
+                              <i class="far fa-gem"></i>
                             </ng-template>
                               <ng-template ngbTabContent>
                               </ng-template>
                           </ngb-tab>
                           <ngb-tab>
                             <ng-template ngbTabTitle>
-                                <i class="fa fa-thermometer-full"></i>
+                              <i class="fa fa-thermometer-full"></i>
                             </ng-template>
                               <ng-template ngbTabContent>
                               </ng-template>
@@ -347,57 +347,47 @@
           </div>
       </div>
       <div class="section section-signup" style="background-image: url('assets/img/bg11.jpg'); background-size: cover; background-position: top center; min-height: 700px;">
-          <div class="container">
-              <div class="row">
-                  <div class="card card-signup" data-background-color="orange">
+          <div class="container login-page">
+            <div class="row">
+              <div class="col-md-4 content-center ml-auto mr-auto">
+                  <div class="card card-login card-plain">
                       <form class="form" method="" action="">
-                          <div class="header text-center">
-                              <h4 class="title title-up">Sign Up</h4>
-                              <div class="social-line">
-                                  <a href="#pablo" class="btn btn-neutral btn-facebook btn-icon btn-round">
-                                      <i class="fa fa-facebook-square"></i>
-                                  </a>
-                                  <a href="#pablo" class="btn btn-neutral btn-twitter btn-icon btn-lg btn-round">
-                                      <i class="fa fa-twitter"></i>
-                                  </a>
-                                  <a href="#pablo" class="btn btn-neutral btn-google btn-icon btn-round">
-                                      <i class="fa fa-google-plus"></i>
-                                  </a>
+                          <div class="header header-primary text-center">
+                              <div class="logo-container">
+                                  <img src="assets/img/now-logo.png" alt="">
                               </div>
                           </div>
-                          <div class="card-body">
-                            <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus===true}">
+                          <div class="content">
+                            <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
                               <div class="input-group-prepend">
                                   <span class="input-group-text">  <i class="now-ui-icons users_circle-08"></i></span>
                               </div>
                                 <input type="text" class="form-control" placeholder="First Name..." (focus)="focus=true" (blur)="focus=false" >
                             </div>
-                            <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus1===true}">
+                            <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus1===true}">
                               <div class="input-group-prepend">
                                   <span class="input-group-text"><i class="now-ui-icons text_caps-small"></i></span>
                               </div>
                                 <input type="text" placeholder="Last Name..." class="form-control" (focus)="focus1=true" (blur)="focus1=false"/>
                             </div>
-                            <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus2===true}">
-                              <div class="input-group-prepend">
-                                  <span class="input-group-text"><i class="now-ui-icons ui-1_email-85"></i></span>
-                              </div>
-                                <input type="text" placeholder="Email..." class="form-control" (focus)="focus2=true" (blur)="focus2=false"/>
-                            </div>
-                              <!-- If you want to add a checkbox to this form, uncomment this code -->
-                              <!-- <div class="checkbox">
-              <input id="checkboxSignup" type="checkbox">
-                <label for="checkboxSignup">
-                Unchecked
-                </label>
-                </div> -->
                           </div>
                           <div class="footer text-center">
-                              <a href="#pablo" class="btn btn-neutral btn-round btn-lg">Get Started</a>
+                              <a href="#pablo" class="btn btn-primary btn-round btn-lg btn-block">Get Started</a>
+                          </div>
+                          <div class="text-center">
+                              <h6>
+                                  <a href="#pablo" class="link">Create Account</a>
+                              </h6>
+                          </div>
+                          <div class="text-center">
+                              <h6>
+                                  <a href="#pablo" class="link">Need Help?</a>
+                              </h6>
                           </div>
                       </form>
                   </div>
               </div>
+            </div>
               <div class="col text-center">
                   <a [routerLink]="['/examples/login']" class="btn btn-simple btn-round btn-white btn-lg">View Login Page</a>
               </div>
@@ -456,23 +446,23 @@
               <br>
               <br>
               <div class="row justify-content-md-center sharing-area text-center">
-                  <div class="text-center col-md-12 col-lg-8">
-                      <h3>Thank you for supporting us!</h3>
-                  </div>
-                  <div class="text-center col-md-12 col-lg-8">
-                      <a target="_blank" href="https://www.twitter.com/creativetim" class="btn btn-neutral btn-icon btn-twitter btn-round btn-lg" rel="tooltip" title="Follow us">
-                          <i class="fa fa-twitter"></i>
-                      </a>
-                      <a target="_blank" href="https://www.facebook.com/creativetim" class="btn btn-neutral btn-icon btn-facebook btn-round btn-lg" rel="tooltip" title="Like us">
-                          <i class="fa fa-facebook-square"></i>
-                      </a>
-                      <a target="_blank" href="https://www.linkedin.com/company-beta/9430489/" class="btn btn-neutral btn-icon btn-linkedin btn-lg btn-round" rel="tooltip" title="Follow us">
-                          <i class="fa fa-linkedin"></i>
-                      </a>
-                      <a target="_blank" href="https://github.com/creativetimofficial/now-ui-kit-angular" class="btn btn-neutral btn-icon btn-github btn-round btn-lg" rel="tooltip" title="Star on Github">
-                          <i class="fa fa-github"></i>
-                      </a>
-                  </div>
+                <div class="text-center col-md-12 col-lg-8">
+                  <h3>Thank you for supporting us!</h3>
+                </div>
+                <div class="text-center col-md-12 col-lg-8">
+                  <a target="_blank" href="https://www.twitter.com/creativetim" class="btn btn-neutral btn-icon btn-twitter btn-round btn-lg" rel="tooltip" title="Follow us">
+                    <i class="fab fa-twitter"></i>
+                  </a>
+                  <a target="_blank" href="https://www.facebook.com/creativetim" class="btn btn-neutral btn-icon btn-facebook btn-round btn-lg" rel="tooltip" title="Like us">
+                    <i class="fab fa-facebook-square"></i>
+                  </a>
+                  <a target="_blank" href="https://www.linkedin.com/company-beta/9430489/" class="btn btn-neutral btn-icon btn-linkedin btn-lg btn-round" rel="tooltip" title="Follow us">
+                    <i class="fab fa-linkedin"></i>
+                  </a>
+                  <a target="_blank" href="https://github.com/creativetimofficial/now-ui-kit-angular" class="btn btn-neutral btn-icon btn-github btn-round btn-lg" rel="tooltip" title="Star on Github">
+                    <i class="fab fa-github"></i>
+                  </a>
+                </div>
               </div>
           </div>
       </div>

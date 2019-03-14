@@ -46,7 +46,7 @@ Within the download you'll find the following directories and files:
 Now Ui Kit Angular
 ├── CHANGELOG.md
 ├── README.md
-├── angular-cli.json
+├── angular.json
 ├── documentation
 │   ├── css
 │   ├── js
@@ -170,4 +170,4 @@ Google+: <https://plus.google.com/+CreativetimPage>
 Instagram: <https://instagram.com/creativetimofficial>
 
 [CHANGELOG]: ./CHANGELOG.md
-[version-badge]: https://img.shields.io/badge/version-1.0.1-blue.svg
+[version-badge]: https://img.shields.io/badge/version-1.1.0-blue.svg

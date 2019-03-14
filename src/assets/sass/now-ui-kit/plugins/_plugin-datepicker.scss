@@ -411,7 +411,7 @@ input.datetimepicker[data-color="orange"] + ngb-datepicker{
 
     background-color: $primary-color;
     .ngb-dp-months .ngb-dp-day .btn-light,
-    .ngb-dp-header ngb-datepicker-navigation .ngb-dp-navigation-chevron:before,
+    .ngb-dp-header ngb-datepicker-navigation .ngb-dp-navigation-chevron,
     .ngb-dp-header ngb-datepicker-navigation ngb-datepicker-navigation-select .custom-select,
     .ngb-dp-months ngb-datepicker-month-view .ngb-dp-week .ngb-dp-weekday,
     .ngb-dp-months ngb-datepicker-month-view .ngb-dp-week .ngb-dp-weekday,
@@ -433,7 +433,7 @@ input.datetimepicker[data-color="orange"] + ngb-datepicker{
 input.datetimepicker[data-color="blue"] + ngb-datepicker{
     background-color: $info-color;
     .ngb-dp-months .ngb-dp-day .btn-light,
-    .ngb-dp-header ngb-datepicker-navigation .ngb-dp-navigation-chevron:before,
+    .ngb-dp-header ngb-datepicker-navigation .ngb-dp-navigation-chevron,
     .ngb-dp-header ngb-datepicker-navigation ngb-datepicker-navigation-select .custom-select,
     .ngb-dp-months ngb-datepicker-month-view .ngb-dp-week .ngb-dp-weekday,
     .ngb-dp-months ngb-datepicker-month-view .ngb-dp-week .ngb-dp-weekday,
@@ -456,7 +456,7 @@ input.datetimepicker[data-color="green"] + ngb-datepicker{
 
     background-color: $success-color;
     .ngb-dp-months .ngb-dp-day .btn-light,
-    .ngb-dp-header ngb-datepicker-navigation .ngb-dp-navigation-chevron:before,
+    .ngb-dp-header ngb-datepicker-navigation .ngb-dp-navigation-chevron,
     .ngb-dp-header ngb-datepicker-navigation ngb-datepicker-navigation-select .custom-select,
     .ngb-dp-months ngb-datepicker-month-view .ngb-dp-week .ngb-dp-weekday,
     .ngb-dp-months ngb-datepicker-month-view .ngb-dp-week .ngb-dp-weekday,
@@ -477,7 +477,7 @@ input.datetimepicker[data-color="green"] + ngb-datepicker{
 input.datetimepicker[data-color="red"] + ngb-datepicker{
     background-color: $danger-color;
     .ngb-dp-months .ngb-dp-day .btn-light,
-    .ngb-dp-header ngb-datepicker-navigation .ngb-dp-navigation-chevron:before,
+    .ngb-dp-header ngb-datepicker-navigation .ngb-dp-navigation-chevron,
     .ngb-dp-header ngb-datepicker-navigation ngb-datepicker-navigation-select .custom-select,
     .ngb-dp-months ngb-datepicker-month-view .ngb-dp-week .ngb-dp-weekday,
     .ngb-dp-months ngb-datepicker-month-view .ngb-dp-week .ngb-dp-weekday,
@@ -499,7 +499,7 @@ input.datetimepicker[data-color="red"] + ngb-datepicker{
 input.datetimepicker[data-color="yellow"] + ngb-datepicker{
     background-color: $warning-color;
     .ngb-dp-months .ngb-dp-day .btn-light,
-    .ngb-dp-header ngb-datepicker-navigation .ngb-dp-navigation-chevron:before,
+    .ngb-dp-header ngb-datepicker-navigation .ngb-dp-navigation-chevron,
     .ngb-dp-header ngb-datepicker-navigation ngb-datepicker-navigation-select .custom-select,
     .ngb-dp-months ngb-datepicker-month-view .ngb-dp-week .ngb-dp-weekday,
     .ngb-dp-months ngb-datepicker-month-view .ngb-dp-week .ngb-dp-weekday,
@@ -563,30 +563,9 @@ ngb-datepicker{
         ngb-datepicker-navigation{
           color: $primary-color;
             .ngb-dp-arrow-btn{
-              margin-top: 0px;
-
                 .ngb-dp-navigation-chevron{
-                    height: 27px;
-                    width: 27px;
-                    line-height: 32px;
-                    font-size: 10px;
-                    border-radius: 50%;
-                    text-align: center;
-                    &:before{
-                        content: "\f053"!important;
-                        border: none !important;
-                        font: normal normal normal 14px/1 FontAwesome;
-                        font-size: inherit;
-                        text-rendering: auto;
-                        -webkit-font-smoothing: anitialised;
-                        transform: none!important;
-                        color: $primary-color;
-                    }
+                  color: $primary-color;
                 }
-            }
-            .right .ngb-dp-navigation-chevron:before{
-              content: "\f054"!important;
-                color: $primary-color;
             }
             ngb-datepicker-navigation-select{
                 .custom-select{
@@ -595,9 +574,6 @@ ngb-datepicker{
                     border: none !important;
                     background: transparent!important;
                     -webkit-appearance: menulist !important;
-                    &:focus{
-                      box-shadow: none;
-                    }
                 }
             }
 
@@ -636,12 +612,6 @@ ngb-datepicker{
                             color: $black-color;
                             background-color: $opacity-gray-3;
                         }
-                    }
-                    div[ng-reflect-selected="true"]{
-                        background-color: $primary-color ;
-                        color: $white-color ;
-                        box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.2);
-
                     }
                     .text-muted{
                       color: $default-color;
