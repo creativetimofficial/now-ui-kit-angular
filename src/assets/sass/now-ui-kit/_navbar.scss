@@ -47,16 +47,16 @@
             padding: $padding-base-vertical $padding-base-horizontal;
             line-height: $line-height-nav-link;
 
-            i.fa + p,
+            i.fab + p,
             i.now-ui-icons + p{
-                margin-left: 5px;
+                margin-left: 3px;
             }
 
-            i.fa,
+            i.fab,
             i.now-ui-icons{
                 font-size: 18px;
                 position: relative;
-                top: 2px;
+                top: 3px;
                 text-align: center;
                 width: 21px;
             }
