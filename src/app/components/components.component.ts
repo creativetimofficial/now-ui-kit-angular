@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer, OnDestroy } from '@angular/core';
+import { Component, OnInit, Renderer2, OnDestroy } from '@angular/core';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { NgbAccordionConfig } from '@ng-bootstrap/ng-bootstrap';
 import * as Rellax from 'rellax';
@@ -32,7 +32,7 @@ export class ComponentsComponent implements OnInit, OnDestroy {
 
     state_icon_primary = true;
 
-    constructor( private renderer : Renderer, config: NgbAccordionConfig) {
+    constructor( private renderer : Renderer2, config: NgbAccordionConfig) {
         config.closeOthers = true;
         config.type = 'info';
     }

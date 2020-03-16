@@ -17,7 +17,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
     ],
     imports: [
         BrowserAnimationsModule,
-        NgbModule.forRoot(),
+        NgbModule,
         FormsModule,
         RouterModule,
         AppRoutingModule,
