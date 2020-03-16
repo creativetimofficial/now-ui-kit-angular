@@ -1,7 +1,7 @@
 /*!
 
 =========================================================
-* Now UI Kit Angular - v1.1.0
+* Now UI Kit Angular - v1.2.0
 =========================================================
 
 * Product Page: https://www.creative-tim.com/product/now-ui-kit-angular
