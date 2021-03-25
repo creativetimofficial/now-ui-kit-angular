@@ -17,9 +17,9 @@
                               <div class="input-group-prepend">
                                   <span class="input-group-text">  <i class="now-ui-icons ui-1_calendar-60"></i></span>
                               </div>
-                                <input type="text" class="form-control" id="qtdDias" placeholder="Informe a quantidade de dias..." (change)="qtdDias = $event.target.value"  (focus)="focus=true" (blur)="focus=false" >
+                                <input type="text" class="form-control" id="qtdDias" autocomplete="off" [disabled]="casosMundial == []" placeholder="Informe a quantidade de dias..." (keyup)="qtdDias = $event.target.value"  (focus)="focus=true" (blur)="focus=false" >
                             </div>
-                            <button  class="btn btn-primary btn-round btn-lg btn-block" (click)="calcula()" [disabled]="casosMundial == []" >CALCULAR</button>
+                            <button  class="btn btn-primary btn-round btn-lg btn-block" (click)="calcula()" [disabled]="!qtdDias" >CALCULAR</button>
                       
                           </div>                   
                       </form>
