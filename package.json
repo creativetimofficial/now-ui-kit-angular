@@ -31,7 +31,7 @@
     "copy-webpack-plugin": "7.0.0",
     "core-js": "3.8.1",
     "font-awesome": "4.7.0",
-    "jquery": "3.5.1",
+    "jquery": "^3.5.1",
     "jw-bootstrap-switch-ng2": "2.0.5",
     "ng2-nouislider": "1.8.2",
     "nouislider": "14.6.3",
