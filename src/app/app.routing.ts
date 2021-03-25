@@ -3,11 +3,11 @@ import { CommonModule, } from '@angular/common';
 import { BrowserModule  } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ComponentsComponent } from './components/components.component';
+import { PainelComponent } from './components/painel/painel.component';
 
 const routes: Routes =[
     { path: '', redirectTo: 'index', pathMatch: 'full' },
-    { path: 'index',                component: ComponentsComponent }
+    { path: 'index',                component: PainelComponent }
 ];
 
 @NgModule({

@@ -3,11 +3,11 @@
       <div class="section section-signup" style="background-image: url('assets/img/bg10.jpg'); background-size: cover; background-position: top center; min-height: 700px;">
           <div class="container login-page">
             <div class="row justify-content-center">
-                <div class="col-md-4 text-center">
+                <div class="col-md-5 pr-0 pl-0 text-center">
                     <div class="content-center brand">
                         <img class="n-logo" src="assets/img/now-logo.png" alt="">
                         <h1 class="h1-seo">E Amanhã?</h1>
-                        <h3>Acompanhe a evolução do COVID 19.</h3>
+                        <h3>Acompanhe a evolução do COVID-19 nos próximos dias.</h3>
                     </div>
                   <div class="card card-login card-plain">
                       <form class="form" method="" action="">
@@ -17,10 +17,10 @@
                               <div class="input-group-prepend">
                                   <span class="input-group-text">  <i class="now-ui-icons ui-1_calendar-60"></i></span>
                               </div>
-                                <input type="text" class="form-control" id="qtdDias" placeholder="Quantidade de dias..." (change)="qtdDias = $event.target.value"  (focus)="focus=true" (blur)="focus=false" >
+                                <input type="text" class="form-control" id="qtdDias" placeholder="Informe a quantidade de dias..." (change)="qtdDias = $event.target.value"  (focus)="focus=true" (blur)="focus=false" >
                             </div>
-                            
-                            <a class="btn btn-primary btn-round btn-lg btn-block" (click)="calcula()" >CALCULAR</a>
+                            <button  class="btn btn-primary btn-round btn-lg btn-block" (click)="calcula()" [disabled]="casosMundial == []" >CALCULAR</button>
+                      
                           </div>                   
                       </form>
                   </div>
