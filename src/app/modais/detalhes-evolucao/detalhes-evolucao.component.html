@@ -1,0 +1,56 @@
+<div class="modal-header">
+  <h4 class="modal-title">
+   {{tituloPrevisao}}
+    <i class="fas fa-globe-americas"></i>
+  </h4>
+  <button
+    type="button"
+    class="close"
+    aria-label="Close"
+    (click)="activeModal.dismiss('Cross click')"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="tableResponsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Data</th>
+        <th scope="col">Novos Casos</th>
+        <th scope="col">Total de casos</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let row of dadosBrasil">
+        <tr>
+          <td>{{ row.Data }}</td>
+          <td  *ngIf="tipoVisao">{{ row.NovosCasos | number:'4.1-2' }}</td>
+          <td  *ngIf="tipoVisao">{{ row.TotalCasos | number:'4.1-2'}}</td>
+          <td *ngIf="!tipoVisao">{{ row.NovosCasosGlobal | number:'4.1-2' }}</td>
+          <td  *ngIf="!tipoVisao">{{ row.TotalCasosGlobal | number:'4.1-2'}}</td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>
+</div>
+<div class="modal-footer justify-content">
+
+  <button
+  type="button"
+  class="btn btn-primary"
+  (click)="changeVisao()"
+>
+  {{textoButton}}
+</button>
+<button *ngIf="relatorioCritico.length > 0"
+  type="button"
+  class="btn btn-outline-dark  float-right"
+  (click)="openComunicado()"
+>
+  Ver comunicado
+</button>
+
+</div>

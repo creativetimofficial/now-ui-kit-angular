@@ -1,0 +1,82 @@
+<div class="wrapper">
+  <div class="txt-gray">
+    <div
+      class="section section-signup"
+      style="
+        background-image: url('assets/img/bg10.jpg');
+        background-size: cover;
+        background-position: top center;
+        min-height: 700px;
+      "
+    >
+      <div class="container login-page">
+        <div class="row justify-content-center">
+          <div class="col-md-12 text-center">
+            <div class="card card-login card-plain">
+              <form class="form" method="" action="">
+                <div class="container">
+                  <div class="content-center brand">
+                    <img class="n-logo" src="assets/img/now-logo.png" alt="" />
+                    <h1 class="h1-seo">D3 MONITORE</h1>
+                    <h5>
+                      Calcule a evolução do Covid 19<br />entre <b>1</b> à
+                      <b>365 dias</b>.
+                    </h5>
+                  </div>
+                </div>
+                <div class="content">
+                  <div
+                    class="input-group form-group-no-border input-lg"
+                    [ngClass]="{ 'input-group-focus': focus === true }"
+                  >
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="now-ui-icons ui-1_calendar-60"></i
+                      ></span>
+                    </div>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="qtdDias"
+                      autocomplete="off"
+                      pattern="[0-9]"
+                      [disabled]="casosMundial == []"
+                      placeholder="Quantidade de dias..."
+                      (keyup)="qtdDias = $event.target.value"
+                      (focus)="focus = true"
+                      (blur)="focus = false"
+                    />
+                  </div>
+                  <button
+                    class="btn btn-primary btn-round btn-lg btn-block"
+                    (click)="calcula()"
+                    [disabled]="!qtdDias || qtdDias == 0 || qtdDias > 365 || loading"
+                  > 
+                    CALCULAR
+                  </button>
+                  <span *ngIf="qtdDias == 0 && qtdDias" class="alerta"
+                    >Informe uma quantidade superior a zero.</span
+                  >
+                  <span *ngIf="qtdDias > 365" class="alerta"
+                    >O máximo de dias permitidos são 365.</span
+                  >
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="footer" data-background-color="black">
+    <div class="container">
+      <div class="copyright">
+        &copy;
+        {{ data | date: "yyyy" }} Feito por
+        <a href="https://www.linkedin.com/in/cceciliavaz/" target="_blank"
+          >Ana Cecília Vaz</a
+        >.
+      </div>
+    </div>
+  </footer>
+</div>
