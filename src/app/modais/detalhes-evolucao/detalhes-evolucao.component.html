@@ -1,6 +1,6 @@
 <div class="modal-header">
   <h4 class="modal-title">
-    Previsão para os próximos {{ qtdDias }} dias no Brasil
+   {{tituloPrevisao}}
     <i class="fas fa-globe-americas"></i>
   </h4>
   <button
@@ -26,20 +26,31 @@
       <ng-container *ngFor="let row of dadosBrasil">
         <tr>
           <td>{{ row.Data }}</td>
-          <td>{{ row.NovosCasos | number:'4.1-2' }}</td>
-          <td>{{ row.TotalCasos | number:'4.1-2'}}</td>
+          <td  *ngIf="tipoVisao">{{ row.NovosCasos | number:'4.1-2' }}</td>
+          <td  *ngIf="tipoVisao">{{ row.TotalCasos | number:'4.1-2'}}</td>
+          <td *ngIf="!tipoVisao">{{ row.NovosCasosGlobal | number:'4.1-2' }}</td>
+          <td  *ngIf="!tipoVisao">{{ row.TotalCasosGlobal | number:'4.1-2'}}</td>
         </tr>
       </ng-container>
     </tbody>
   </table>
 </div>
 </div>
-<div class="modal-footer">
+<div class="modal-footer justify-content">
+
   <button
-    type="button"
-    class="btn btn-outline-dark"
-    (click)="activeModal.close('Close click')"
-  >
-    Fechar
-  </button>
+  type="button"
+  class="btn btn-primary"
+  (click)="changeVisao()"
+>
+  {{textoButton}}
+</button>
+<button *ngIf="relatorioCritico.length > 0"
+  type="button"
+  class="btn btn-outline-dark  float-right"
+  (click)="openComunicado()"
+>
+  Ver comunicado
+</button>
+
 </div>
