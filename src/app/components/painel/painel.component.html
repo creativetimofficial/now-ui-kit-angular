@@ -50,8 +50,8 @@
                   <button
                     class="btn btn-primary btn-round btn-lg btn-block"
                     (click)="calcula()"
-                    [disabled]="!qtdDias || qtdDias > 365 || loading"
-                  >
+                    [disabled]="!qtdDias || qtdDias == 0 || qtdDias > 365 || loading"
+                  > 
                     CALCULAR
                   </button>
                   <span *ngIf="qtdDias == 0 && qtdDias" class="alerta"
