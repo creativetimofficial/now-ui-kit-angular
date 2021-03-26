@@ -6,7 +6,8 @@ import { NouisliderModule } from "ng2-nouislider";
 import { JwBootstrapSwitchNg2Module } from "jw-bootstrap-switch-ng2";
 import { RouterModule } from "@angular/router";
 import { PainelComponent } from "./painel.component";
-import { detalhesBrasilComponent } from "app/modais/detalhes-Brasil.component";
+import { detalhesBrasilComponent } from "app/modais/detalhes-evolucao/detalhes-evolucao.component";
+import { comunicadoComponent } from "app/modais/comunicado/comunicado.component";
 
 @NgModule({
   imports: [
@@ -17,7 +18,7 @@ import { detalhesBrasilComponent } from "app/modais/detalhes-Brasil.component";
     RouterModule,
     JwBootstrapSwitchNg2Module,
   ],
-  declarations: [PainelComponent, detalhesBrasilComponent],
-  exports: [PainelComponent, detalhesBrasilComponent],
+  declarations: [PainelComponent, detalhesBrasilComponent, comunicadoComponent],
+  exports: [PainelComponent, detalhesBrasilComponent, comunicadoComponent],
 })
 export class PainelModule {}
