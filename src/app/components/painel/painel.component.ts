@@ -119,6 +119,7 @@ export class PainelComponent implements OnInit {
   }
 
   open() {
+    $("#qtdDias").val('')
     const modalRef = this.modalService.open(detalhesBrasilComponent);
     modalRef.componentInstance.qtdDias = this.qtdDias;
     modalRef.componentInstance.dadosBrasil = this.dadosBrasil;
