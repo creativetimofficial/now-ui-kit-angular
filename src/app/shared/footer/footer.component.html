@@ -1,0 +1,33 @@
+<footer class="footer " [ngClass]="{'footer-default' : !noDefault}">
+    <div class="container">
+        <nav>
+            <ul>
+<!--                <li>-->
+<!--                    <a href="https://www.jan-schuettken.de" target="_blank">-->
+<!--                        Jan Schüttken-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                    <a href="https://www.creative-tim.com/about-us">-->
+<!--                        About Us-->
+<!--                    </a>-->
+<!--                </li>-->
+                <li>
+                    <a href="https://www.beerpongleague.eu" target="_blank">
+                        Beer Pong League
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.suffapp.de" target="_blank">
+                        Suff App
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            &copy;
+            {{data | date: 'yyyy'}}, Designed and Coded by
+            <a href="https://www.jan-schuettken.de" target="_blank">Jan Schüttken</a>.
+        </div>
+    </div>
+</footer>

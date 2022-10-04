@@ -80,9 +80,10 @@
         }
 
         .nav-item.active .nav-link:not(.btn),
-        .nav-item .nav-link:not(.btn):focus,
+        //.nav-item .nav-link:not(.btn):focus,
         .nav-item .nav-link:not(.btn):hover,
-        .nav-item .nav-link:not(.btn):active{
+        //.nav-item .nav-link:not(.btn):active
+        {
             background-color: $opacity-2;
             border-radius: $border-radius-small;
         }

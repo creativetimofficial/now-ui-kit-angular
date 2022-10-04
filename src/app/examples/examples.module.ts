@@ -7,9 +7,10 @@ import { JwBootstrapSwitchNg2Module } from 'jw-bootstrap-switch-ng2';
 import { AgmCoreModule } from '@agm/core';
 
 import { LandingComponent } from './landing/landing.component';
-import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ExamplesComponent } from './examples.component';
+import {SharedModule} from '../shared/shared.module';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
     imports: [
@@ -20,11 +21,12 @@ import { ExamplesComponent } from './examples.component';
         JwBootstrapSwitchNg2Module,
         AgmCoreModule.forRoot({
             apiKey: 'YOUR_KEY_HERE'
-        })
+        }),
+        SharedModule,
+        RouterModule
     ],
     declarations: [
         LandingComponent,
-        LoginComponent,
         ExamplesComponent,
         ProfileComponent
     ]

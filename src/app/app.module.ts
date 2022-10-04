@@ -1,19 +1,21 @@
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // this is needed!
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { RouterModule } from '@angular/router';
-import { AppRoutingModule } from './app.routing';
-import { ComponentsModule } from './components/components.module';
-import { ExamplesModule } from './examples/examples.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations'; // this is needed!
+import {NgModule} from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {RouterModule} from '@angular/router';
+import {AppRoutingModule} from './app.routing';
+import {ComponentsModule} from './components/components.module';
+import {ExamplesModule} from './examples/examples.module';
 
-import { AppComponent } from './app.component';
-import { NavbarComponent } from './shared/navbar/navbar.component';
+import {AppComponent} from './app.component';
+import {BasicPageComponent} from './pages/basic-page/basic-page.component';
+import {SharedModule} from './shared/shared.module';
+import {PagesModule} from './pages/pages.module';
 
 @NgModule({
     declarations: [
         AppComponent,
-        NavbarComponent
+        BasicPageComponent,
     ],
     imports: [
         BrowserAnimationsModule,
@@ -22,9 +24,12 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
         RouterModule,
         AppRoutingModule,
         ComponentsModule,
-        ExamplesModule
+        ExamplesModule,
+        SharedModule,
+        PagesModule
     ],
     providers: [],
     bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
