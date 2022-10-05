@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {BasicPageComponent} from '../basic-page/basic-page.component';
-import {GlobalService} from '../../shared/global/global.service';
+import {GlobalService} from '../../services/global.service';
 
 @Component({
     selector: 'app-home',

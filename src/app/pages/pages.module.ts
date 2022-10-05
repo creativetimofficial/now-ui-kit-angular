@@ -9,14 +9,18 @@ import {FormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {NouisliderModule} from 'ng2-nouislider';
 import {JwBootstrapSwitchNg2Module} from 'jw-bootstrap-switch-ng2';
-import { HomeComponent } from './home/home.component';
+import {HomeComponent} from './home/home.component';
+import {ProfileComponent} from './profile/profile.component';
+import { BasicAuthPageComponent } from './basic-auth-page/basic-auth-page.component';
 
 
 @NgModule({
     declarations: [
         RegisterComponent,
         LoginComponent,
-        HomeComponent
+        HomeComponent,
+        ProfileComponent,
+        BasicAuthPageComponent
     ],
     imports: [
         RouterModule,

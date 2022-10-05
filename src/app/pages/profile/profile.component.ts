@@ -1,14 +1,15 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import * as Rellax from 'rellax';
-import {GlobalService} from '../../shared/global/global.service';
-import {BasicPageComponent} from '../../pages/basic-page/basic-page.component';
+import {GlobalService} from '../../services/global.service';
+import {BasicAuthPageComponent} from '../basic-auth-page/basic-auth-page.component';
+import {ApiService} from '../../services/api.service';
 
 @Component({
     selector: 'app-profile',
     templateUrl: './profile.component.html',
     styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent extends BasicPageComponent implements OnInit, OnDestroy {
+export class ProfileComponent extends BasicAuthPageComponent implements OnInit, OnDestroy {
     zoom = 14;
     lat = 44.445248;
     lng = 26.099672;
@@ -63,8 +64,8 @@ export class ProfileComponent extends BasicPageComponent implements OnInit, OnDe
     focus;
     focus1;
 
-    constructor(protected global: GlobalService) {
-        super(global);
+    constructor(public global: GlobalService, protected api: ApiService) {
+        super(global, api);
     }
 
     ngOnInit() {

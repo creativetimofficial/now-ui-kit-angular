@@ -5,7 +5,6 @@ import {Routes, RouterModule} from '@angular/router';
 
 import {ComponentsComponent} from './components/components.component';
 import {LandingComponent} from './examples/landing/landing.component';
-import {ProfileComponent} from './examples/profile/profile.component';
 import {NucleoiconsComponent} from './components/nucleoicons/nucleoicons.component';
 
 
@@ -14,7 +13,6 @@ const routes: Routes = [
     {path: 'index', component: ComponentsComponent},
     {path: 'nucleoicons', component: NucleoiconsComponent},
     {path: 'examples/landing', component: LandingComponent},
-    {path: 'examples/profile', component: ProfileComponent},
     // @ts-ignore
     {path: '', loadChildren: () => import('./pages/pages-routing.module').then(m => m.PagesRoutingModule)},
     {path: '**', redirectTo: 'index'},

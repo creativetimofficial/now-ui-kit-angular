@@ -11,6 +11,7 @@ import {AppComponent} from './app.component';
 import {BasicPageComponent} from './pages/basic-page/basic-page.component';
 import {SharedModule} from './shared/shared.module';
 import {PagesModule} from './pages/pages.module';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
     declarations: [
@@ -26,7 +27,8 @@ import {PagesModule} from './pages/pages.module';
         ComponentsModule,
         ExamplesModule,
         SharedModule,
-        PagesModule
+        PagesModule,
+        HttpClientModule
     ],
     providers: [],
     bootstrap: [AppComponent]

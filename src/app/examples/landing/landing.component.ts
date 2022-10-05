@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import * as Rellax from 'rellax';
-import {GlobalService} from '../../shared/global/global.service';
 import {BasicPageComponent} from '../../pages/basic-page/basic-page.component';
+import {GlobalService} from '../../services/global.service';
 
 @Component({
     selector: 'app-landing',

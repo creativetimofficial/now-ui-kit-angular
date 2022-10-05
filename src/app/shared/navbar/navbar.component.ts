@@ -1,6 +1,6 @@
 import {Component, OnInit, ElementRef} from '@angular/core';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
-import {GlobalService} from '../global/global.service';
+import {GlobalService} from '../../services/global.service';
 
 @Component({
     selector: 'app-navbar',
@@ -12,7 +12,7 @@ export class NavbarComponent implements OnInit {
     private sidebarVisible: boolean;
     currentPage = '';
 
-    constructor(public location: Location, private element: ElementRef, private global: GlobalService) {
+    constructor(public location: Location, private element: ElementRef, public global: GlobalService) {
         this.sidebarVisible = false;
         this.global.updateNavBar.subscribe(value => this.currentPage = value);
     }

@@ -1,6 +1,6 @@
 <div class="login-page">
-    <div class="page-header" filter-color="orange">
-        <div class="page-header-image" style="background-image:url(assets/img/login.jpg)"></div>
+    <div class="page-header" filter-color="blue">
+        <div class="page-header-image" style="background-image:url(assets/img/bg11.jpg)"></div>
         <div class="container">
             <div class="col-md-4 content-center">
                 <div class="card card-login card-plain">
@@ -12,24 +12,27 @@
                         </div>
                         <div class="content">
                             <div class="input-group form-group-no-border input-lg"
-                                 [ngClass]="{'input-group-focus':focus===true}">
+                                 [ngClass]="{'input-group-focus':focus.focusMail===true}">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text">  <i class="now-ui-icons users_circle-08"></i></span>
+                                    <span class="input-group-text">  <i class="now-ui-icons ui-1_email-85"></i></span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="First Name..." (focus)="focus=true"
-                                       (blur)="focus=false">
+                                <input type="text" class="form-control" placeholder="Mail ..."
+                                       (focus)="focus.focusMail=true"
+                                       (blur)="focus.focusMail=false" [(ngModel)]="inputValues.mail" name="mail">
                             </div>
                             <div class="input-group form-group-no-border input-lg"
-                                 [ngClass]="{'input-group-focus':focus1===true}">
+                                 [ngClass]="{'input-group-focus':focus.focusPassword===true}">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="now-ui-icons text_caps-small"></i></span>
+                                    <span class="input-group-text"><i class="now-ui-icons objects_key-25"></i></span>
                                 </div>
-                                <input type="text" placeholder="Last Name..." class="form-control" (focus)="focus1=true"
-                                       (blur)="focus1=false"/>
+                                <input type="password" placeholder="Password ..." class="form-control"
+                                       (focus)="focus.focusPassword=true"
+                                       (blur)="focus.focusPassword=false" [(ngModel)]="inputValues.password"
+                                       name="password"/>
                             </div>
                         </div>
                         <div class="footer text-center">
-                            <a  class="btn btn-primary btn-round btn-lg btn-block">Login</a>
+                            <a (click)="login()" class="btn btn-primary btn-round btn-lg btn-block">Login</a>
                         </div>
                         <div class="pull-left">
                             <h6>

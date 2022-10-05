@@ -12,7 +12,7 @@
     ],
     "curly": true,
     "eofline": true,
-    "forin": true,
+    "forin": false,
     "import-blacklist": [
       true
     ],
@@ -50,7 +50,7 @@
     "no-empty-interface": true,
     "no-eval": true,
     "no-inferrable-types": [
-      true,
+      false,
       "ignore-params"
     ],
     "no-misused-new": true,
@@ -79,6 +79,7 @@
     ],
     "radix": true,
     "semicolon": [
+      true,
       "always"
     ],
     "triple-equals": [

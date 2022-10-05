@@ -1,12 +1,20 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {GlobalService} from '../../shared/global/global.service';
+import {GlobalService} from '../../services/global.service';
+import {User} from '../../data/user';
+import {ApiService} from '../../services/api.service';
 
 @Component({
     selector: 'app-basic-page',
-    templateUrl: './basic-page.component.html',
-    styleUrls: ['./basic-page.component.scss']
+    template: `
+        <p>
+            basic-auth-page works!
+        </p>
+    `,
+    styles: []
 })
-export class BasicPageComponent implements OnInit, OnDestroy  {
+export class BasicPageComponent implements OnInit, OnDestroy {
+    user: User = null;
+    private _busy: boolean = false;
 
     constructor(protected global: GlobalService) {
     }
@@ -19,6 +27,26 @@ export class BasicPageComponent implements OnInit, OnDestroy  {
     ngOnDestroy() {
         console.log('ngOnDestroy', this.constructor.name);
         this.global.updateNavBar.next(null);
+    }
+
+    get busy(): boolean {
+        return this._busy;
+    }
+
+    set busy(value: boolean) {
+        this._busy = value;
+    }
+
+    setBusy() {
+        this.busy = true;
+    }
+
+    resetBusy() {
+        this.busy = false;
+    }
+
+    sleep(ms: number) {
+        return new Promise(resolve => setTimeout(resolve, ms));
     }
 
 }

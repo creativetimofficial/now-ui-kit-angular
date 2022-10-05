@@ -36,17 +36,17 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item" [ngClass]="{'active':currentPage=='HomeComponent'}">
                     <a class="nav-link" [routerLink]="['/home']">
-                        <i class="now-ui-icons arrows-1_cloud-download-93"></i>
+                        <i class="now-ui-icons objects_planet"></i>
                         <p>Home</p>
                     </a>
                 </li>
-                <li class="nav-item" [ngClass]="{'active':currentPage=='ProfileComponent'}">
-                    <a class="nav-link" [routerLink]="['/examples/profile']">
-                        <i class="now-ui-icons files_paper"></i>
-                        <p>Profile</p>
+                <li *ngIf="global.user!=null" class="nav-item" [ngClass]="{'active':currentPage=='ProfileComponent'}">
+                    <a class="nav-link" [routerLink]="['/profile']">
+                        <i class="now-ui-icons users_single-02"></i>
+                        <p class="d-lg-none d-xl-none">Profile</p>
                     </a>
                 </li>
-                <li class="nav-item" [ngClass]="{'active':currentPage=='LoginComponent'}">
+                <li *ngIf="global.user==null" class="nav-item" [ngClass]="{'active':currentPage=='LoginComponent'}">
                     <a class="nav-link" [routerLink]="['/login']">
                         <i class="now-ui-icons arrows-1_share-66"></i>
                         <p>Login</p>

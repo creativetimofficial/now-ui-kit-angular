@@ -1,8 +1,8 @@
 .navbar{
     padding-top: $navbar-padding-base;
     padding-bottom: $navbar-padding-base;
-    min-height: 53px;
-    margin-bottom: 20px;
+    min-height: $navbar-min-height;
+    margin-bottom: $navbar-margin-bottom;
     box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.15);
 
     a{

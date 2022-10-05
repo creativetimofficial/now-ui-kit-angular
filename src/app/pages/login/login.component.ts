@@ -1,34 +1,55 @@
 import {Component} from '@angular/core';
 import {BasicPageComponent} from '../basic-page/basic-page.component';
-import {GlobalService} from '../../shared/global/global.service';
+import {GlobalService} from '../../services/global.service';
+import {ApiService} from '../../services/api.service';
+import {NotificationService} from '../../services/notification.service';
+import {Router} from '@angular/router';
+import {User} from '../../data/user';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.scss']
 })
 export class LoginComponent extends BasicPageComponent {
 
-    focus;
-    focus1;
+    focus: { focusMail: boolean, focusPassword: boolean } = {
+        focusMail: false,
+        focusPassword: false
+    };
+    inputValues: { mail: string, password: string } = {
+        mail: '',
+        password: ''
+    };
 
-    constructor(protected global: GlobalService) {
+    constructor(protected global: GlobalService,
+                private api: ApiService,
+                private notificationService: NotificationService,
+                private router: Router) {
         super(global);
     }
 
-    // ngOnInit() {
-    //     var body = document.getElementsByTagName('body')[0];
-    //     body.classList.add('login-page');
-    //
-    //     var navbar = document.getElementsByTagName('nav')[0];
-    //     navbar.classList.add('navbar-transparent');
-    // }
-    // ngOnDestroy(){
-    //     var body = document.getElementsByTagName('body')[0];
-    //     body.classList.remove('login-page');
-    //
-    //     var navbar = document.getElementsByTagName('nav')[0];
-    //     navbar.classList.remove('navbar-transparent');
-    // }
+    login() {
+        if (this.busy) {
+            return;
+        }
+        this.setBusy();
+        // if (this.inputValues.search(' ') != -1) {
+        //     this.notification.showErrorNotification('Error', 'Keine Leerzeichen im Username!');
+        //     return;
+        // }
 
+        this.api.login(this.inputValues)
+            .then(() => {
+                // console.log('login');
+                this.global.updateLogin.next(new User());
+                this.router.navigate(['/home']).then();
+                this.api.getYourself().then(value => this.user = value);
+                // this.api.login(value.username, value.password, value.code);
+            }).catch((e) => {
+            this.notificationService.createErrorNotification('Login was not possible');
+            console.log(e);
+            // this.notification.showErrorNotification('Error', e);
+        }).finally(() => this.resetBusy());
+    }
 }
