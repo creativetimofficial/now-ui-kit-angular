@@ -9,7 +9,7 @@ import {NotificationService} from '../../services/notification.service';
 @Component({
     selector: 'app-register',
     templateUrl: './register.component.html',
-    styleUrls: ['./register.component.scss']
+    styleUrls: []
 })
 export class RegisterComponent extends BasicPageComponent {
 

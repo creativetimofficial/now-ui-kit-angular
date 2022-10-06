@@ -2180,6 +2180,9 @@ p {
   .title + .category {
     margin-top: -25px; }
 
+p.description {
+  white-space: pre-wrap; }
+
 .description,
 .card-description,
 .footer-big p {

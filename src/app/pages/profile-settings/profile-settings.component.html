@@ -30,18 +30,133 @@
     <div class="section">
         <div class="container">
             <div class="button-container">
-                <button (click)="comingSoon()" class="btn btn-danger btn-round btn-lg" type="button">
+                <button [routerLink]="['/profile',user?.userId]" class="btn btn-danger btn-round btn-lg" type="button">
                     <i class="fa-solid fa-xmark"></i> Cancel
                 </button>
-                <button (click)="comingSoon()" class="btn btn-success btn-round btn-lg" type="button">
+                <button (click)="save()" class="btn btn-success btn-round btn-lg" type="button">
                     <i class="fa-regular fa-floppy-disk"></i> Save
                 </button>
             </div>
             <h3 class="title">About me</h3>
             <h5 class="description">
-                <textarea [value]="user?.description" style="width: 100%;">
+                <div class="input-group form-group-no-border input-lg">
+                <textarea class="input-group form-group-no-border input-lg" [value]="tmpUser.description"
+                          style="width: 100%;">
                 </textarea>
+                </div>
             </h5>
+            <div class="row">
+                <div class="col-md-8 ml-auto mr-auto">
+                    <h4 class="title text-center">My Data</h4>
+
+                    <h6 class="ml-4">First Name</h6>
+                    <div class="input-group form-group-no-border input-lg"
+                         [ngClass]="{'input-group-focus':focus.first===true}">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa-solid fa-signature"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="First Name..."
+                               (focus)="focus.first=true"
+                               (blur)="focus.first=false" [(ngModel)]="tmpUser.firstName" name="first">
+                    </div>
+
+                    <h6 class="ml-4">Last Name</h6>
+                    <div class="input-group form-group-no-border input-lg"
+                         [ngClass]="{'input-group-focus':focus.last===true}">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa-solid fa-signature"></i></span>
+                        </div>
+                        <input type="text" placeholder="Last Name..." class="form-control"
+                               (focus)="focus.last=true"
+                               (blur)="focus.last=false" [(ngModel)]="tmpUser.lastName" name="last"/>
+                    </div>
+
+                    <h6 class="ml-4">Mail</h6>
+                    <div class="input-group form-group-no-border input-lg"
+                         [ngClass]="{'input-group-focus':focus.mail===true}">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">  <i class="fa-regular fa-envelope"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Mail ..."
+                               (focus)="focus.mail=true"
+                               (blur)="focus.mail=false" [(ngModel)]="tmpUser.mail" name="mail">
+                    </div>
+
+                    <h6 class="ml-4">Password</h6>
+                    <div class="input-group form-group-no-border input-lg"
+                         [ngClass]="{'input-group-focus':focus.password===true}">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa-solid fa-key"></i></span>
+                        </div>
+                        <input type="password" placeholder="Password ..." class="form-control"
+                               (focus)="focus.password=true"
+                               (blur)="focus.password=false" [(ngModel)]="inputValues.password"
+                               name="password"/>
+                    </div>
+                    <div class="input-group form-group-no-border input-lg"
+                         [ngClass]="{'input-group-focus':focus.passwordConfirm===true}">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa-solid fa-key"></i></span>
+                        </div>
+                        <input type="password" placeholder="Password ..." class="form-control"
+                               (focus)="focus.passwordConfirm=true"
+                               (blur)="focus.passwordConfirm=false" [(ngModel)]="inputValues.passwordConfirm"
+                               name="passwordConfirm"/>
+                    </div>
+
+                    <h4 class="title text-center">My Social Data <span class="small">(optional)</span></h4>
+                    <h6 class="ml-4">Instagram</h6>
+                    <div class="input-group form-group-no-border input-lg"
+                         [ngClass]="{'input-group-focus':focus.instagram===true}">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">  <i class="fa-brands fa-instagram"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="https://www.instagram.com/username/"
+                               (focus)="focus.instagram=true"
+                               (blur)="focus.instagram=false" [(ngModel)]="tmpUser.instagram" name="instagram">
+                    </div>
+                    <h6 class="ml-4">Facebook</h6>
+                    <div class="input-group form-group-no-border input-lg"
+                         [ngClass]="{'input-group-focus':focus.facebook===true}">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">  <i class="fa-brands fa-facebook"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Facebook ..."
+                               (focus)="focus.facebook=true"
+                               (blur)="focus.facebook=false" [(ngModel)]="tmpUser.facebook" name="facebook">
+                    </div>
+                    <h6 class="ml-4">Twitter</h6>
+                    <div class="input-group form-group-no-border input-lg"
+                         [ngClass]="{'input-group-focus':focus.twitter===true}">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">  <i class="fa-brands fa-twitter"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="twitter ..."
+                               (focus)="focus.twitter=true"
+                               (blur)="focus.twitter=false" [(ngModel)]="tmpUser.twitter" name="twitter">
+                    </div>
+                    <h6 class="ml-4">Public Mail</h6>
+                    <div class="input-group form-group-no-border input-lg"
+                         [ngClass]="{'input-group-focus':focus.publicMail===true}">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">  <i class="fa-regular fa-envelope"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="abc@def.de ..."
+                               (focus)="focus.publicMail=true"
+                               (blur)="focus.publicMail=false" [(ngModel)]="tmpUser.publicMail" name="public-mail">
+                    </div>
+                    <h6 class="ml-4">Public Phone Number</h6>
+                    <div class="input-group form-group-no-border input-lg"
+                         [ngClass]="{'input-group-focus':focus.phone===true}">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">  <i class="fa-solid fa-phone"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="+49 123 456789 ..."
+                               (focus)="focus.phone=true"
+                               (blur)="focus.phone=false" [(ngModel)]="tmpUser.phone" name="public-phone">
+                    </div>
+                </div>
+            </div>
             <!-- do not display-->
             <div class="row" style="display: none">
                 <div class="col-md-12">
