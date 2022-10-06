@@ -2180,7 +2180,7 @@ p {
   .title + .category {
     margin-top: -25px; }
 
-p.description {
+.description {
   white-space: pre-wrap; }
 
 .description,
