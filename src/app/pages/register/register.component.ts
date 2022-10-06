@@ -2,6 +2,9 @@ import {Component} from '@angular/core';
 import {BasicPageComponent} from '../basic-page/basic-page.component';
 import {GlobalService} from '../../services/global.service';
 import {ApiService} from '../../services/api.service';
+import {Router} from '@angular/router';
+import {User} from '../../data/user';
+import {NotificationService} from '../../services/notification.service';
 
 @Component({
     selector: 'app-register',
@@ -23,7 +26,10 @@ export class RegisterComponent extends BasicPageComponent {
         password: ''
     };
 
-    constructor(protected global: GlobalService, private api: ApiService) {
+    constructor(protected global: GlobalService,
+                private api: ApiService,
+                private notificationService: NotificationService,
+                private router: Router) {
         super(global);
     }
 
@@ -39,10 +45,14 @@ export class RegisterComponent extends BasicPageComponent {
 
         this.api.register(this.inputValues)
             .then(() => {
+                this.notificationService.createSuccessNotification('Registration complete!');
                 console.log('registered');
-                // this.api.login(value.username, value.password, value.code);
+                this.login();
             }).catch((e) => {
+            this.notificationService.createErrorNotification(e.toString());
+            console.log(this.api.getLastUrl());
             console.log(e);
+
             // this.notification.showErrorNotification('Error', e);
         }).finally(() => this.resetBusy());
 
@@ -57,6 +67,26 @@ export class RegisterComponent extends BasicPageComponent {
         //     }).catch((e) => {
         //     this.notification.showErrorNotification('Error', e);
         // }).finally(() => this.resetBusy());
+    }
+
+    login() {
+        // if (this.inputValues.search(' ') != -1) {
+        //     this.notification.showErrorNotification('Error', 'Keine Leerzeichen im Username!');
+        //     return;
+        // }
+
+        this.api.login(this.inputValues)
+            .then(() => {
+                // console.log('login');
+                // this.global.updateLogin.next(new User());
+                this.router.navigate(['/home']).then();
+                this.api.getYourself().then(value => this.user = value);
+                // this.api.login(value.username, value.password, value.code);
+            }).catch((e) => {
+            this.notificationService.createErrorNotification('Login was not possible');
+            console.log(e);
+            // this.notification.showErrorNotification('Error', e);
+        }).finally(() => this.resetBusy());
     }
 
 }

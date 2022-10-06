@@ -5,13 +5,15 @@ import {NavbarComponent} from './navbar/navbar.component';
 import {RouterModule} from '@angular/router';
 import { NotificationsComponent } from './notifications/notifications.component';
 import {NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
+import { ModalsComponent } from './modals/modals.component';
 
 
 @NgModule({
     declarations: [
         FooterComponent,
         NavbarComponent,
-        NotificationsComponent
+        NotificationsComponent,
+        ModalsComponent
     ],
     imports: [
         CommonModule,

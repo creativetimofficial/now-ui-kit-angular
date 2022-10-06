@@ -1216,7 +1216,9 @@ ngb-datepicker {
       min-width: 1.875rem;
       width: 1.875rem; }
       .btn.btn-icon.btn-sm i.fab,
+      .btn.btn-icon.btn-sm i.my-fab,
       .btn.btn-icon.btn-sm i.now-ui-icons, .navbar .navbar-nav > a.btn.btn-icon.btn-sm i.fab,
+      .navbar .navbar-nav > a.btn.btn-icon.btn-sm i.my-fab,
       .navbar .navbar-nav > a.btn.btn-icon.btn-sm i.now-ui-icons {
         font-size: 0.6875rem; }
     .btn.btn-icon.btn-lg, .navbar .navbar-nav > a.btn.btn-icon.btn-lg {
@@ -1224,7 +1226,9 @@ ngb-datepicker {
       min-width: 3.6rem;
       width: 3.6rem; }
       .btn.btn-icon.btn-lg i.now-ui-icons,
+      .btn.btn-icon.btn-lg i.my-fab,
       .btn.btn-icon.btn-lg i.fab, .navbar .navbar-nav > a.btn.btn-icon.btn-lg i.now-ui-icons,
+      .navbar .navbar-nav > a.btn.btn-icon.btn-lg i.my-fab,
       .navbar .navbar-nav > a.btn.btn-icon.btn-lg i.fab {
         font-size: 1.325rem; }
     .btn.btn-icon:not(.btn-footer) i.now-ui-icons, .btn.btn-icon:not(.btn-footer) i.fab, .navbar .navbar-nav > a.btn.btn-icon:not(.btn-footer) i.now-ui-icons, .navbar .navbar-nav > a.btn.btn-icon:not(.btn-footer) i.fab {
@@ -1237,6 +1241,14 @@ ngb-datepicker {
   .btn:not(.btn-icon) .now-ui-icons, .navbar .navbar-nav > a.btn:not(.btn-icon) .now-ui-icons {
     position: relative;
     top: 1px; }
+
+.my-fab {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-12px, -12px);
+  width: 24px;
+  line-height: 1.3626rem; }
 
 .btn-primary {
   background-color: #3d3d64;
@@ -2443,9 +2455,11 @@ body {
     padding: 0.5rem 0.7rem;
     line-height: 1.625rem; }
     .navbar .navbar-nav .nav-link:not(.btn) i.fab + p,
+    .navbar .navbar-nav .nav-link:not(.btn) i.my-fab + p,
     .navbar .navbar-nav .nav-link:not(.btn) i.now-ui-icons + p {
       margin-left: 3px; }
     .navbar .navbar-nav .nav-link:not(.btn) i.fab,
+    .navbar .navbar-nav .nav-link:not(.btn) i.my-fab,
     .navbar .navbar-nav .nav-link:not(.btn) i.now-ui-icons {
       font-size: 18px;
       position: relative;
@@ -2537,6 +2551,39 @@ body {
   z-index: 1000;
   width: 100%;
   margin-top: 87.6px; }
+
+.profile-img {
+  height: 100%;
+  width: 100%;
+  margin: auto; }
+  .profile-img img {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%; }
+  .profile-img .noImg {
+    border-radius: 50%;
+    background-color: #3d3d64;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center; }
+    .profile-img .noImg span {
+      color: white;
+      font-size: 35px;
+      letter-spacing: 5px;
+      position: absolute;
+      left: 0;
+      right: 0; }
+  .profile-img .img-border {
+    z-index: 2000;
+    position: absolute;
+    height: 100%;
+    width: calc(100% * 1.2);
+    border-radius: 50%;
+    -webkit-box-shadow: inset 0 0 0 3px #000 !important;
+    -moz-box-shadow: inset 0 0 0 3px #000 !important;
+    box-shadow: inset 0 0 0 3px #000 !important; }
 
 .dropdown-menu {
   border: 0;

@@ -6,10 +6,10 @@
         <div class="container">
             <div class="content-center">
                 <div class="photo-container">
-                    <app-profile-image [user]="displayUser"></app-profile-image>
+                    <app-profile-image [user]="user"></app-profile-image>
                 </div>
-                <h3 class="title">{{displayUser?.firstName}} {{displayUser?.lastName}}</h3>
-                <p class="category">{{displayUser?.roles}}</p>
+                <h3 class="title">{{user?.firstName}} {{user?.lastName}}</h3>
+                <p class="category">{{user?.roles}}</p>
                 <div class="content">
                     <div class="social-description">
                         <h2>26</h2>
@@ -30,61 +30,17 @@
     <div class="section">
         <div class="container">
             <div class="button-container">
-                <a (click)="comingSoon()" class="btn btn-primary btn-round btn-lg">Follow</a>
-
-                <a *ngIf="displayUser?.twitter!=null" href="{{displayUser?.twitter}}" target="_blank"
-                   class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip"
-                   title="Follow me on Twitter">
-                    <i class="fab fa-twitter"></i>
-                </a>
-
-                <a *ngIf="displayUser?.instagram!=null" href="{{displayUser?.instagram}}" target="_blank"
-                   class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip"
-                   title="Follow me on Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-
-                <a *ngIf="displayUser?.facebook!=null" href="{{displayUser?.facebook}}" target="_blank"
-                   class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip"
-                   title="Follow me on Instagram">
-                    <i class="fab fa-facebook-square"></i>
-                </a>
-
-                <a *ngIf="displayUser?.publicMail!=null" href="MAILTO:{{displayUser?.publicMail}}" target="_blank"
-                   class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip"
-                   title="Send me an E-Mail">
-                    <i class="my-fab fa-regular fa-envelope"></i>
-                </a>
-
-                <a *ngIf="displayUser?.phone!=null" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip"
-                   (click)="open(modal_phone_number, 'modal_mini', 'sm')"
-                   title="Call me">
-                    <i class="my-fab fa-solid fa-phone"></i>
-                </a>
-                <ng-template #modal_phone_number let-c="close" let-d="dismiss">
-                    <div class="modal-header justify-content-center">
-                        <div class="modal-profile">
-                            <i class="fa-solid fa-phone"></i>
-                        </div>
-                    </div>
-                    <div class="modal-body">
-                        <p>Call my under: </p>
-                        <p>{{displayUser?.phone}}</p>
-                    </div>
-                    <div class="modal-footer">
-                        <!--                        <button type="button" class="btn btn-link btn-neutral">Back</button>-->
-                        <button type="button" class="btn btn-link btn-neutral" (click)="c('Close click')">Close</button>
-                    </div>
-                </ng-template>
-
-                <button *ngIf="displayUser?.userId == user?.userId" [routerLink]="['/profile-settings']"
-                        class="btn btn-primary btn-round btn-lg" type="button">
-                    <i class="fa-regular fa-pen-to-square"></i> Edit
+                <button (click)="comingSoon()" class="btn btn-danger btn-round btn-lg" type="button">
+                    <i class="fa-solid fa-xmark"></i> Cancel
+                </button>
+                <button (click)="comingSoon()" class="btn btn-success btn-round btn-lg" type="button">
+                    <i class="fa-regular fa-floppy-disk"></i> Save
                 </button>
             </div>
             <h3 class="title">About me</h3>
             <h5 class="description">
-                {{displayUser?.description}}
+                <textarea [value]="user?.description" style="width: 100%;">
+                </textarea>
             </h5>
             <!-- do not display-->
             <div class="row" style="display: none">

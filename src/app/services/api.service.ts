@@ -3,6 +3,7 @@ import {ServerService} from './server.service';
 import {User, UserType} from '../data/user';
 import {GlobalService} from './global.service';
 import {global} from '@angular/compiler/src/util';
+import {UserInfo, UserInfoType} from '../data/user-info';
 
 @Injectable({
     providedIn: 'root'
@@ -15,6 +16,10 @@ export class ApiService {
 
     private setUser(user: User): void {
         this.globalService.updateLogin.next(user);
+    }
+
+    getLastUrl(): string {
+        return this.server.getUrl();
     }
 
     async get(urlExtension: string, logout = false, setSession: boolean = true): Promise<string> {
@@ -35,7 +40,6 @@ export class ApiService {
 
     async getExOffline(urlExtension: string, offline: boolean = false, logout = false, setSession: boolean = true): Promise<string> {
         const cashId = this.getCashId(urlExtension);
-        console.log(cashId);
         if (!offline) {
             const data = await this.get(urlExtension, logout, setSession);
             if (data != null) {
@@ -81,6 +85,7 @@ export class ApiService {
         try {
             const data = await this.getExOffline(url, true);
             const user = new User(JSON.parse(data.toString()) as UserType);
+            await this.addUserInfos(user);
             this.setUser(user);
             return user;
         } catch (e) {
@@ -90,7 +95,7 @@ export class ApiService {
         }
     }
 
-    public async getUser(id: number): Promise<User> {
+    public async getUser(id: number, loadInfos: boolean = false): Promise<User> {
 
         let url = 'get/getUser.php?';
         if (id >= 0) {
@@ -98,7 +103,48 @@ export class ApiService {
         }
         try {
             const data = await this.getEx(url, true);
-            return new User(JSON.parse(data.toString()) as UserType);
+            const user: User = new User(JSON.parse(data.toString()) as UserType);
+            if (loadInfos) {
+                await this.addUserInfos(user);
+            }
+            return user;
+        } catch (e) {
+            throw new Error('#fail#User not found');
+        }
+    }
+
+    public async getPublicUsers(): Promise<User[]> {
+
+        const url = 'get/getUser.php?';
+        try {
+            const users: User[] = [];
+            const data = await this.getEx(url, true);
+            const raw = JSON.parse(data.toString()) as UserType[];
+            for (const u of raw) {
+                users.push(new User(u));
+            }
+            return users;
+        } catch (e) {
+            throw new Error('#fail#User not found');
+        }
+    }
+
+    public async addUserInfos(user: User): Promise<void> {
+        user.adduserInfo(await this.getUserInfos(user.userId));
+    }
+
+    public async getUserInfos(id: number): Promise<UserInfo[]> {
+
+        let url = 'get/getUserInfo.php?';
+        url += '&id=' + id;
+        try {
+            const users: UserInfo[] = [];
+            const data = await this.getEx(url, true);
+            const raw = JSON.parse(data.toString()) as UserInfoType[];
+            for (const u of raw) {
+                users.push(new UserInfo(u));
+            }
+            return users;
         } catch (e) {
             throw new Error('#fail#User not found');
         }
@@ -110,6 +156,11 @@ export class ApiService {
             + '&mail=' + user.mail;
         const session = await this.getEx(url, false, false);
         this.server.authService.setSession(session);
+    }
+
+    public async logout(): Promise<void> {
+        await this.server.authService.logout();
+        this.globalService.updateLogin.next(null);
     }
 
     public async register(user: { firstName: string, lastName: string, mail: string, password: string }) {

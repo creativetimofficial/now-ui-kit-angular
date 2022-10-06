@@ -12,6 +12,9 @@ import {JwBootstrapSwitchNg2Module} from 'jw-bootstrap-switch-ng2';
 import {HomeComponent} from './home/home.component';
 import {ProfileComponent} from './profile/profile.component';
 import { BasicAuthPageComponent } from './basic-auth-page/basic-auth-page.component';
+import {ComponentsModule} from '../components/components.module';
+import { BasicModalPageComponent } from './basic-modal-page/basic-modal-page.component';
+import { ProfileSettingsComponent } from './profile-settings/profile-settings.component';
 
 
 @NgModule({
@@ -20,7 +23,9 @@ import { BasicAuthPageComponent } from './basic-auth-page/basic-auth-page.compon
         LoginComponent,
         HomeComponent,
         ProfileComponent,
-        BasicAuthPageComponent
+        BasicAuthPageComponent,
+        BasicModalPageComponent,
+        ProfileSettingsComponent
     ],
     imports: [
         RouterModule,
@@ -31,6 +36,7 @@ import { BasicAuthPageComponent } from './basic-auth-page/basic-auth-page.compon
         JwBootstrapSwitchNg2Module,
         PagesRoutingModule,
         SharedModule,
+        ComponentsModule,
     ]
 })
 export class PagesModule {

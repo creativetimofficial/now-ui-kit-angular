@@ -15,7 +15,7 @@ const routes: Routes = [
     {path: 'examples/landing', component: LandingComponent},
     // @ts-ignore
     {path: '', loadChildren: () => import('./pages/pages-routing.module').then(m => m.PagesRoutingModule)},
-    {path: '**', redirectTo: 'index'},
+    {path: '**', redirectTo: 'home'},
 ];
 
 @NgModule({

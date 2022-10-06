@@ -11,48 +11,54 @@ export class NotificationService {
     constructor() {
     }
 
-    public createSuccessNotification(message: string, strong: string = 'Success', icon: string = 'ui-2_like') {
+    public createSuccessNotification(message: string, time: number = null, strong: string = 'Success', icon: string = 'ui-2_like') {
         this.createNotification({
             id: Math.random(),
             type: 'success',
             strong,
             message,
-            icon
+            icon,
+            time
         });
     }
 
-    public createInfoNotification(message: string, strong: string = 'Info', icon: string = 'travel_info') {
+    public createInfoNotification(message: string, time: number = null, strong: string = 'Info', icon: string = 'travel_info') {
         this.createNotification({
             id: Math.random(),
             type: 'info',
             strong,
             message,
-            icon
+            icon,
+            time
         });
     }
 
-    public createWarningNotification(message: string, strong: string = 'Warning', icon: string = 'ui-1_bell-53') {
+    public createWarningNotification(message: string, time: number = null, strong: string = 'Warning', icon: string = 'ui-1_bell-53') {
         this.createNotification({
             id: Math.random(),
             type: 'warning',
             strong,
             message,
-            icon
+            icon,
+            time
         });
     }
 
-    public createErrorNotification(message: string, strong: string = 'Error', icon: string = 'objects_support-17') {
+    public createErrorNotification(message: string, time: number = 5000, strong: string = 'Error', icon: string = 'objects_support-17') {
         this.createNotification({
             id: Math.random(),
             type: 'danger',
             strong,
             message,
-            icon
+            icon,
+            time
         });
     }
 
     public createNotification(value: IAlert) {
-        value.time = 2000;
+        if (value.time == null) {
+            value.time = 3000;
+        }
         this.newNotification.next(value);
         // this.alerts.push({
         //     id: 1,

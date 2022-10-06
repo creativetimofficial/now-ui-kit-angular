@@ -52,6 +52,12 @@
                         <p>Login</p>
                     </a>
                 </li>
+                <li *ngIf="global.user!=null" class="nav-item" [ngClass]="{'active':currentPage=='LoginComponent'}">
+                    <a class="nav-link" (click)="logout()">
+                        <i class="now-ui-icons media-1_button-power"></i>
+                        <p>Logout</p>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom"
                        href="https://twitter.com/CreativeTim" target="_blank">

@@ -3,13 +3,18 @@ import * as Rellax from 'rellax';
 import {GlobalService} from '../../services/global.service';
 import {BasicAuthPageComponent} from '../basic-auth-page/basic-auth-page.component';
 import {ApiService} from '../../services/api.service';
+import {ActivatedRoute, Params} from '@angular/router';
+import {User} from '../../data/user';
+import {BasicModalPageComponent} from '../basic-modal-page/basic-modal-page.component';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {NotificationService} from '../../services/notification.service';
 
 @Component({
     selector: 'app-profile',
     templateUrl: './profile.component.html',
-    styleUrls: ['./profile.component.scss']
+    styleUrls: []
 })
-export class ProfileComponent extends BasicAuthPageComponent implements OnInit, OnDestroy {
+export class ProfileComponent extends BasicModalPageComponent implements OnInit {
     zoom = 14;
     lat = 44.445248;
     lng = 26.099672;
@@ -63,29 +68,39 @@ export class ProfileComponent extends BasicAuthPageComponent implements OnInit, 
     data: Date = new Date();
     focus;
     focus1;
+    private routeParams: Params;
+    private displayUserId = -1;
+    displayUser: User;
 
-    constructor(public global: GlobalService, protected api: ApiService) {
-        super(global, api);
+    constructor(public global: GlobalService,
+                protected api: ApiService,
+                public route: ActivatedRoute,
+                protected modalService: NgbModal,
+                protected notificationService: NotificationService) {
+        super(global, api, notificationService, modalService);
     }
 
     ngOnInit() {
         super.ngOnInit();
+        this.subscriptions.push(this.route.params.subscribe(routeParams => {
+            this.routeParams = routeParams;
 
-        const rellaxHeader = new Rellax('.rellax-header');
-
-        // const body = document.getElementsByTagName('body')[0];
-        // body.classList.add('profile-page');
-        // const navbar = document.getElementsByTagName('nav')[0];
-        // navbar.classList.add('navbar-transparent');
+            if (routeParams.id === undefined) {
+                this.displayUserId = -1;
+            } else {
+                // tslint:disable-next-line:radix
+                this.displayUserId = parseInt(routeParams.id);
+                this.reload(this.displayUserId);
+            }
+        }));
 
     }
 
-    ngOnDestroy() {
-        super.ngOnDestroy();
-        // const body = document.getElementsByTagName('body')[0];
-        // body.classList.remove('profile-page');
-        // const navbar = document.getElementsByTagName('nav')[0];
-        // navbar.classList.remove('navbar-transparent');
+    onYourselfLoaded() {
+        this.displayUser = this.user;
     }
 
+    private reload(userId: number) {
+        this.api.getUser(userId, true).then(value => this.displayUser = value).catch(reason => console.log(this.api.getLastUrl()));
+    }
 }

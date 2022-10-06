@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {GlobalService} from '../../services/global.service';
 import {User} from '../../data/user';
 import {ApiService} from '../../services/api.service';
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
     selector: 'app-basic-page',
@@ -15,17 +16,21 @@ import {ApiService} from '../../services/api.service';
 export class BasicPageComponent implements OnInit, OnDestroy {
     user: User = null;
     private _busy: boolean = false;
+    protected subscriptions: Subscription[] = [];
 
     constructor(protected global: GlobalService) {
     }
 
     ngOnInit(): void {
-        console.log('ngOnInit', this.constructor.name);
+        // console.log('ngOnInit', this.constructor.name);
         this.global.updateNavBar.next(this.constructor.name);
     }
 
     ngOnDestroy() {
-        console.log('ngOnDestroy', this.constructor.name);
+        this.subscriptions.forEach(subscription => {
+            subscription.unsubscribe();
+        });
+        // console.log('ngOnDestroy', this.constructor.name);
         this.global.updateNavBar.next(null);
     }
 

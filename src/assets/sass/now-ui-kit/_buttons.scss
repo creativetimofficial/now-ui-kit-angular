@@ -45,6 +45,7 @@
             width: $btn-icon-size-small;
 
             i.fab,
+            i.my-fab,
             i.now-ui-icons{
                 font-size: $btn-icon-font-size-small;
             }
@@ -56,6 +57,7 @@
             width: $btn-icon-size-lg;
 
             i.now-ui-icons,
+            i.my-fab,
             i.fab{
                 font-size: $btn-icon-font-size-lg;
             }
@@ -77,6 +79,15 @@
         position: relative;
         top: 1px;
     }
+}
+
+.my-fab{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-12px, -12px);
+  width: 24px;
+  line-height: 1.3626rem;
 }
 
 // Apply the mixin to the buttons

@@ -48,11 +48,13 @@
             line-height: $line-height-nav-link;
 
             i.fab + p,
+            i.my-fab + p,
             i.now-ui-icons + p{
                 margin-left: 3px;
             }
 
             i.fab,
+            i.my-fab,
             i.now-ui-icons{
                 font-size: 18px;
                 position: relative;

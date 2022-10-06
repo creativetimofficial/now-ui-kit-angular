@@ -17,7 +17,7 @@ export class NgbdModalBasic {
             }, (reason) => {
                 this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
             });
-        } else if (modalDimension == undefined && type === 'Login') {
+        } else if (modalDimension === undefined && type === 'Login') {
           this.modalService.open(content, { windowClass: 'modal-login modal-primary' }).result.then((result) => {
               this.closeResult = `Closed with: ${result}`;
           }, (reason) => {

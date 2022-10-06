@@ -34,7 +34,8 @@
             <div class="section-story-overview">
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="image-container image-left" style="background-image: url('assets/img/Wiederholdstrasse-Wohnheim-side.jpg')">
+                        <div class="image-container image-left"
+                             style="background-image: url('assets/img/Wiederholdstrasse-Wohnheim-side.jpg')">
                             <!-- First image on the left side -->
                             <p class="blockquote blockquote-primary">"Over the span of the satellite record, Arctic sea
                                 ice has been declining significantly, while sea ice in the Antarctichas increased very
@@ -45,7 +46,8 @@
                             </p>
                         </div>
                         <!-- Second image on the left side of the article -->
-                        <div class="image-container" style="background-image: url('assets/img/Wiederholdstrasse-Wohnheim-side.jpg')"></div>
+                        <div class="image-container"
+                             style="background-image: url('assets/img/Wiederholdstrasse-Wohnheim-side.jpg')"></div>
                     </div>
                     <div class="col-md-5">
                         <!-- First image on the right side, above the article -->
@@ -81,51 +83,38 @@
             <h2 class="title">Here is our team</h2>
             <div class="team">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div *ngFor="let u of publicUsers" class="col-md-4">
                         <div class="team-player">
-                            <img src="assets/img/avatar.jpg" alt="Thumbnail Image"
-                                 class="rounded-circle img-fluid img-raised">
-                            <h4 class="title">Romina Hadid</h4>
-                            <p class="category text-primary">Model</p>
-                            <p class="description">You can write here details about one of your team members. You can
-                                give more details about what they do. Feel free to add some
-                                <a href="#">links</a> for people to be able to follow them outside the site.</p>
-                            <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i
-                                    class="fab fa-twitter"></i></a>
-                            <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-instagram"></i></a>
-                            <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i
-                                    class="fab fa-facebook-square"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="team-player">
-                            <img src="assets/img/ryan.jpg" alt="Thumbnail Image"
-                                 class="rounded-circle img-fluid img-raised">
-                            <h4 class="title">Ryan Tompson</h4>
-                            <p class="category text-primary">Designer</p>
-                            <p class="description">You can write here details about one of your team members. You can
-                                give more details about what they do. Feel free to add some
-                                <a href="#">links</a> for people to be able to follow them outside the site.</p>
-                            <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i
-                                    class="fab fa-twitter"></i></a>
-                            <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-linkedin"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="team-player">
-                            <img src="assets/img/eva.jpg" alt="Thumbnail Image"
-                                 class="rounded-circle img-fluid img-raised">
-                            <h4 class="title">Eva Jenner</h4>
-                            <p class="category text-primary">Fashion</p>
-                            <p class="description">You can write here details about one of your team members. You can
-                                give more details about what they do. Feel free to add some
-                                <a href="#">links</a> for people to be able to follow them outside the site.</p>
-                            <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i
-                                    class="fab fa-google-plus"></i></a>
-                            <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i
-                                    class="fab fa-youtube"></i></a>
-                            <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i
-                                    class="fab fa-twitter"></i></a>
+                            <div [routerLink]="['/profile',u.userId]" style="cursor: pointer">
+                                <app-profile-image [user]="u" [size]="'96px'"></app-profile-image>
+                                <h4 class="title">{{u.firstName}} {{u.lastName}}</h4>
+                                <p class="category text-primary">
+                                    {{u.roles}}
+                                </p>
+                            </div>
+                            <p class="description">{{u.description}}</p>
+
+                            <a *ngIf="u.twitter!=null" href="{{u.twitter}}"
+                               class="btn btn-primary btn-icon btn-round" target="_blank">
+                                <i class="my-fab fa-brands fa-twitter"></i>
+                            </a>
+                            <a *ngIf="u.instagram!=null" href="{{u.instagram}}"
+                               class="btn btn-primary btn-icon btn-round" target="_blank">
+                                <i class="my-fab fa-brands fa-instagram"></i>
+                            </a>
+                            <a *ngIf="u.facebook!=null" href="{{u.facebook}}"
+                               class="btn btn-primary btn-icon btn-round" target="_blank">
+                                <i class="my-fab fa-brands fa-facebook-square"></i>
+                            </a>
+                            <a *ngIf="u.publicMail!=null" href="MAILTO:{{u.publicMail}}"
+                               class="btn btn-primary btn-icon btn-round" target="_blank">
+<!--                                <i class="fab fa-mail-square"></i>-->
+                                <i class="my-fab fa-regular fa-envelope"></i>
+                            </a>
+                            <a *ngIf="u.phone!=null" (click)="showPhone(u)"
+                               class="btn btn-primary btn-icon btn-round" target="_blank">
+                                <i class="my-fab fa-solid fa-phone"></i>
+                            </a>
                         </div>
                     </div>
                 </div>

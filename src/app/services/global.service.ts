@@ -12,10 +12,7 @@ export class GlobalService {
     private _user: User = null;
 
     constructor() {
-        this.updateLogin.subscribe(value => {
-            this._user = value;
-            console.log(this.user);
-        });
+        this.updateLogin.subscribe(value => this._user = value);
     }
 
     get user(): User {
