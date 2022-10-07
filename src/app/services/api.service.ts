@@ -98,7 +98,7 @@ export class ApiService {
         }
     }
 
-    public async getUser(id: number, loadInfos: boolean = false): Promise<User> {
+    public async getUser(id: number, loadInfos: boolean = false, loadTimeLine: boolean = true): Promise<User> {
 
         let url = 'get/getUser.php?';
         if (id >= 0) {
@@ -110,6 +110,9 @@ export class ApiService {
             console.log(this.getLastUrl());
             if (loadInfos) {
                 await this.addUserInfos(user);
+            }
+            if (loadTimeLine) {
+                await this.addTimeSpans(user);
             }
             return user;
         } catch (e) {
