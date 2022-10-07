@@ -1,7 +1,18 @@
+export enum UserInfoTypes {
+    role = 'role',
+    description = 'description',
+    instagram = 'instagram',
+    facebook = 'facebook',
+    twitter = 'twitter',
+    phone = 'phone',
+    publicMail = 'publicMail',
+    studies = 'studies',
+}
+
 export interface UserInfoType {
     userInfoId: number;
     userId: number;
-    name: string;
+    name: UserInfoTypes;
     value: string;
     date: string;
 }
@@ -9,7 +20,7 @@ export interface UserInfoType {
 export class UserInfo implements UserInfoType {
     userInfoId: number = -1;
     userId: number = -1;
-    name: string = null;
+    name: UserInfoTypes = null;
     value: string = null;
     date: string = null;
 

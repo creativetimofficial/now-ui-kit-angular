@@ -1,4 +1,5 @@
-import {UserInfoType} from './user-info';
+import {UserInfoType, UserInfoTypes} from './user-info';
+import {TimeSpanType} from './timeSpan';
 
 export interface UserType {
     userId: number;
@@ -18,6 +19,7 @@ export interface UserType {
     publicMail: string;
     studies: string;
     userInfos: UserInfoType[];
+    timeSpans: TimeSpanType[];
 }
 
 export class User implements UserType {
@@ -30,7 +32,6 @@ export class User implements UserType {
     imgUrl: string = '';
     imgUrlSmall: string = '';
     googleId: number = -1;
-    publicProfile: number = 0;
     userInfos: UserInfoType[] = [];
     instagram: string;
     facebook: string;
@@ -38,7 +39,10 @@ export class User implements UserType {
     phone: string;
     publicMail: string;
     studies: string;
+    publicProfile: number = 0;
     private _description: string = null;
+    timeSpans: TimeSpanType[];
+
 
     constructor(userType?: UserType) {
         if (userType != null) {
@@ -48,26 +52,30 @@ export class User implements UserType {
         }
     }
 
+    adduserTimespan(timeSpans: TimeSpanType[]): void {
+        this.timeSpans = timeSpans;
+    }
+
     adduserInfo(userInfos: UserInfoType[]): void {
         this.userInfos = userInfos;
         for (const ui of this.userInfos) {
             switch (ui.name) {
-                case 'instagram':
+                case UserInfoTypes.instagram.toLocaleString():
                     this.instagram = ui.value;
                     break;
-                case 'facebook':
+                case UserInfoTypes.facebook.toLocaleString():
                     this.facebook = ui.value;
                     break;
-                case 'twitter':
+                case UserInfoTypes.twitter.toLocaleString():
                     this.twitter = ui.value;
                     break;
-                case 'phone':
+                case UserInfoTypes.phone.toLocaleString():
                     this.phone = ui.value;
                     break;
-                case 'publicMail':
+                case UserInfoTypes.publicMail.toLocaleString():
                     this.publicMail = ui.value;
                     break;
-                case 'studies':
+                case UserInfoTypes.studies.toLocaleString():
                     this.studies = ui.value;
                     break;
             }
@@ -114,6 +122,15 @@ export class User implements UserType {
         } else {
             return this._description;
         }
+    }
+
+
+    get publicProfileInt(): boolean {
+        return this.publicProfile === 1;
+    }
+
+    set publicProfileInt(value: boolean) {
+        this.publicProfile = value ? 1 : 0;
     }
 }
 

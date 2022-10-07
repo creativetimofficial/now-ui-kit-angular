@@ -54,4 +54,8 @@ export class BasicPageComponent implements OnInit, OnDestroy {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
 
+    replaceAll(value: string, search: string, replace: string): string {
+        return value.replace('/' + search + '/g', replace);
+    }
+
 }

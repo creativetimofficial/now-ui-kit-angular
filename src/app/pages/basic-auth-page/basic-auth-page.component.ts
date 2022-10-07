@@ -24,7 +24,7 @@ export class BasicAuthPageComponent extends BasicPageComponent implements OnInit
         this.loadYourself();
     }
 
-    loadYourself() {
+    loadYourself(): void {
         if (this.user == null) {
             this.api.getYourself().then(value => {
                 this.user = value;
@@ -33,6 +33,13 @@ export class BasicAuthPageComponent extends BasicPageComponent implements OnInit
         } else {
             this.onYourselfLoaded();
         }
+    }
+
+    forceReloadYourself() {
+        this.api.getYourself(true).then(value => {
+            this.user = value;
+            this.onYourselfLoaded();
+        });
     }
 
     onYourselfLoaded() {

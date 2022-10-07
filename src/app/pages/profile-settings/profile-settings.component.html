@@ -10,19 +10,21 @@
                 </div>
                 <h3 class="title">{{user?.firstName}} {{user?.lastName}}</h3>
                 <p class="category">{{user?.roles}}</p>
-                <div class="content">
-                    <div class="social-description">
-                        <h2>26</h2>
-                        <p>Comments</p>
-                    </div>
-                    <div class="social-description">
-                        <h2>26</h2>
-                        <p>Comments</p>
-                    </div>
-                    <div class="social-description">
-                        <h2>48</h2>
-                        <p>Bookmarks</p>
-                    </div>
+                <div>
+                    <!--                <div class="content">-->
+                    <!--                    <div class="social-description">-->
+                    <!--                        <h2>26</h2>-->
+                    <!--                        <p>Comments</p>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="social-description">-->
+                    <!--                        <h2>26</h2>-->
+                    <!--                        <p>Comments</p>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="social-description">-->
+                    <!--                        <h2>48</h2>-->
+                    <!--                        <p>Bookmarks</p>-->
+                    <!--                    </div>-->
+                    <!--                </div>-->
                 </div>
             </div>
         </div>
@@ -37,20 +39,22 @@
                     <i class="fa-regular fa-floppy-disk"></i> Save
                 </button>
             </div>
-            <h3 class="title">About me</h3>
-            <h5 class="description">
-                <div class="input-group form-group-no-border input-lg">
-                <textarea class="input-group form-group-no-border input-lg" [value]="tmpUser.description"
-                          style="width: 100%;">
-                </textarea>
-                </div>
-            </h5>
+            <div>
+                <!--            <h3 class="title">About me</h3>-->
+                <!--            <h5 class="description">-->
+                <!--                <div class="input-group form-group-no-border input-lg">-->
+                <!--                <textarea class="input-group form-group-no-border input-lg" [value]="tmpUser.description"-->
+                <!--                          style="width: 100%;">-->
+                <!--                </textarea>-->
+                <!--                </div>-->
+                <!--            </h5>-->
+            </div>
             <div class="row">
                 <div class="col-md-8 ml-auto mr-auto">
                     <h4 class="title text-center">My Data</h4>
 
                     <h6 class="ml-4">First Name</h6>
-                    <div class="input-group form-group-no-border input-lg"
+                    <div class="input-group form-group input-lg"
                          [ngClass]="{'input-group-focus':focus.first===true}">
                         <div class="input-group-prepend">
                             <span class="input-group-text"> <i class="fa-solid fa-signature"></i></span>
@@ -61,7 +65,7 @@
                     </div>
 
                     <h6 class="ml-4">Last Name</h6>
-                    <div class="input-group form-group-no-border input-lg"
+                    <div class="input-group form-group input-lg"
                          [ngClass]="{'input-group-focus':focus.last===true}">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa-solid fa-signature"></i></span>
@@ -72,18 +76,19 @@
                     </div>
 
                     <h6 class="ml-4">Mail</h6>
-                    <div class="input-group form-group-no-border input-lg"
+                    <div class="input-group form-group input-lg"
                          [ngClass]="{'input-group-focus':focus.mail===true}">
                         <div class="input-group-prepend">
                             <span class="input-group-text">  <i class="fa-regular fa-envelope"></i></span>
                         </div>
                         <input type="text" class="form-control" placeholder="Mail ..."
+                               [ngClass]="{'form-control-danger':true}"
                                (focus)="focus.mail=true"
                                (blur)="focus.mail=false" [(ngModel)]="tmpUser.mail" name="mail">
                     </div>
 
                     <h6 class="ml-4">Password</h6>
-                    <div class="input-group form-group-no-border input-lg"
+                    <div class="input-group form-group input-lg"
                          [ngClass]="{'input-group-focus':focus.password===true}">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa-solid fa-key"></i></span>
@@ -93,141 +98,220 @@
                                (blur)="focus.password=false" [(ngModel)]="inputValues.password"
                                name="password"/>
                     </div>
-                    <div class="input-group form-group-no-border input-lg"
-                         [ngClass]="{'input-group-focus':focus.passwordConfirm===true}">
+                    <div class="input-group form-group input-lg"
+                         [ngClass]="{'input-group-focus':focus.passwordConfirm===true,
+                          'has-danger':inputValues.password!=inputValues.passwordConfirm}">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa-solid fa-key"></i></span>
                         </div>
-                        <input type="password" placeholder="Password ..." class="form-control"
+                        <input type="password" placeholder="Confirm Password ..." class="form-control"
+                               [ngClass]="{'form-control-danger':inputValues.password!=inputValues.passwordConfirm}"
                                (focus)="focus.passwordConfirm=true"
                                (blur)="focus.passwordConfirm=false" [(ngModel)]="inputValues.passwordConfirm"
                                name="passwordConfirm"/>
                     </div>
 
                     <h4 class="title text-center">My Social Data <span class="small">(optional)</span></h4>
-                    <h6 class="ml-4">Instagram</h6>
-                    <div class="input-group form-group-no-border input-lg"
-                         [ngClass]="{'input-group-focus':focus.instagram===true}">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">  <i class="fa-brands fa-instagram"></i></span>
+
+                    <div>
+                        <h6 class="ml-4">Public profile?</h6>
+                        <div class="ml-2">
+                            <bSwitch [(ngModel)]="tmpUser.publicProfileInt">
+                            </bSwitch>
                         </div>
-                        <input type="text" class="form-control" placeholder="https://www.instagram.com/username/"
-                               (focus)="focus.instagram=true"
-                               (blur)="focus.instagram=false" [(ngModel)]="tmpUser.instagram" name="instagram">
                     </div>
-                    <h6 class="ml-4">Facebook</h6>
-                    <div class="input-group form-group-no-border input-lg"
-                         [ngClass]="{'input-group-focus':focus.facebook===true}">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">  <i class="fa-brands fa-facebook"></i></span>
+
+                    <div *ngFor="let ui of tmpUser?.userInfos ; index as i">
+                        <h6 class="ml-4">{{ui.name}}</h6>
+                        <div class="input-group form-group input-lg"
+                             [ngClass]="{'input-group-focus':focusArray[i]===true}">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" [ngSwitch]="ui.name">
+                                    <i class="fa-brands fa-instagram"
+                                       *ngSwitchCase="UserInfoTypes.instagram.toLocaleString()"></i>
+                                    <i class="fa-brands fa-facebook"
+                                       *ngSwitchCase="UserInfoTypes.facebook.toLocaleString()"></i>
+                                    <i class="fa-brands fa-twitter"
+                                       *ngSwitchCase=" UserInfoTypes.twitter.toLocaleString()"></i>
+                                    <i class="fa-regular fa-envelope"
+                                       *ngSwitchCase=" UserInfoTypes.publicMail.toLocaleString()"></i>
+                                    <i class="fa-solid fa-phone"
+                                       *ngSwitchCase=" UserInfoTypes.phone.toLocaleString()"></i>
+                                    <i class="fa-solid fa-font" *ngSwitchDefault></i>
+                                </span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="..."
+                                   (focus)="focusArray[i]=true"
+                                   (blur)="focusArray[i]=false" [(ngModel)]="ui.value" name="instagram">
+                            <div class="input-group-append" (click)="deleteUserInfo(ui)">
+                                <span class="input-group-text">
+                                    <i class="fa-solid fa-trash" style="color: darkred"></i>
+                                    <!--                                     <i class="now-ui-icons users_single-02"></i>-->
+                                </span>
+                            </div>
                         </div>
-                        <input type="text" class="form-control" placeholder="Facebook ..."
-                               (focus)="focus.facebook=true"
-                               (blur)="focus.facebook=false" [(ngModel)]="tmpUser.facebook" name="facebook">
                     </div>
-                    <h6 class="ml-4">Twitter</h6>
-                    <div class="input-group form-group-no-border input-lg"
-                         [ngClass]="{'input-group-focus':focus.twitter===true}">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">  <i class="fa-brands fa-twitter"></i></span>
+                    <button (click)="open(classic,'' , '')" class="btn btn-primary btn-round btn-lg" type="button">
+                        <i class="fa-regular fa-plus"></i> Add Info
+                    </button>
+
+                    <ng-template #classic let-c="close" let-d="dismiss">
+                        <div class="modal-header justify-content-center">
+                            <button type="button" class="close" (click)="d('Cross click')">
+                                <i class="now-ui-icons ui-1_simple-remove"></i>
+                            </button>
+                            <h4 class="title title-up">User Info</h4>
                         </div>
-                        <input type="text" class="form-control" placeholder="twitter ..."
-                               (focus)="focus.twitter=true"
-                               (blur)="focus.twitter=false" [(ngModel)]="tmpUser.twitter" name="twitter">
-                    </div>
-                    <h6 class="ml-4">Public Mail</h6>
-                    <div class="input-group form-group-no-border input-lg"
-                         [ngClass]="{'input-group-focus':focus.publicMail===true}">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">  <i class="fa-regular fa-envelope"></i></span>
+                        <div class="modal-body">
+                            <p>You can add some Information about you here</p>
+                            <div class="mb-4">
+                                <h6>Name</h6>
+                                <select class="form-control" name="names" id="names"
+                                        [(ngModel)]="inputValues.modalName">
+                                    <option *ngFor="let ui of UserInfoTypes | enumToArray"
+                                            value="{{ui}}">{{ui}}</option>
+                                </select>
+                            </div>
+                            <div>
+                                <h6>Value</h6>
+                                <input type="text" class="form-control" placeholder="..."
+                                       (focus)="focus.modalValue"
+                                       (blur)="focus.modalValue" [(ngModel)]="inputValues.modalValue" name="instagram">
+                            </div>
                         </div>
-                        <input type="text" class="form-control" placeholder="abc@def.de ..."
-                               (focus)="focus.publicMail=true"
-                               (blur)="focus.publicMail=false" [(ngModel)]="tmpUser.publicMail" name="public-mail">
-                    </div>
-                    <h6 class="ml-4">Public Phone Number</h6>
-                    <div class="input-group form-group-no-border input-lg"
-                         [ngClass]="{'input-group-focus':focus.phone===true}">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">  <i class="fa-solid fa-phone"></i></span>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" (click)="c('Close click')">Close</button>
+                            <button type="button" class="btn btn-success" (click)="addUserInfo(c)">Close</button>
                         </div>
-                        <input type="text" class="form-control" placeholder="+49 123 456789 ..."
-                               (focus)="focus.phone=true"
-                               (blur)="focus.phone=false" [(ngModel)]="tmpUser.phone" name="public-phone">
+                    </ng-template>
+
+                    <div>
+                        <!--                    <h6 class="ml-4">Instagram</h6>-->
+                        <!--                    <div class="input-group form-group-no-border input-lg"-->
+                        <!--                         [ngClass]="{'input-group-focus':focus.instagram===true}">-->
+                        <!--                        <div class="input-group-prepend">-->
+                        <!--                            <span class="input-group-text">  <i class="fa-brands fa-instagram"></i></span>-->
+                        <!--                        </div>-->
+                        <!--                        <input type="text" class="form-control" placeholder="https://www.instagram.com/username/"-->
+                        <!--                               (focus)="focus.instagram=true"-->
+                        <!--                               (blur)="focus.instagram=false" [(ngModel)]="tmpUser.instagram" name="instagram">-->
+                        <!--                    </div>-->
+                        <!--                    <h6 class="ml-4">Facebook</h6>-->
+                        <!--                    <div class="input-group form-group-no-border input-lg"-->
+                        <!--                         [ngClass]="{'input-group-focus':focus.facebook===true}">-->
+                        <!--                        <div class="input-group-prepend">-->
+                        <!--                            <span class="input-group-text">  <i class="fa-brands fa-facebook"></i></span>-->
+                        <!--                        </div>-->
+                        <!--                        <input type="text" class="form-control" placeholder="Facebook ..."-->
+                        <!--                               (focus)="focus.facebook=true"-->
+                        <!--                               (blur)="focus.facebook=false" [(ngModel)]="tmpUser.facebook" name="facebook">-->
+                        <!--                    </div>-->
+                        <!--                    <h6 class="ml-4">Twitter</h6>-->
+                        <!--                    <div class="input-group form-group-no-border input-lg"-->
+                        <!--                         [ngClass]="{'input-group-focus':focus.twitter===true}">-->
+                        <!--                        <div class="input-group-prepend">-->
+                        <!--                            <span class="input-group-text">  <i class="fa-brands fa-twitter"></i></span>-->
+                        <!--                        </div>-->
+                        <!--                        <input type="text" class="form-control" placeholder="twitter ..."-->
+                        <!--                               (focus)="focus.twitter=true"-->
+                        <!--                               (blur)="focus.twitter=false" [(ngModel)]="tmpUser.twitter" name="twitter">-->
+                        <!--                    </div>-->
+                        <!--                    <h6 class="ml-4">Public Mail</h6>-->
+                        <!--                    <div class="input-group form-group-no-border input-lg"-->
+                        <!--                         [ngClass]="{'input-group-focus':focus.publicMail===true}">-->
+                        <!--                        <div class="input-group-prepend">-->
+                        <!--                            <span class="input-group-text">  <i class="fa-regular fa-envelope"></i></span>-->
+                        <!--                        </div>-->
+                        <!--                        <input type="text" class="form-control" placeholder="abc@def.de ..."-->
+                        <!--                               (focus)="focus.publicMail=true"-->
+                        <!--                               (blur)="focus.publicMail=false" [(ngModel)]="tmpUser.publicMail" name="public-mail">-->
+                        <!--                    </div>-->
+                        <!--                    <h6 class="ml-4">Public Phone Number</h6>-->
+                        <!--                    <div class="input-group form-group-no-border input-lg"-->
+                        <!--                         [ngClass]="{'input-group-focus':focus.phone===true}">-->
+                        <!--                        <div class="input-group-prepend">-->
+                        <!--                            <span class="input-group-text">  <i class="fa-solid fa-phone"></i></span>-->
+                        <!--                        </div>-->
+                        <!--                        <input type="text" class="form-control" placeholder="+49 123 456789 ..."-->
+                        <!--                               (focus)="focus.phone=true"-->
+                        <!--                               (blur)="focus.phone=false" [(ngModel)]="tmpUser.phone" name="public-phone">-->
+                        <!--                    </div>-->
                     </div>
                 </div>
             </div>
             <!-- do not display-->
-            <div class="row" style="display: none">
-                <div class="col-md-12">
-                    <h4 class="title text-center">My Portfolio</h4>
-                    <ngb-tabset [justify]="'center'" type="pills"
-                                class="nav nav-pills nav-pills-primary  nav-pills-just-icons justify-content-center tab-space">
-                        <ngb-tab>
-                            <ng-template ngbTabTitle>
-                                <i class="now-ui-icons design_image"></i>
-                            </ng-template>
-                            <ng-template ngbTabContent>
-                                <div class="row">
-                                    <div class="col-md-10 ml-auto mr-auto">
-                                        <div class="row collections">
-                                            <div class="col-md-6">
-                                                <img src="assets/img/bg1.jpg" alt="" class="img-raised">
-                                                <img src="assets/img/bg3.jpg" alt="" class="img-raised">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <img src="assets/img/bg8.jpg" alt="" class="img-raised">
-                                                <img src="assets/img/bg7.jpg" alt="" class="img-raised">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </ng-template>
-                        </ngb-tab>
-                        <ngb-tab>
-                            <ng-template ngbTabTitle>
-                                <i class="now-ui-icons location_world"></i>
-                            </ng-template>
-                            <ng-template ngbTabContent>
-                                <div class="row">
-                                    <div class="col-md-10 ml-auto mr-auto">
-                                        <div class="row collections">
-                                            <div class="col-md-6">
-                                                <img src="assets/img/bg6.jpg" class="img-raised">
-                                                <img src="assets/img/bg11.jpg" alt="" class="img-raised">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <img src="assets/img/bg7.jpg" alt="" class="img-raised">
-                                                <img src="assets/img/bg8.jpg" alt="" class="img-raised">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </ng-template>
-                        </ngb-tab>
-                        <ngb-tab>
-                            <ng-template ngbTabTitle>
-                                <i class="now-ui-icons sport_user-run"></i>
-                            </ng-template>
-                            <ng-template ngbTabContent>
-                                <div class="row">
-                                    <div class="col-md-10 ml-auto mr-auto">
-                                        <div class="row collections">
-                                            <div class="col-md-6">
-                                                <img src="assets/img/bg3.jpg" alt="" class="img-raised">
-                                                <img src="assets/img/bg8.jpg" alt="" class="img-raised">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <img src="assets/img/bg7.jpg" alt="" class="img-raised">
-                                                <img src="assets/img/bg6.jpg" class="img-raised">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </ng-template>
-                        </ngb-tab>
-                    </ngb-tabset>
-                </div>
+            <div>
+                <!--            <div class="row" style="display: none">-->
+                <!--                <div class="col-md-12">-->
+                <!--                    <h4 class="title text-center">My Portfolio</h4>-->
+                <!--                    <ngb-tabset [justify]="'center'" type="pills"-->
+                <!--                                class="nav nav-pills nav-pills-primary  nav-pills-just-icons justify-content-center tab-space">-->
+                <!--                        <ngb-tab>-->
+                <!--                            <ng-template ngbTabTitle>-->
+                <!--                                <i class="now-ui-icons design_image"></i>-->
+                <!--                            </ng-template>-->
+                <!--                            <ng-template ngbTabContent>-->
+                <!--                                <div class="row">-->
+                <!--                                    <div class="col-md-10 ml-auto mr-auto">-->
+                <!--                                        <div class="row collections">-->
+                <!--                                            <div class="col-md-6">-->
+                <!--                                                <img src="assets/img/bg1.jpg" alt="" class="img-raised">-->
+                <!--                                                <img src="assets/img/bg3.jpg" alt="" class="img-raised">-->
+                <!--                                            </div>-->
+                <!--                                            <div class="col-md-6">-->
+                <!--                                                <img src="assets/img/bg8.jpg" alt="" class="img-raised">-->
+                <!--                                                <img src="assets/img/bg7.jpg" alt="" class="img-raised">-->
+                <!--                                            </div>-->
+                <!--                                        </div>-->
+                <!--                                    </div>-->
+                <!--                                </div>-->
+                <!--                            </ng-template>-->
+                <!--                        </ngb-tab>-->
+                <!--                        <ngb-tab>-->
+                <!--                            <ng-template ngbTabTitle>-->
+                <!--                                <i class="now-ui-icons location_world"></i>-->
+                <!--                            </ng-template>-->
+                <!--                            <ng-template ngbTabContent>-->
+                <!--                                <div class="row">-->
+                <!--                                    <div class="col-md-10 ml-auto mr-auto">-->
+                <!--                                        <div class="row collections">-->
+                <!--                                            <div class="col-md-6">-->
+                <!--                                                <img src="assets/img/bg6.jpg" class="img-raised">-->
+                <!--                                                <img src="assets/img/bg11.jpg" alt="" class="img-raised">-->
+                <!--                                            </div>-->
+                <!--                                            <div class="col-md-6">-->
+                <!--                                                <img src="assets/img/bg7.jpg" alt="" class="img-raised">-->
+                <!--                                                <img src="assets/img/bg8.jpg" alt="" class="img-raised">-->
+                <!--                                            </div>-->
+                <!--                                        </div>-->
+                <!--                                    </div>-->
+                <!--                                </div>-->
+                <!--                            </ng-template>-->
+                <!--                        </ngb-tab>-->
+                <!--                        <ngb-tab>-->
+                <!--                            <ng-template ngbTabTitle>-->
+                <!--                                <i class="now-ui-icons sport_user-run"></i>-->
+                <!--                            </ng-template>-->
+                <!--                            <ng-template ngbTabContent>-->
+                <!--                                <div class="row">-->
+                <!--                                    <div class="col-md-10 ml-auto mr-auto">-->
+                <!--                                        <div class="row collections">-->
+                <!--                                            <div class="col-md-6">-->
+                <!--                                                <img src="assets/img/bg3.jpg" alt="" class="img-raised">-->
+                <!--                                                <img src="assets/img/bg8.jpg" alt="" class="img-raised">-->
+                <!--                                            </div>-->
+                <!--                                            <div class="col-md-6">-->
+                <!--                                                <img src="assets/img/bg7.jpg" alt="" class="img-raised">-->
+                <!--                                                <img src="assets/img/bg6.jpg" class="img-raised">-->
+                <!--                                            </div>-->
+                <!--                                        </div>-->
+                <!--                                    </div>-->
+                <!--                                </div>-->
+                <!--                            </ng-template>-->
+                <!--                        </ngb-tab>-->
+                <!--                    </ngb-tabset>-->
+                <!--                </div>-->
+                <!--            </div>-->
             </div>
         </div>
     </div>

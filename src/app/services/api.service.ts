@@ -4,6 +4,7 @@ import {User, UserType} from '../data/user';
 import {GlobalService} from './global.service';
 import {global} from '@angular/compiler/src/util';
 import {UserInfo, UserInfoType} from '../data/user-info';
+import {TimeSpan, TimeSpanType} from '../data/timeSpan';
 
 @Injectable({
     providedIn: 'root'
@@ -77,15 +78,17 @@ export class ApiService {
         return url.slice(start + 1, end);
     }
 
-    public async getYourself(id: number = -1): Promise<User> {
+    public async getYourself(onlineFirst: boolean = false, id: number = -1): Promise<User> {
         let url = 'get/getYourself.php?';
         if (id >= 0) {
             url += '&userId=' + id;
         }
         try {
-            const data = await this.getExOffline(url, true);
+            const data = await this.getExOffline(url, onlineFirst);
+            console.log(this.server.getUrl());
             const user = new User(JSON.parse(data.toString()) as UserType);
             await this.addUserInfos(user);
+            await this.addTimeSpans(user);
             this.setUser(user);
             return user;
         } catch (e) {
@@ -102,7 +105,7 @@ export class ApiService {
             url += '&id=' + id;
         }
         try {
-            const data = await this.getEx(url, true);
+            const data = await this.getEx(url, false, id >= 0);
             const user: User = new User(JSON.parse(data.toString()) as UserType);
             if (loadInfos) {
                 await this.addUserInfos(user);
@@ -150,6 +153,27 @@ export class ApiService {
         }
     }
 
+    public async addTimeSpans(user: User): Promise<void> {
+        user.adduserTimespan(await this.getTimeSpans(user.userId));
+    }
+
+    public async getTimeSpans(id: number): Promise<TimeSpan[]> {
+
+        let url = 'get/getTimeSpans.php?';
+        url += '&id=' + id;
+        try {
+            const timeSpans: TimeSpan[] = [];
+            const data = await this.getEx(url, true);
+            const raw = JSON.parse(data.toString()) as TimeSpanType[];
+            for (const u of raw) {
+                timeSpans.push(new TimeSpan(u));
+            }
+            return timeSpans;
+        } catch (e) {
+            throw new Error('#fail#User not found');
+        }
+    }
+
     public async login(user: { mail: string, password: string }): Promise<void> {
         const url = 'functions/login.php?'
             + '&password=' + user.password
@@ -170,5 +194,14 @@ export class ApiService {
             + '&firstName=' + user.firstName
             + '&lastName=' + user.lastName;
         return await this.getEx(url, false, false);
+    }
+
+    public async addUserInfo(userInfo: UserInfo): Promise<string> {
+        const url = 'add/addUserInfo.php?'
+            + '&name=' + userInfo.name
+            + '&value=' + userInfo.value;
+        const back = await this.getEx(url);
+        console.log(this.getLastUrl());
+        return back;
     }
 }

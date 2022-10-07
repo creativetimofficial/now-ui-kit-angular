@@ -6,6 +6,7 @@ import {RouterModule} from '@angular/router';
 import { NotificationsComponent } from './notifications/notifications.component';
 import {NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 import { ModalsComponent } from './modals/modals.component';
+import { EnumToArrayPipe } from './enum-to-array-pipe-.pipe';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { ModalsComponent } from './modals/modals.component';
         FooterComponent,
         NavbarComponent,
         NotificationsComponent,
-        ModalsComponent
+        ModalsComponent,
+        EnumToArrayPipe
     ],
     imports: [
         CommonModule,
@@ -23,7 +25,8 @@ import { ModalsComponent } from './modals/modals.component';
     exports: [
         FooterComponent,
         NavbarComponent,
-        NotificationsComponent
+        NotificationsComponent,
+        EnumToArrayPipe
     ]
 })
 export class SharedModule {
