@@ -41,7 +41,7 @@ export class User implements UserType {
     studies: string;
     publicProfile: number = 0;
     private _description: string = null;
-    timeSpans: TimeSpanType[];
+    timeSpans: TimeSpanType[] = [];
 
 
     constructor(userType?: UserType) {

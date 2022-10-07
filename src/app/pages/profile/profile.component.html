@@ -86,20 +86,9 @@
             <h5 class="description">
                 {{displayUser?.description}}
             </h5>
-            <!--            <div>-->
-            <!--                <h3 class="title">I lived here</h3>-->
-            <!--                <div *ngFor="let t of displayUser?.timeSpans; index as i">-->
-            <!--                    <h5 class="description">-->
-            <!--                        {{t.start}}-->
-            <!--                    </h5>-->
-            <!--                    <h5 class="description">-->
-            <!--                        {{t.end}}-->
-            <!--                    </h5>-->
-            <!--                </div>-->
-            <!--            </div>-->
             <div>
                 <h3 class="title">My Timeline</h3>
-
+                <h4 *ngIf="displayUser?.timeSpans?.length==0" class="description">No timeline yet</h4>
                 <div class="timeline">
                     <div *ngFor="let t of displayUser?.timeSpans; index as i">
                         <div class="timeline-container " [ngClass]="{'timeline-left':i%2==0,'timeline-right':i%2!=0}">
