@@ -103,4 +103,15 @@ export class ProfileComponent extends BasicModalPageComponent implements OnInit 
     private reload(userId: number) {
         this.api.getUser(userId, true).then(value => this.displayUser = value).catch(reason => console.log(this.api.getLastUrl()));
     }
+
+    formatDateForTimeline(date: string): string {
+        try {
+            let back = date;
+            back = back.split(' ')[0];
+            back = this.replaceAll(back, '-', '.');
+            return back;
+        } catch (e) {
+            return date;
+        }
+    }
 }

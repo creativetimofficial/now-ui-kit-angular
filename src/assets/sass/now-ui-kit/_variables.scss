@@ -51,6 +51,11 @@ $primary-states-color:       lighten($primary-color, 6%) !default;
 $primary-color-opacity:      rgba($primary-color, .3) !default;
 $primary-color-alert:        rgba($primary-color, .8) !default;
 
+$accent-color: #8a2600 !default;
+$accent-states-color:       lighten($accent-color, 6%) !default;
+$accent-color-opacity:      rgba($accent-color, .3) !default;
+$accent-color-alert:        rgba($accent-color, .8) !default;
+
 $success-color:              #18ce0f !default;
 $success-states-color:       lighten($success-color, 6%) !default;
 $success-color-opacity:      rgba(24, 206, 15, .3) !default;

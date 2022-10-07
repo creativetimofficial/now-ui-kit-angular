@@ -1562,6 +1562,8 @@ fieldset[disabled] .btn-link.active {
 .form-control {
   background-color: transparent;
   border: 1px solid #E3E3E3;
+  border-left: none !important;
+  border-right: none !important;
   border-radius: 30px;
   color: #2c2c2c;
   line-height: normal;
@@ -1574,6 +1576,9 @@ fieldset[disabled] .btn-link.active {
   transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
   -webkit-box-shadow: none;
   box-shadow: none; }
+  .form-control:has(.input-group-prepend, .input-group-append) {
+    border-left: none !important;
+    border-right: none !important; }
   .has-success .form-control {
     border-color: #E3E3E3; }
   .form-control:focus {
@@ -1585,6 +1590,7 @@ fieldset[disabled] .btn-link.active {
     .form-control:focus + .input-group-text, .form-control:focus ~ .input-group-text {
       border: 1px solid #3d3d64;
       border-left: none;
+      border-right: none;
       background-color: transparent; }
   .has-success .form-control, .has-error .form-control, .has-success .form-control:focus, .has-error .form-control:focus {
     -webkit-box-shadow: none;
@@ -1698,8 +1704,9 @@ fieldset[disabled] .btn-link.active {
 .form-group.form-group-no-border .form-control:focus + .input-group-text,
 .input-group.form-group-no-border .form-control:focus + .input-group-text {
   background-color: rgba(222, 222, 222, 0.5); }
-.form-group.form-group-no-border .input-group-prepend .input-group-text,
-.input-group.form-group-no-border .input-group-prepend .input-group-text {
+.form-group.form-group-no-border .input-group-prepend .input-group-text, .form-group.form-group-no-border .input-group-append .input-group-text,
+.input-group.form-group-no-border .input-group-prepend .input-group-text,
+.input-group.form-group-no-border .input-group-append .input-group-text {
   background-color: rgba(222, 222, 222, 0.3);
   border: none; }
 
@@ -1752,11 +1759,13 @@ fieldset[disabled] .btn-link.active {
 .input-group .input-group-append .input-group-text {
   border-right: 1px solid #E3E3E3 !important;
   padding: 10px 18px 10px 0; }
+  .input-group .input-group-append .input-group-text i {
+    margin-right: 10px; }
 .input-group.input-group-focus .input-group-prepend .input-group-text {
   border-left: 1px solid #f96332 !important; }
 .input-group.input-group-focus .input-group-append .input-group-text {
   border-right: 1px solid #f96332 !important; }
-.input-group.form-group-no-border .input-group-prepend .input-group-text {
+.input-group.form-group-no-border .input-group-prepend .input-group-text, .input-group.form-group-no-border .input-group-append .input-group-text {
   border-left: transparent !important; }
 
 .input-group .form-control:first-child,
@@ -3518,6 +3527,103 @@ ngb-carousel .carousel-control-next-icon {
     clear: both;
     content: " "; }
 
+/* The actual timeline (the vertical ruler) */
+.timeline {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  /* The actual timeline (the vertical ruler) */
+  /* Container around content */
+  /* Place the container to the left */
+  /* Place the container to the right */
+  /* The actual content */ }
+  .timeline::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    background-color: #3d3d64;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -3px; }
+  .timeline-container {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+    /* The circles on the timeline */ }
+    .timeline-container::after {
+      content: '';
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      right: -13px;
+      background-color: #3d3d64;
+      border: 4px solid #8a2600;
+      top: 15px;
+      border-radius: 50%;
+      z-index: 1; }
+  .timeline-left {
+    left: 0;
+    /* Add arrows to the left container (pointing right) */ }
+    .timeline-left::before {
+      content: " ";
+      height: 0;
+      position: absolute;
+      top: 22px;
+      width: 0;
+      z-index: 1;
+      right: 30px;
+      border: medium solid #E3E3E3;
+      border-width: 10px 0 10px 10px;
+      border-color: transparent transparent transparent #E3E3E3; }
+  .timeline-right {
+    left: 50%;
+    /* Add arrows to the right container (pointing left) */
+    /* Fix the circle for containers on the right side */ }
+    .timeline-right::before {
+      content: " ";
+      height: 0;
+      position: absolute;
+      top: 22px;
+      width: 0;
+      z-index: 1;
+      left: 30px;
+      border: medium solid #E3E3E3;
+      border-width: 10px 10px 10px 0;
+      border-color: transparent #E3E3E3 transparent transparent; }
+    .timeline-right::after {
+      left: -12px; }
+  .timeline-content {
+    padding: 20px 30px;
+    background-color: #E3E3E3;
+    position: relative;
+    border-radius: 6px; }
+
+/* Media queries - Responsive timeline on screens less than 600px wide */
+@media screen and (max-width: 600px) {
+  .timeline {
+    /* Place the timelime to the left */
+    /* Full-width containers */
+    /* Make sure all circles are at the same spot */
+    /* Make all right containers behave like the left ones */ }
+    .timeline::after {
+      left: 31px; }
+    .timeline-container {
+      width: 100%;
+      padding-left: 70px;
+      padding-right: 25px;
+      /* Make sure that all arrows are pointing leftwards */ }
+      .timeline-container::before {
+        left: 60px;
+        border: medium solid white;
+        border-width: 10px 10px 10px 0;
+        border-color: transparent white transparent transparent; }
+    .timeline-left::after, .timeline-right::after {
+      left: 15px; }
+    .timeline-right {
+      left: 0%; } }
 .index-page .page-header {
   height: 125vh; }
   .index-page .page-header .container > .content-center {
