@@ -78,6 +78,7 @@ export class ProfileComponent extends BasicModalPageComponent implements OnInit 
                 protected modalService: NgbModal,
                 protected notificationService: NotificationService) {
         super(global, api, notificationService, modalService);
+        this.disableLoadYourself = true;
     }
 
     ngOnInit() {
@@ -87,11 +88,13 @@ export class ProfileComponent extends BasicModalPageComponent implements OnInit 
 
             if (routeParams.id === undefined) {
                 this.displayUserId = -1;
+                this.forceReloadYourself();
             } else {
                 // tslint:disable-next-line:radix
                 this.displayUserId = parseInt(routeParams.id);
                 this.reload(this.displayUserId);
             }
+            // console.log(this.displayUserId);
         }));
 
     }
@@ -101,7 +104,9 @@ export class ProfileComponent extends BasicModalPageComponent implements OnInit 
     }
 
     private reload(userId: number) {
-        this.api.getUser(userId, true).then(value => this.displayUser = value).catch(reason => console.log(this.api.getLastUrl()));
+        this.api.getUser(userId, true)
+            .then(value => this.displayUser = value)
+            .catch(reason => console.log(this.api.getLastUrl()));
     }
 
     formatDateForTimeline(date: string): string {

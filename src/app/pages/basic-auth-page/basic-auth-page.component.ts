@@ -15,6 +15,8 @@ import {NotificationService} from '../../services/notification.service';
 })
 export class BasicAuthPageComponent extends BasicPageComponent implements OnInit {
 
+    disableLoadYourself = false;
+
     constructor(protected global: GlobalService, protected api: ApiService, protected notificationService: NotificationService) {
         super(global);
     }
@@ -25,13 +27,15 @@ export class BasicAuthPageComponent extends BasicPageComponent implements OnInit
     }
 
     loadYourself(): void {
-        if (this.user == null) {
-            this.api.getYourself().then(value => {
-                this.user = value;
+        if (!this.disableLoadYourself) {
+            if (this.user == null) {
+                this.api.getYourself().then(value => {
+                    this.user = value;
+                    this.onYourselfLoaded();
+                });
+            } else {
                 this.onYourselfLoaded();
-            });
-        } else {
-            this.onYourselfLoaded();
+            }
         }
     }
 

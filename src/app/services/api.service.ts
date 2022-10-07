@@ -107,6 +107,7 @@ export class ApiService {
         try {
             const data = await this.getEx(url, false, id >= 0);
             const user: User = new User(JSON.parse(data.toString()) as UserType);
+            console.log(this.getLastUrl());
             if (loadInfos) {
                 await this.addUserInfos(user);
             }
