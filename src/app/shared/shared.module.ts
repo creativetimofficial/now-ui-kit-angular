@@ -4,7 +4,7 @@ import {FooterComponent} from './footer/footer.component';
 import {NavbarComponent} from './navbar/navbar.component';
 import {RouterModule} from '@angular/router';
 import { NotificationsComponent } from './notifications/notifications.component';
-import {NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbAlertModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ModalsComponent } from './modals/modals.component';
 import { EnumToArrayPipe } from './enum-to-array-pipe-.pipe';
 
@@ -21,6 +21,7 @@ import { EnumToArrayPipe } from './enum-to-array-pipe-.pipe';
         CommonModule,
         RouterModule,
         NgbAlertModule,
+        NgbModule,
     ],
     exports: [
         FooterComponent,

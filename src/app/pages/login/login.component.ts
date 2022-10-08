@@ -24,9 +24,9 @@ export class LoginComponent extends BasicPageComponent {
 
     constructor(protected global: GlobalService,
                 private api: ApiService,
-                private notificationService: NotificationService,
+                protected notificationService: NotificationService,
                 private router: Router) {
-        super(global);
+        super(global, notificationService);
     }
 
     login() {

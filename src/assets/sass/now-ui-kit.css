@@ -3851,6 +3851,8 @@ ngb-carousel .carousel-control-next-icon {
   background: #FFFFFF; }
   .section .row + .category {
     margin-top: 15px; }
+  .section:has(.button-container) {
+    z-index: 2; }
 
 .section-navbars {
   padding-bottom: 0; }
@@ -3860,6 +3862,9 @@ ngb-carousel .carousel-control-next-icon {
 
 .section-signup {
   padding-top: 20vh; }
+
+.page-header-image-small {
+  max-height: 500px !important; }
 
 .page-header {
   height: 100vh;
@@ -3900,8 +3905,14 @@ ngb-carousel .carousel-control-next-icon {
   .page-header .category,
   .page-header .description {
     color: rgba(255, 255, 255, 0.5); }
+  .page-header.page-header-tiny {
+    min-height: 0 !important;
+    max-height: 340px; }
   .page-header.page-header-small {
-    min-height: 60vh;
+    min-height: 0 !important;
+    max-height: 440px; }
+  .page-header.page-header-medium {
+    min-height: 60vh !important;
     max-height: 440px; }
   .page-header:after, .page-header:before {
     position: absolute;

@@ -3,6 +3,7 @@ import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common'
 import {GlobalService} from '../../services/global.service';
 import {ApiService} from '../../services/api.service';
 import {Router} from '@angular/router';
+import {NotificationService} from '../../services/notification.service';
 
 @Component({
     selector: 'app-navbar',
@@ -18,7 +19,8 @@ export class NavbarComponent implements OnInit {
                 private element: ElementRef,
                 public global: GlobalService,
                 private api: ApiService,
-                private router: Router) {
+                private router: Router,
+                private notificationService: NotificationService) {
         this.sidebarVisible = false;
         this.global.updateNavBar.subscribe(value => this.currentPage = value);
     }
@@ -64,5 +66,9 @@ export class NavbarComponent implements OnInit {
 
     logout() {
         this.api.logout().then(value => this.router.navigate(['/home']).then());
+    }
+
+    comingSoon() {
+        this.notificationService.createInfoNotification('Coming soon');
     }
 }

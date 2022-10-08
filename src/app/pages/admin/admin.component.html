@@ -1,0 +1,86 @@
+<div class="wrapper">
+    <div class="page-header page-header-tiny">
+        <div class="page-header-image rellax-header" data-rellax-speed="-8"
+             style="background-image: url('assets/img/Wiederholdstrasse-4-1030x687.jpg');">
+        </div>
+        <div class="container">
+            <div class="content-center">
+                <h1 class="title">Admin Page</h1>
+<!--                <div class="text-center">-->
+<!--                    <a href="#pablo" class="btn btn-primary btn-icon btn-round">-->
+<!--                        <i class="fab fa-facebook-square"></i>-->
+<!--                    </a>-->
+<!--                    <a href="#pablo" class="btn btn-primary btn-icon btn-round">-->
+<!--                        <i class="fab fa-twitter"></i>-->
+<!--                    </a>-->
+<!--                    <a href="#pablo" class="btn btn-primary btn-icon btn-round">-->
+<!--                        <i class="fab fa-google-plus"></i>-->
+<!--                    </a>-->
+<!--                </div>-->
+            </div>
+        </div>
+    </div>
+    <div class="section section-about-us">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 ml-auto mr-auto text-center">
+                    <h2 class="title">Empty?</h2>
+                    <h5 class="description">This is a demo Page</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 ml-auto mr-auto text-center">
+                    <h2 class="title">All User</h2>
+                    <h5 class="description">This is a demo Page</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section section-team text-center">
+        <div class="container">
+            <h2 class="title">All Users</h2>
+            <div class="team">
+                <div class="row">
+                    <div *ngFor="let u of publicUsers" class="col-md-4">
+                        <div class="card team-player">
+                            <div [routerLink]="['/profile',u.userId]" style="cursor: pointer">
+                                <app-profile-image [user]="u" [size]="'96px'"></app-profile-image>
+                                <h4 class="title">{{u.firstName}} {{u.lastName}}</h4>
+                                <p class="category text-primary">
+                                    {{u.roles}}
+                                </p>
+                            </div>
+                            <p class="description">{{u.description}}</p>
+
+                            <a *ngIf="u.twitter!=null" href="{{u.twitter}}"
+                               class="btn btn-primary btn-icon btn-round" target="_blank">
+                                <i class="my-fab fa-brands fa-twitter"></i>
+                            </a>
+                            <a *ngIf="u.instagram!=null" href="{{u.instagram}}"
+                               class="btn btn-primary btn-icon btn-round" target="_blank">
+                                <i class="my-fab fa-brands fa-instagram"></i>
+                            </a>
+                            <a *ngIf="u.facebook!=null" href="{{u.facebook}}"
+                               class="btn btn-primary btn-icon btn-round" target="_blank">
+                                <i class="my-fab fa-brands fa-facebook-square"></i>
+                            </a>
+                            <a *ngIf="u.publicMail!=null" href="MAILTO:{{u.publicMail}}"
+                               class="btn btn-primary btn-icon btn-round" target="_blank">
+                                <!--                                <i class="fab fa-mail-square"></i>-->
+                                <i class="my-fab fa-regular fa-envelope"></i>
+                            </a>
+                            <a *ngIf="u.phone!=null" (click)="showPhone(u)"
+                               class="btn btn-primary btn-icon btn-round" target="_blank">
+                                <i class="my-fab fa-solid fa-phone"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

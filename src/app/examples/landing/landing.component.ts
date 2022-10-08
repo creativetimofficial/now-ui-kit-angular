@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import * as Rellax from 'rellax';
 import {BasicPageComponent} from '../../pages/basic-page/basic-page.component';
 import {GlobalService} from '../../services/global.service';
+import {NotificationService} from '../../services/notification.service';
 
 @Component({
     selector: 'app-landing',
@@ -13,8 +14,8 @@ export class LandingComponent extends BasicPageComponent implements OnInit, OnDe
     focus;
     focus1;
 
-    constructor(protected global: GlobalService) {
-        super(global);
+    constructor(protected global: GlobalService, protected notificationService: NotificationService) {
+        super(global, notificationService);
     }
 
     ngOnInit() {

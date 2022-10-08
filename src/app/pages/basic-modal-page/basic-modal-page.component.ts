@@ -19,7 +19,10 @@ export class BasicModalPageComponent extends BasicAuthPageComponent {
 
     closeResult: string;
 
-    constructor(public global: GlobalService, protected api: ApiService, protected notificationService: NotificationService, protected modalService: NgbModal) {
+    constructor(public global: GlobalService,
+                protected api: ApiService,
+                protected notificationService: NotificationService,
+                protected modalService: NgbModal) {
         super(global, api, notificationService);
     }
 

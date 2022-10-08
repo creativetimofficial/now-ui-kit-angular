@@ -53,6 +53,7 @@ export class ProfileSettingsComponent extends BasicModalPageComponent implements
     }
 
     save() {
+        this.comingSoon();
         console.log(this.tmpUser);
     }
 
@@ -64,7 +65,7 @@ export class ProfileSettingsComponent extends BasicModalPageComponent implements
             this.notificationService.createErrorNotification('Value to short!');
             return;
         }
-        if (ui.name === UserInfoTypes.role) {
+        if (ui.name === UserInfoTypes.role && this.user.power < 100) {
             this.notificationService.createErrorNotification('You can\'t set your own role!');
             return;
         }
@@ -80,6 +81,10 @@ export class ProfileSettingsComponent extends BasicModalPageComponent implements
     }
 
     deleteUserInfo(ui: UserInfoType) {
+        this.comingSoon();
+    }
+
+    changeImage() {
         this.comingSoon();
     }
 }

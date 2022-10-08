@@ -3,6 +3,7 @@ import {GlobalService} from '../../services/global.service';
 import {User} from '../../data/user';
 import {ApiService} from '../../services/api.service';
 import {Subscription} from 'rxjs/Subscription';
+import {NotificationService} from '../../services/notification.service';
 
 @Component({
     selector: 'app-basic-page',
@@ -18,7 +19,7 @@ export class BasicPageComponent implements OnInit, OnDestroy {
     private _busy: boolean = false;
     protected subscriptions: Subscription[] = [];
 
-    constructor(protected global: GlobalService) {
+    constructor(protected global: GlobalService, protected notificationService: NotificationService) {
     }
 
     ngOnInit(): void {
@@ -58,4 +59,7 @@ export class BasicPageComponent implements OnInit, OnDestroy {
         return value.replace('/' + search + '/g', replace);
     }
 
+    comingSoon() {
+        this.notificationService.createInfoNotification('Coming soon');
+    }
 }

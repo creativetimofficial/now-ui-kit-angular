@@ -21,7 +21,7 @@
         </div>
         <div class="navbar-translate">
             <a class="navbar-brand" [routerLink]="['/']" placement="bottom"
-               ngbTooltip="Designed by Invision. Coded by Creative Tim">
+               ngbTooltip="Wiederhold">
                 Wiederhold
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler"
@@ -46,6 +46,13 @@
                         <p class="d-lg-none d-xl-none">Profile</p>
                     </a>
                 </li>
+                <li *ngIf="global.user!=null && global.user?.power>=50" class="nav-item" [ngClass]="{'active':currentPage=='AdminComponent'}">
+                    <a class="nav-link" [routerLink]="['/admin']">
+                        <i class="now-ui-icons ui-2_settings-90"></i>
+<!--                        <i class="fa-regular fa-user-crown"></i>-->
+                        <p>Admin</p>
+                    </a>
+                </li>
                 <li *ngIf="global.user==null" class="nav-item" [ngClass]="{'active':currentPage=='LoginComponent'}">
                     <a class="nav-link" [routerLink]="['/login']">
                         <i class="now-ui-icons arrows-1_share-66"></i>
@@ -59,26 +66,35 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom"
-                       href="https://twitter.com/CreativeTim" target="_blank">
-                        <i class="fab fa-twitter"></i>
-                        <p class="d-lg-none d-xl-none">Twitter</p>
+                    <a class="nav-link" rel="tooltip" title="Change Language" data-placement="bottom"
+                       (click)="comingSoon()" target="_blank">
+                        <!--                        <i class="fab fa-twitter"></i>-->
+                        <img src="assets/img/flags/US.png" alt="US-Flag">
+                        <p class="d-lg-none d-xl-none">en-US</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" rel="tooltip" title="Like us on Facebook" data-placement="bottom"
-                       href="https://www.facebook.com/CreativeTim" target="_blank">
-                        <i class="fab fa-facebook-square"></i>
-                        <p class="d-lg-none d-xl-none">Facebook</p>
+                    <a class="nav-link" rel="tooltip" title="Change Language" data-placement="bottom"
+                       (click)="comingSoon()" target="_blank">
+                        <!--                        <i class="fab fa-twitter"></i>-->
+                        <img src="assets/img/flags/DE.png" alt="DE-Flag">
+                        <p class="d-lg-none d-xl-none">de-DE</p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" rel="tooltip" title="Follow us on Instagram" data-placement="bottom"
-                       href="https://www.instagram.com/CreativeTimOfficial" target="_blank">
-                        <i class="fab fa-instagram"></i>
-                        <p class="d-lg-none d-xl-none">Instagram</p>
-                    </a>
-                </li>
+                <!--                <li class="nav-item">-->
+                <!--                    <a class="nav-link" rel="tooltip" title="Like us on Facebook" data-placement="bottom"-->
+                <!--                       href="https://www.facebook.com/CreativeTim" target="_blank">-->
+                <!--                        <i class="fab fa-facebook-square"></i>-->
+                <!--                        <p class="d-lg-none d-xl-none">Facebook</p>-->
+                <!--                    </a>-->
+                <!--                </li>-->
+                <!--                <li class="nav-item">-->
+                <!--                    <a class="nav-link" rel="tooltip" title="Follow us on Instagram" data-placement="bottom"-->
+                <!--                       href="https://www.instagram.com/CreativeTimOfficial" target="_blank">-->
+                <!--                        <i class="fab fa-instagram"></i>-->
+                <!--                        <p class="d-lg-none d-xl-none">Instagram</p>-->
+                <!--                    </a>-->
+                <!--                </li>-->
             </ul>
         </div>
     </div>

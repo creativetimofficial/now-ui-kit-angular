@@ -5,6 +5,7 @@ import {GlobalService} from './global.service';
 import {global} from '@angular/compiler/src/util';
 import {UserInfo, UserInfoType} from '../data/user-info';
 import {TimeSpan, TimeSpanType} from '../data/timeSpan';
+import {finalize} from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -12,7 +13,7 @@ import {TimeSpan, TimeSpanType} from '../data/timeSpan';
 export class ApiService {
 
 
-    constructor(private server: ServerService, private globalService: GlobalService) {
+    constructor(public server: ServerService, private globalService: GlobalService) {
     }
 
     private setUser(user: User): void {
@@ -40,7 +41,7 @@ export class ApiService {
     }
 
     async getExOffline(urlExtension: string, offline: boolean = false, logout = false, setSession: boolean = true): Promise<string> {
-        const cashId = this.getCashId(urlExtension);
+        const cashId = ApiService.getCashId(urlExtension);
         if (!offline) {
             const data = await this.get(urlExtension, logout, setSession);
             if (data != null) {
@@ -72,7 +73,7 @@ export class ApiService {
         }
     }
 
-    private getCashId(url: string): string {
+    private static getCashId(url: string): string {
         const start = url.lastIndexOf('/');
         const end = url.lastIndexOf('.');
         return url.slice(start + 1, end);
@@ -85,7 +86,6 @@ export class ApiService {
         }
         try {
             const data = await this.getExOffline(url, onlineFirst);
-            console.log(this.server.getUrl());
             const user = new User(JSON.parse(data.toString()) as UserType);
             await this.addUserInfos(user);
             await this.addTimeSpans(user);
@@ -107,7 +107,6 @@ export class ApiService {
         try {
             const data = await this.getEx(url, false, id >= 0);
             const user: User = new User(JSON.parse(data.toString()) as UserType);
-            console.log(this.getLastUrl());
             if (loadInfos) {
                 await this.addUserInfos(user);
             }
@@ -120,18 +119,23 @@ export class ApiService {
         }
     }
 
-    public async getPublicUsers(): Promise<User[]> {
+    public async getPublicUsers(all: boolean = false): Promise<User[]> {
 
-        const url = 'get/getUser.php?';
+        let url = 'get/getUser.php?';
+        if (all) {
+            url += '&all=' + true;
+        }
         try {
             const users: User[] = [];
-            const data = await this.getEx(url, true);
+            const data = await this.getEx(url);
             const raw = JSON.parse(data.toString()) as UserType[];
             for (const u of raw) {
                 users.push(new User(u));
             }
             return users;
         } catch (e) {
+            console.log(this.getLastUrl());
+            console.log(e);
             throw new Error('#fail#User not found');
         }
     }
@@ -146,7 +150,7 @@ export class ApiService {
         url += '&id=' + id;
         try {
             const users: UserInfo[] = [];
-            const data = await this.getEx(url, true);
+            const data = await this.getEx(url);
             const raw = JSON.parse(data.toString()) as UserInfoType[];
             for (const u of raw) {
                 users.push(new UserInfo(u));
@@ -167,14 +171,16 @@ export class ApiService {
         url += '&id=' + id;
         try {
             const timeSpans: TimeSpan[] = [];
-            const data = await this.getEx(url, true);
+            const data = await this.getEx(url);
             const raw = JSON.parse(data.toString()) as TimeSpanType[];
             for (const u of raw) {
                 timeSpans.push(new TimeSpan(u));
             }
+
             return timeSpans;
+
         } catch (e) {
-            throw new Error('#fail#User not found');
+            throw new Error('#fail#TimeSpans not found');
         }
     }
 

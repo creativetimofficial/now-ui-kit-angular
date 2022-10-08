@@ -15,6 +15,8 @@ import { BasicAuthPageComponent } from './basic-auth-page/basic-auth-page.compon
 import {ComponentsModule} from '../components/components.module';
 import { BasicModalPageComponent } from './basic-modal-page/basic-modal-page.component';
 import { ProfileSettingsComponent } from './profile-settings/profile-settings.component';
+import { AdminComponent } from './admin/admin.component';
+import { EmptyComponent } from './empty/empty.component';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { ProfileSettingsComponent } from './profile-settings/profile-settings.co
         ProfileComponent,
         BasicAuthPageComponent,
         BasicModalPageComponent,
-        ProfileSettingsComponent
+        ProfileSettingsComponent,
+        AdminComponent,
+        EmptyComponent
     ],
     imports: [
         RouterModule,

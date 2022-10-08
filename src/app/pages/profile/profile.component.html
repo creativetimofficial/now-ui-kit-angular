@@ -1,5 +1,5 @@
 <div class="wrapper profile-page">
-    <div class="page-header page-header-small" filter-color="orange">
+    <div class="page-header page-header-small" filter-color="orange" >
         <div class="page-header-image rellax-header" data-rellax-speed="-8"
              style="background-image: url('assets/img/bg5.jpg') ;">
         </div>
@@ -28,8 +28,8 @@
         </div>
     </div>
     <div class="section">
-        <div class="container">
-            <div class="button-container">
+        <div class="container" >
+            <div class="button-container" >
                 <a (click)="comingSoon()" class="btn btn-primary btn-round btn-lg">Follow</a>
 
                 <a *ngIf="displayUser?.twitter!=null" href="{{displayUser?.twitter}}" target="_blank"
@@ -77,12 +77,13 @@
                     </div>
                 </ng-template>
 
-                <button *ngIf="displayUser?.userId == user?.userId" [routerLink]="['/profile-settings']"
+                <button *ngIf="isYourself" [routerLink]="['/profile-settings']"
                         class="btn btn-primary btn-round btn-lg" type="button">
                     <i class="fa-regular fa-pen-to-square"></i> Edit
                 </button>
             </div>
             <h3 class="title">About me</h3>
+            <h4 *ngIf="displayUser?.description==''" class="description">No description yet</h4>
             <h5 class="description">
                 {{displayUser?.description}}
             </h5>

@@ -28,9 +28,9 @@ export class RegisterComponent extends BasicPageComponent {
 
     constructor(protected global: GlobalService,
                 private api: ApiService,
-                private notificationService: NotificationService,
+                protected notificationService: NotificationService,
                 private router: Router) {
-        super(global);
+        super(global, notificationService);
     }
 
     register(): void {
@@ -88,5 +88,4 @@ export class RegisterComponent extends BasicPageComponent {
             // this.notification.showErrorNotification('Error', e);
         }).finally(() => this.resetBusy());
     }
-
 }

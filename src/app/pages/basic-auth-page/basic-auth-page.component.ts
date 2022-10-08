@@ -18,7 +18,7 @@ export class BasicAuthPageComponent extends BasicPageComponent implements OnInit
     disableLoadYourself = false;
 
     constructor(protected global: GlobalService, protected api: ApiService, protected notificationService: NotificationService) {
-        super(global);
+        super(global, notificationService);
     }
 
     ngOnInit(): void {
@@ -27,7 +27,7 @@ export class BasicAuthPageComponent extends BasicPageComponent implements OnInit
     }
 
     loadYourself(): void {
-        if (!this.disableLoadYourself) {
+        if (!this.disableLoadYourself && this.api.server.authService.checkSessionId()) {
             if (this.user == null) {
                 this.api.getYourself().then(value => {
                     this.user = value;
@@ -48,9 +48,5 @@ export class BasicAuthPageComponent extends BasicPageComponent implements OnInit
 
     onYourselfLoaded() {
 
-    }
-
-    comingSoon() {
-        this.notificationService.createInfoNotification('Coming soon');
     }
 }

@@ -109,6 +109,10 @@ export class ProfileComponent extends BasicModalPageComponent implements OnInit 
             .catch(reason => console.log(this.api.getLastUrl()));
     }
 
+    isYourself(): boolean {
+        return this.displayUser?.userId === this.user?.userId;
+    }
+
     formatDateForTimeline(date: string): string {
         try {
             let back = date;
