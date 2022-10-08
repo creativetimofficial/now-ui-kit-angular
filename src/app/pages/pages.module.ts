@@ -17,6 +17,7 @@ import { BasicModalPageComponent } from './basic-modal-page/basic-modal-page.com
 import { ProfileSettingsComponent } from './profile-settings/profile-settings.component';
 import { AdminComponent } from './admin/admin.component';
 import { EmptyComponent } from './empty/empty.component';
+import {ImageCropperModule} from 'ngx-image-cropper';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { EmptyComponent } from './empty/empty.component';
         PagesRoutingModule,
         SharedModule,
         ComponentsModule,
+        ImageCropperModule,
     ]
 })
 export class PagesModule {

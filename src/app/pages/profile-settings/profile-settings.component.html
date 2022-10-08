@@ -6,7 +6,7 @@
         <div class="container">
             <div class="content-center">
                 <div class="photo-container" style="cursor: pointer">
-                    <app-profile-image [user]="user" (click)="changeImage()"></app-profile-image>
+                    <app-profile-image [user]="user" (click)="open(profilePicture,'' , '')"></app-profile-image>
                 </div>
                 <h3 class="title">{{user?.firstName}} {{user?.lastName}}</h3>
                 <p class="category">{{user?.roles}}</p>
@@ -51,6 +51,55 @@
             </div>
             <div class="row">
                 <div class="col-md-8 ml-auto mr-auto">
+                    <ng-template #profilePicture let-c="close" let-d="dismiss">
+                        <div class="modal-header justify-content-center">
+                            <button type="button" class="close" (click)="d('Cross click')">
+                                <i class="now-ui-icons ui-1_simple-remove"></i>
+                            </button>
+                            <h4 class="title title-up">User Info</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>You can add some Information about you here</p>
+                            <div class="mb-4">
+                                <h6>Profilbild</h6>
+                                <div>
+                                    <input class="form-control btn border-red" type="file"
+                                           (change)="onChangeImage($event)">
+                                    <div *ngIf="!shortLink">
+                                        <image-cropper
+                                                [imageChangedEvent]="imageChangedEvent"
+                                                [maintainAspectRatio]="true"
+                                                [aspectRatio]="1"
+                                                format="png"
+                                                (imageCropped)="imageCropped($event)"
+                                                (imageLoaded)="imageLoaded($event)"
+                                                (cropperReady)="cropperReady()"
+                                                (loadImageFailed)="loadImageFailed()"
+                                        ></image-cropper>
+
+                                        <div class="img-preview">
+                                            <img *ngIf="croppedImage" [src]="croppedImage" alt="img preview"/>
+                                        </div>
+
+                                        <!--                                        <button *ngIf="croppedImage"-->
+                                        <!--                                                (click)="uploadImage(c)"-->
+                                        <!--                                                class="btn border-red">-->
+                                        <!--                                            Upload-->
+                                        <!--                                        </button>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" (click)="c('Close click')">Close</button>
+                            <button type="button" class="btn btn-primary"
+                                    [ngClass]="{'disabled':croppedImage==''}" (click)="uploadImage(c)"
+                                    [disabled]="croppedImage==''">
+                                Upload
+                            </button>
+                        </div>
+                    </ng-template>
+
                     <h4 class="title text-center">My Data</h4>
 
                     <h6 class="ml-4">First Name</h6>
@@ -176,7 +225,8 @@
                                 <h6>Value</h6>
                                 <input type="text" class="form-control" placeholder="..."
                                        (focus)="focus.modalValue"
-                                       (blur)="focus.modalValue" [(ngModel)]="inputValues.modalValue" name="instagram">
+                                       (blur)="focus.modalValue" [(ngModel)]="inputValues.modalValue"
+                                       name="instagram">
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -238,82 +288,82 @@
                         <!--                    </div>-->
                     </div>
                 </div>
-            </div>
-            <!-- do not display-->
-            <div>
-                <!--            <div class="row" style="display: none">-->
-                <!--                <div class="col-md-12">-->
-                <!--                    <h4 class="title text-center">My Portfolio</h4>-->
-                <!--                    <ngb-tabset [justify]="'center'" type="pills"-->
-                <!--                                class="nav nav-pills nav-pills-primary  nav-pills-just-icons justify-content-center tab-space">-->
-                <!--                        <ngb-tab>-->
-                <!--                            <ng-template ngbTabTitle>-->
-                <!--                                <i class="now-ui-icons design_image"></i>-->
-                <!--                            </ng-template>-->
-                <!--                            <ng-template ngbTabContent>-->
-                <!--                                <div class="row">-->
-                <!--                                    <div class="col-md-10 ml-auto mr-auto">-->
-                <!--                                        <div class="row collections">-->
-                <!--                                            <div class="col-md-6">-->
-                <!--                                                <img src="assets/img/bg1.jpg" alt="" class="img-raised">-->
-                <!--                                                <img src="assets/img/bg3.jpg" alt="" class="img-raised">-->
-                <!--                                            </div>-->
-                <!--                                            <div class="col-md-6">-->
-                <!--                                                <img src="assets/img/bg8.jpg" alt="" class="img-raised">-->
-                <!--                                                <img src="assets/img/bg7.jpg" alt="" class="img-raised">-->
-                <!--                                            </div>-->
-                <!--                                        </div>-->
-                <!--                                    </div>-->
-                <!--                                </div>-->
-                <!--                            </ng-template>-->
-                <!--                        </ngb-tab>-->
-                <!--                        <ngb-tab>-->
-                <!--                            <ng-template ngbTabTitle>-->
-                <!--                                <i class="now-ui-icons location_world"></i>-->
-                <!--                            </ng-template>-->
-                <!--                            <ng-template ngbTabContent>-->
-                <!--                                <div class="row">-->
-                <!--                                    <div class="col-md-10 ml-auto mr-auto">-->
-                <!--                                        <div class="row collections">-->
-                <!--                                            <div class="col-md-6">-->
-                <!--                                                <img src="assets/img/bg6.jpg" class="img-raised">-->
-                <!--                                                <img src="assets/img/bg11.jpg" alt="" class="img-raised">-->
-                <!--                                            </div>-->
-                <!--                                            <div class="col-md-6">-->
-                <!--                                                <img src="assets/img/bg7.jpg" alt="" class="img-raised">-->
-                <!--                                                <img src="assets/img/bg8.jpg" alt="" class="img-raised">-->
-                <!--                                            </div>-->
-                <!--                                        </div>-->
-                <!--                                    </div>-->
-                <!--                                </div>-->
-                <!--                            </ng-template>-->
-                <!--                        </ngb-tab>-->
-                <!--                        <ngb-tab>-->
-                <!--                            <ng-template ngbTabTitle>-->
-                <!--                                <i class="now-ui-icons sport_user-run"></i>-->
-                <!--                            </ng-template>-->
-                <!--                            <ng-template ngbTabContent>-->
-                <!--                                <div class="row">-->
-                <!--                                    <div class="col-md-10 ml-auto mr-auto">-->
-                <!--                                        <div class="row collections">-->
-                <!--                                            <div class="col-md-6">-->
-                <!--                                                <img src="assets/img/bg3.jpg" alt="" class="img-raised">-->
-                <!--                                                <img src="assets/img/bg8.jpg" alt="" class="img-raised">-->
-                <!--                                            </div>-->
-                <!--                                            <div class="col-md-6">-->
-                <!--                                                <img src="assets/img/bg7.jpg" alt="" class="img-raised">-->
-                <!--                                                <img src="assets/img/bg6.jpg" class="img-raised">-->
-                <!--                                            </div>-->
-                <!--                                        </div>-->
-                <!--                                    </div>-->
-                <!--                                </div>-->
-                <!--                            </ng-template>-->
-                <!--                        </ngb-tab>-->
-                <!--                    </ngb-tabset>-->
-                <!--                </div>-->
-                <!--            </div>-->
+                <!-- do not display-->
+                <div>
+                    <!--            <div class="row" style="display: none">-->
+                    <!--                <div class="col-md-12">-->
+                    <!--                    <h4 class="title text-center">My Portfolio</h4>-->
+                    <!--                    <ngb-tabset [justify]="'center'" type="pills"-->
+                    <!--                                class="nav nav-pills nav-pills-primary  nav-pills-just-icons justify-content-center tab-space">-->
+                    <!--                        <ngb-tab>-->
+                    <!--                            <ng-template ngbTabTitle>-->
+                    <!--                                <i class="now-ui-icons design_image"></i>-->
+                    <!--                            </ng-template>-->
+                    <!--                            <ng-template ngbTabContent>-->
+                    <!--                                <div class="row">-->
+                    <!--                                    <div class="col-md-10 ml-auto mr-auto">-->
+                    <!--                                        <div class="row collections">-->
+                    <!--                                            <div class="col-md-6">-->
+                    <!--                                                <img src="assets/img/bg1.jpg" alt="" class="img-raised">-->
+                    <!--                                                <img src="assets/img/bg3.jpg" alt="" class="img-raised">-->
+                    <!--                                            </div>-->
+                    <!--                                            <div class="col-md-6">-->
+                    <!--                                                <img src="assets/img/bg8.jpg" alt="" class="img-raised">-->
+                    <!--                                                <img src="assets/img/bg7.jpg" alt="" class="img-raised">-->
+                    <!--                                            </div>-->
+                    <!--                                        </div>-->
+                    <!--                                    </div>-->
+                    <!--                                </div>-->
+                    <!--                            </ng-template>-->
+                    <!--                        </ngb-tab>-->
+                    <!--                        <ngb-tab>-->
+                    <!--                            <ng-template ngbTabTitle>-->
+                    <!--                                <i class="now-ui-icons location_world"></i>-->
+                    <!--                            </ng-template>-->
+                    <!--                            <ng-template ngbTabContent>-->
+                    <!--                                <div class="row">-->
+                    <!--                                    <div class="col-md-10 ml-auto mr-auto">-->
+                    <!--                                        <div class="row collections">-->
+                    <!--                                            <div class="col-md-6">-->
+                    <!--                                                <img src="assets/img/bg6.jpg" class="img-raised">-->
+                    <!--                                                <img src="assets/img/bg11.jpg" alt="" class="img-raised">-->
+                    <!--                                            </div>-->
+                    <!--                                            <div class="col-md-6">-->
+                    <!--                                                <img src="assets/img/bg7.jpg" alt="" class="img-raised">-->
+                    <!--                                                <img src="assets/img/bg8.jpg" alt="" class="img-raised">-->
+                    <!--                                            </div>-->
+                    <!--                                        </div>-->
+                    <!--                                    </div>-->
+                    <!--                                </div>-->
+                    <!--                            </ng-template>-->
+                    <!--                        </ngb-tab>-->
+                    <!--                        <ngb-tab>-->
+                    <!--                            <ng-template ngbTabTitle>-->
+                    <!--                                <i class="now-ui-icons sport_user-run"></i>-->
+                    <!--                            </ng-template>-->
+                    <!--                            <ng-template ngbTabContent>-->
+                    <!--                                <div class="row">-->
+                    <!--                                    <div class="col-md-10 ml-auto mr-auto">-->
+                    <!--                                        <div class="row collections">-->
+                    <!--                                            <div class="col-md-6">-->
+                    <!--                                                <img src="assets/img/bg3.jpg" alt="" class="img-raised">-->
+                    <!--                                                <img src="assets/img/bg8.jpg" alt="" class="img-raised">-->
+                    <!--                                            </div>-->
+                    <!--                                            <div class="col-md-6">-->
+                    <!--                                                <img src="assets/img/bg7.jpg" alt="" class="img-raised">-->
+                    <!--                                                <img src="assets/img/bg6.jpg" class="img-raised">-->
+                    <!--                                            </div>-->
+                    <!--                                        </div>-->
+                    <!--                                    </div>-->
+                    <!--                                </div>-->
+                    <!--                            </ng-template>-->
+                    <!--                        </ngb-tab>-->
+                    <!--                    </ngb-tabset>-->
+                    <!--                </div>-->
+                    <!--            </div>-->
+                </div>
             </div>
         </div>
     </div>
+    <app-footer></app-footer>
 </div>
-<app-footer></app-footer>

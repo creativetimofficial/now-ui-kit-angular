@@ -6,6 +6,8 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {NotificationService} from '../../services/notification.service';
 import {User} from '../../data/user';
 import {UserInfo, UserInfoType, UserInfoTypes} from '../../data/user-info';
+import {ImageCroppedEvent, LoadedImage} from 'ngx-image-cropper';
+import {DOC_ORIENTATION, NgxImageCompressService} from 'ngx-image-compress';
 
 @Component({
     selector: 'app-profile-settings',
@@ -31,12 +33,20 @@ export class ProfileSettingsComponent extends BasicModalPageComponent implements
     tmpUser: User = new User();
 
     focusArray: boolean[] = [];
-    toggleTest: boolean;
+
+    shortLink: string = '';
+    loading: boolean = false; // Flag variable
+    file: File = null; // Variable to store file
+
+    //image
+    imageChangedEvent: any = '';
+    croppedImage: any = '';
 
     constructor(public global: GlobalService,
                 protected api: ApiService,
                 protected modalService: NgbModal,
-                protected notificationService: NotificationService) {
+                protected notificationService: NotificationService,
+                private imageCompress: NgxImageCompressService) {
         super(global, api, notificationService, modalService);
     }
 
@@ -86,5 +96,79 @@ export class ProfileSettingsComponent extends BasicModalPageComponent implements
 
     changeImage() {
         this.comingSoon();
+    }
+
+    onChangeImage(event) {
+        this.shortLink = '';
+        this.imageChangedEvent = event;
+        //this.file = event.target.files[0];
+    }
+
+    imageCropped(event: ImageCroppedEvent) {
+        this.croppedImage = event.base64;
+        // this.imageCompress.compressFile(this.croppedImage, DOC_ORIENTATION.Default, 50, 50).then(r  =>);
+        // this.urlToFile(this.croppedImage, 'img.png', 'image/png').then(f => this.file = f);
+        this.imageCroppedAndCompressed(event.base64).then(f => this.file = f);
+    }
+
+    private async imageCroppedAndCompressed(cropped: string): Promise<File> {
+        const maxByteSize = 2000000;
+        if (this.imageCompress.byteCount(cropped) > 2000000) {
+            cropped = await this.imageCompress.compressFile(
+                cropped,
+                DOC_ORIENTATION.Default,
+                50,
+                (maxByteSize / this.imageCompress.byteCount(cropped)) * 100
+            );
+            // console.log(this.imageCompress.byteCount(cropped));
+            // console.log((maxByteSize / this.imageCompress.byteCount(cropped)) * 100);
+        }
+        return await this.urlToFile(cropped, 'img.png', 'image/png');
+    }
+
+    imageLoaded(image: LoadedImage) {
+        // show cropper
+    }
+
+    cropperReady() {
+        // cropper ready
+    }
+
+    loadImageFailed() {
+        // show message
+    }
+
+    urlToFile(url, filename, mimeType) {
+        return (fetch(url)
+                .then(function (res) {
+                    return res.arrayBuffer();
+                })
+                .then(function (buf) {
+                    return new File([buf], filename, {type: mimeType});
+                })
+        );
+    }
+
+    uploadImage(c: any): void {
+
+        this.loading = !this.loading;
+        console.log(this.file);
+        // tslint:disable-next-line:triple-equals
+        if (this.croppedImage == null || this.croppedImage == '') {
+            return;
+        }
+        this.api.server.upload('add/addUserImage.php?', this.file).subscribe((event: any) => {
+                console.log(event);
+                // if (typeof (event) === 'object') {
+
+                // Short link via api response
+                this.shortLink = event;
+
+                this.loading = false; // Flag variable
+                // this.globals.updateToolbar.next(true);
+                // }
+                c();
+            }
+        );
     }
 }
