@@ -200,11 +200,11 @@
                             </div>
                         </div>
                     </div>
-                    <button (click)="open(classic,'' , '')" class="btn btn-primary btn-round btn-lg" type="button">
+                    <button (click)="open(addUserInfoModal,'' , '')" class="btn btn-primary btn-round btn-lg" type="button">
                         <i class="fa-regular fa-plus"></i> Add Info
                     </button>
 
-                    <ng-template #classic let-c="close" let-d="dismiss">
+                    <ng-template #addUserInfoModal let-c="close" let-d="dismiss">
                         <div class="modal-header justify-content-center">
                             <button type="button" class="close" (click)="d('Cross click')">
                                 <i class="now-ui-icons ui-1_simple-remove"></i>
@@ -231,7 +231,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" (click)="c('Close click')">Close</button>
-                            <button type="button" class="btn btn-success" (click)="addUserInfo(c)">Close</button>
+                            <button type="button" class="btn btn-success" (click)="addUserInfo(c)">Add</button>
                         </div>
                     </ng-template>
 

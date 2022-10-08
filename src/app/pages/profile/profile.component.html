@@ -1,5 +1,5 @@
 <div class="wrapper profile-page">
-    <div class="page-header page-header-small" filter-color="orange" >
+    <div class="page-header page-header-small" filter-color="orange">
         <div class="page-header-image rellax-header" data-rellax-speed="-8"
              style="background-image: url('assets/img/bg5.jpg') ;">
         </div>
@@ -10,26 +10,28 @@
                 </div>
                 <h3 class="title">{{displayUser?.firstName}} {{displayUser?.lastName}}</h3>
                 <p class="category">{{displayUser?.roles}}</p>
-<!--                <div class="content">-->
-<!--                    <div class="social-description">-->
-<!--                        <h2>26</h2>-->
-<!--                        <p>Comments</p>-->
-<!--                    </div>-->
-<!--                    <div class="social-description">-->
-<!--                        <h2>26</h2>-->
-<!--                        <p>Comments</p>-->
-<!--                    </div>-->
-<!--                    <div class="social-description">-->
-<!--                        <h2>48</h2>-->
-<!--                        <p>Bookmarks</p>-->
-<!--                    </div>-->
-<!--                </div>-->
+                <div>
+                    <!--                <div class="content">-->
+                    <!--                    <div class="social-description">-->
+                    <!--                        <h2>26</h2>-->
+                    <!--                        <p>Comments</p>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="social-description">-->
+                    <!--                        <h2>26</h2>-->
+                    <!--                        <p>Comments</p>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="social-description">-->
+                    <!--                        <h2>48</h2>-->
+                    <!--                        <p>Bookmarks</p>-->
+                    <!--                    </div>-->
+                    <!--                </div>-->
+                </div>
             </div>
         </div>
     </div>
     <div class="section">
-        <div class="container" >
-            <div class="button-container" >
+        <div class="container">
+            <div class="button-container">
                 <a (click)="comingSoon()" class="btn btn-primary btn-round btn-lg">Follow</a>
 
                 <a *ngIf="displayUser?.twitter!=null" href="{{displayUser?.twitter}}" target="_blank"
@@ -87,21 +89,66 @@
             <h5 class="description">
                 {{displayUser?.description}}
             </h5>
-            <div>
-                <h3 class="title">My Timeline</h3>
-                <h4 *ngIf="displayUser?.timeSpans?.length==0" class="description">No timeline yet</h4>
-                <div class="timeline">
-                    <div *ngFor="let t of displayUser?.timeSpans; index as i">
-                        <div class="timeline-container " [ngClass]="{'timeline-left':i%2==0,'timeline-right':i%2!=0}">
-                            <div class="timeline-content">
-                                <h4>{{t.title}}</h4>
-                                <h6>{{formatDateForTimeline(t.date)}}</h6>
-                                <p>{{t.description}}</p>
-                            </div>
+            <h3 class="title">My Timeline</h3>
+            <h4 *ngIf="displayUser?.timeSpans?.length==0" class="description">No timeline yet</h4>
+            <div class="timeline">
+                <div *ngFor="let t of displayUser?.timeSpans; index as i">
+                    <div class="timeline-container " [ngClass]="{'timeline-left':i%2==0,'timeline-right':i%2!=0}">
+                        <div class="timeline-content">
+                            <h4>{{t.title}}</h4>
+                            <h6>{{formatDateForTimeline(t.date)}}</h6>
+                            <p>{{t.description}}</p>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="row" *ngIf="displayUser?.timeSpans?.length>0">
+                <div class="timeline-add mr-auto ml-auto">
+                    <button class="btn btn-primary btn-icon btn-round" type="button"
+                            (click)="open(addTimelineModal,'' , '')">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+            <ng-template #addTimelineModal let-c="close" let-d="dismiss">
+                <div class="modal-header justify-content-center">
+                    <button type="button" class="close" (click)="d('Cross click')">
+                        <i class="now-ui-icons ui-1_simple-remove"></i>
+                    </button>
+                    <h4 class="title title-up">Add a new Milestone</h4>
+                </div>
+                <div class="modal-body">
+                    <p>You can add some Information about you here</p>
+                    <div class="mb-4">
+                        <h6 class="ml-2">Title</h6>
+                        <input type="text" class="form-control" placeholder="..."
+                               (focus)="focus.modalTitle"
+                               (blur)="focus.modalTitle" [(ngModel)]="inputValues.modalTitle"
+                               name="instagram">
+                    </div>
+                    <div class="mb-4">
+                        <h6 class="ml-2">Description</h6>
+                        <input type="text" class="form-control" placeholder="..."
+                               (focus)="focus.modalDescription"
+                               (blur)="focus.modalDescription" [(ngModel)]="inputValues.modalDescription"
+                               name="instagram">
+                    </div>
+                    <div>
+                        <h6 class="ml-2">Date</h6>
+                        <div class="datepicker-container">
+                            <div class="form-group">
+                                <input class="form-control datetimepicker" placeholder="06/07/2017"
+                                       name="dp" [(ngModel)]="model" ngbDatepicker #dp="ngbDatepicker"
+                                       (click)="dp.toggle()" data-color="orange">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" (click)="c('Close click')">Close</button>
+                    <button type="button" class="btn btn-success" (click)="addTimeline(c)">Add</button>
+                </div>
+            </ng-template>
             <!-- do not display-->
             <div class="row" style="display: none">
                 <!--                <div class="col-md-12">-->

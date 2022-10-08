@@ -6,7 +6,7 @@ import {ApiService} from '../../services/api.service';
 import {ActivatedRoute, Params} from '@angular/router';
 import {User} from '../../data/user';
 import {BasicModalPageComponent} from '../basic-modal-page/basic-modal-page.component';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {NgbDateStruct, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {NotificationService} from '../../services/notification.service';
 
 @Component({
@@ -66,11 +66,17 @@ export class ProfileComponent extends BasicModalPageComponent implements OnInit 
         'stylers': [{'color': '#fefefe'}, {'lightness': 17}, {'weight': 1.2}]
     }];
     data: Date = new Date();
-    focus;
-    focus1;
+    focus: {
+        modalDescription: boolean, modalTitle: boolean
+    } = {
+        modalDescription: false, modalTitle: false
+    };
+    inputValues: { modalDescription: string, modalTitle: string }
+        = {modalDescription: '', modalTitle: ''};
     private routeParams: Params;
     private displayUserId = -1;
     displayUser: User;
+    model: NgbDateStruct;
 
     constructor(public global: GlobalService,
                 protected api: ApiService,
@@ -122,5 +128,9 @@ export class ProfileComponent extends BasicModalPageComponent implements OnInit 
         } catch (e) {
             return date;
         }
+    }
+
+    addTimeline(c: any) {
+
     }
 }
