@@ -5,6 +5,7 @@ import {ApiService} from '../../services/api.service';
 import {Router} from '@angular/router';
 import {User} from '../../data/user';
 import {NotificationService} from '../../services/notification.service';
+import {Location} from '@angular/common';
 
 @Component({
     selector: 'app-register',
@@ -29,7 +30,7 @@ export class RegisterComponent extends BasicPageComponent {
     constructor(protected global: GlobalService,
                 private api: ApiService,
                 protected notificationService: NotificationService,
-                private router: Router) {
+                private location: Location) {
         super(global, notificationService);
     }
 
@@ -79,7 +80,8 @@ export class RegisterComponent extends BasicPageComponent {
             .then(() => {
                 // console.log('login');
                 // this.global.updateLogin.next(new User());
-                this.router.navigate(['/home']).then();
+                // this.router.navigate(['/home']).then();
+                this.location.back();
                 this.api.getYourself().then(value => this.user = value);
                 // this.api.login(value.username, value.password, value.code);
             }).catch((e) => {

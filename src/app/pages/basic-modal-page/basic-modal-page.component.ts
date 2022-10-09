@@ -3,8 +3,9 @@ import {BasicAuthPageComponent} from '../basic-auth-page/basic-auth-page.compone
 import {GlobalService} from '../../services/global.service';
 import {ApiService} from '../../services/api.service';
 import {ActivatedRoute} from '@angular/router';
-import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {ModalDismissReasons, NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {NotificationService} from '../../services/notification.service';
+import {RoomData} from '../../data/room-data';
 
 @Component({
     selector: 'app-basic-modal-page',
@@ -18,6 +19,7 @@ import {NotificationService} from '../../services/notification.service';
 export class BasicModalPageComponent extends BasicAuthPageComponent {
 
     closeResult: string;
+    selectedRoom: RoomData = null;
 
     constructor(public global: GlobalService,
                 protected api: ApiService,
@@ -26,33 +28,44 @@ export class BasicModalPageComponent extends BasicAuthPageComponent {
         super(global, api, notificationService);
     }
 
-    public open(content, type, modalDimension): void {
+    openRequestRoomModal(content, type, modalDimension, object: RoomData) {
+        this.selectedRoom = object;
+        this.open(content, type, modalDimension);
+    }
+
+    public open(content, type, modalDimension, object: any = null): void {
         if (modalDimension === 'sm' && type === 'modal_mini') {
-            this.modalService.open(content, {
+            const modal: NgbModalRef = this.modalService.open(content, {
                 windowClass: 'modal-mini modal-primary',
                 size: 'sm'
-            }).result.then((result) => {
+            });
+            // (modal.componentInstance).room = object;
+            modal.result.then((result) => {
                 this.closeResult = `Closed with: ${result}`;
             }, (reason) => {
-                this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+                this.closeResult = `Dismissed ${BasicModalPageComponent.getDismissReason(reason)}`;
             });
         } else if (modalDimension === undefined && type === 'Login') {
-            this.modalService.open(content, {windowClass: 'modal-login modal-primary'}).result.then((result) => {
+            const modal: NgbModalRef = this.modalService.open(content, {windowClass: 'modal-login modal-primary'});
+            // (modal.componentInstance).room = object;
+            modal.result.then((result) => {
                 this.closeResult = `Closed with: ${result}`;
             }, (reason) => {
-                this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+                this.closeResult = `Dismissed ${BasicModalPageComponent.getDismissReason(reason)}`;
             });
         } else {
-            this.modalService.open(content).result.then((result) => {
+            const modal: NgbModalRef = this.modalService.open(content);
+            // modal.componentInstance.room = object;
+            modal.result.then((result) => {
                 this.closeResult = `Closed with: ${result}`;
             }, (reason) => {
-                this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+                this.closeResult = `Dismissed ${BasicModalPageComponent.getDismissReason(reason)}`;
             });
         }
 
     }
 
-    private getDismissReason(reason: any): string {
+    private static getDismissReason(reason: any): string {
         if (reason === ModalDismissReasons.ESC) {
             return 'by pressing ESC';
         } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {

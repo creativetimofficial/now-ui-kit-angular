@@ -152,13 +152,13 @@ export class ProfileSettingsComponent extends BasicModalPageComponent implements
     uploadImage(c: any): void {
 
         this.loading = !this.loading;
-        console.log(this.file);
+        // console.log(this.file);
         // tslint:disable-next-line:triple-equals
         if (this.croppedImage == null || this.croppedImage == '') {
             return;
         }
         this.api.server.upload('add/addUserImage.php?', this.file).subscribe((event: any) => {
-                console.log(event);
+                // console.log(event);
                 // if (typeof (event) === 'object') {
 
                 // Short link via api response
@@ -168,6 +168,7 @@ export class ProfileSettingsComponent extends BasicModalPageComponent implements
                 // this.globals.updateToolbar.next(true);
                 // }
                 c();
+                this.forceReloadYourself();
             }
         );
     }

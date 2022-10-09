@@ -1,7 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {GlobalService} from '../../services/global.service';
 import {User} from '../../data/user';
-import {ApiService} from '../../services/api.service';
 import {Subscription} from 'rxjs/Subscription';
 import {NotificationService} from '../../services/notification.service';
 
@@ -56,7 +55,7 @@ export class BasicPageComponent implements OnInit, OnDestroy {
     }
 
     replaceAll(value: string, search: string, replace: string): string {
-        return value.replace('/' + search + '/g', replace);
+        return value.replace(new RegExp(search, 'g'), replace);
     }
 
     comingSoon() {

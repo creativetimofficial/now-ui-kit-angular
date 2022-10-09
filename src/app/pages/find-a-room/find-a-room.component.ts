@@ -7,6 +7,7 @@ import {NotificationService} from '../../services/notification.service';
 import {TimeSpan, TimeSpanTypes} from '../../data/timeSpan';
 import {User} from '../../data/user';
 import {RoomData} from '../../data/room-data';
+import {from} from 'rxjs';
 
 @Component({
     selector: 'app-find-a-room',
@@ -17,6 +18,7 @@ export class FindARoomComponent extends BasicModalPageComponent implements OnIni
     startDate: NgbDateStruct;
     endDate: NgbDateStruct;
     modalDescription: string;
+    modalDescriptionRequest: string;
 
     roomOffers: RoomData[] = [];
 
@@ -64,13 +66,30 @@ export class FindARoomComponent extends BasicModalPageComponent implements OnIni
             this.endDate = null;
             this.api.addTimeSpans(this.user).then();
             this.notificationService.createSuccessNotification('Done!');
+            this.loadRoomOffers();
         }).catch(reason => {
             console.log(this.api.getLastUrl());
             this.notificationService.createErrorNotification(reason);
         });
     }
 
-    requestSelectedRoom(room: RoomData) {
+    requestSelectedRoom(room: RoomData, c: any) {
+        if (this.modalDescriptionRequest == null || this.modalDescriptionRequest?.length < 20) {
+            this.notificationService.createWarningNotification('Your application Text is too short');
+            return;
+        }
         this.comingSoon();
+        c();
+    }
+
+    formatDateForRoomOffer(date: string): string {
+        try {
+            let back = date;
+            back = back.split(' ')[0];
+            back = this.replaceAll(back, '-', '.');
+            return back;
+        } catch (e) {
+            return date;
+        }
     }
 }

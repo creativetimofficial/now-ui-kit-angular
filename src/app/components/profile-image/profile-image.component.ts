@@ -11,6 +11,7 @@ export class ProfileImageComponent implements AfterViewInit  {
   @Input('user') user: User;
   @Input('border') border: boolean = false;
   @Input('size') size: string = '100%';
+  @Input('smallImg') smallImg: boolean = true;
   @Input('fontSize') fontSize: string = '35px';
 
   constructor() {

@@ -6,7 +6,7 @@
         <div class="container">
             <div class="content-center">
                 <div class="photo-container">
-                    <app-profile-image [user]="displayUser"></app-profile-image>
+                    <app-profile-image [user]="displayUser" [smallImg]="false"></app-profile-image>
                 </div>
                 <h3 class="title">{{displayUser?.firstName}} {{displayUser?.lastName}}</h3>
                 <p class="category">{{displayUser?.roles}}</p>

@@ -6,10 +6,10 @@
         <div class="container">
             <div class="content-center">
                 <div class="photo-container" style="cursor: pointer">
-                    <app-profile-image [user]="user" (click)="open(profilePicture,'' , '')"></app-profile-image>
+                    <app-profile-image [user]="tmpUser" [smallImg]="false" (click)="open(profilePicture,'' , '')"></app-profile-image>
                 </div>
-                <h3 class="title">{{user?.firstName}} {{user?.lastName}}</h3>
-                <p class="category">{{user?.roles}}</p>
+                <h3 class="title">{{tmpUser?.firstName}} {{tmpUser?.lastName}}</h3>
+                <p class="category">{{tmpUser?.roles}}</p>
                 <div>
                     <!--                <div class="content">-->
                     <!--                    <div class="social-description">-->
@@ -191,7 +191,7 @@
                             </div>
                             <input type="text" class="form-control form-control-double-icon" placeholder="..."
                                    (focus)="focusArray[i]=true"
-                                   (blur)="focusArray[i]=false" [(ngModel)]="ui.value" name="instagram">
+                                   (blur)="focusArray[i]=false" [(ngModel)]="ui.value" name="userInfo">
                             <div class="input-group-append" (click)="deleteUserInfo(ui)">
                                 <span class="input-group-text">
                                     <i class="fa-solid fa-trash" style="color: darkred"></i>

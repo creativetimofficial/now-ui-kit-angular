@@ -1,7 +1,7 @@
 <div class="profile-img" style="height: {{size}};width: {{size}}">
     <div class='img-border' *ngIf="border" style="width: {{size}}"></div>
-    <img *ngIf="hasImg" src="{{user?.getImgUrl}}" class="img-raised">
-    <div *ngIf="!hasImg" class="noImg img-raised" >
+    <img *ngIf="hasImg" src="{{smallImg? user?.getImgUrl : user?.imgUrl}}" class="img-raised" alt="Profile picture">
+    <div *ngIf="!hasImg" class="noImg img-raised">
         <span style="font-size: {{fontSize}}; letter-spacing: {{getFontSizeNumber()*0.143}}px">{{getProfileLetter()}}</span>
     </div>
 </div>
