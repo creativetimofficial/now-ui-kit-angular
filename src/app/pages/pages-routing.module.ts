@@ -6,6 +6,7 @@ import {HomeComponent} from './home/home.component';
 import {ProfileComponent} from './profile/profile.component';
 import {ProfileSettingsComponent} from './profile-settings/profile-settings.component';
 import {AdminComponent} from './admin/admin.component';
+import {FindARoomComponent} from './find-a-room/find-a-room.component';
 
 const routes: Routes = [
     {path: 'register', component: RegisterComponent},
@@ -15,6 +16,7 @@ const routes: Routes = [
     {path: 'profile/:id', component: ProfileComponent},
     {path: 'profile-settings', component: ProfileSettingsComponent},
     {path: 'admin', component: AdminComponent},
+    {path: 'find-a-room', component: FindARoomComponent},
 ];
 
 @NgModule({

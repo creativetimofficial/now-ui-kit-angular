@@ -40,6 +40,13 @@
                         <p>Home</p>
                     </a>
                 </li>
+                <li *ngIf="global.user!=null && global.user?.power>=50" class="nav-item" [ngClass]="{'active':currentPage=='AdminComponent'}">
+                    <a class="nav-link" [routerLink]="['/find-a-room']">
+                        <i class="now-ui-icons ui-2_settings-90"></i>
+                        <!--                        <i class="fa-regular fa-user-crown"></i>-->
+                        <p>Rooms</p>
+                    </a>
+                </li>
                 <li *ngIf="global.user!=null" class="nav-item" [ngClass]="{'active':currentPage=='ProfileComponent'}">
                     <a class="nav-link" [routerLink]="['/profile']">
                         <i class="now-ui-icons users_single-02"></i>

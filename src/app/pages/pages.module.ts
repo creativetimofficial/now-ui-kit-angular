@@ -18,7 +18,7 @@ import { ProfileSettingsComponent } from './profile-settings/profile-settings.co
 import { AdminComponent } from './admin/admin.component';
 import { EmptyComponent } from './empty/empty.component';
 import {ImageCropperModule} from 'ngx-image-cropper';
-import { FindARoomComponent } from './find-aroom/find-aroom.component';
+import { FindARoomComponent } from './find-a-room/find-a-room.component';
 
 
 @NgModule({

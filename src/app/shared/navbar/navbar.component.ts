@@ -8,7 +8,7 @@ import {NotificationService} from '../../services/notification.service';
 @Component({
     selector: 'app-navbar',
     templateUrl: './navbar.component.html',
-    styleUrls: ['./navbar.component.scss']
+    styleUrls: []
 })
 export class NavbarComponent implements OnInit {
     private toggleButton: any;
