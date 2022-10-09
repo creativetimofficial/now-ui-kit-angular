@@ -4,7 +4,7 @@ import {IAlert, NotificationService} from '../../services/notification.service';
 @Component({
     selector: 'app-notifications',
     templateUrl: './notifications.component.html',
-    styleUrls: ['./notifications.component.css']
+    styleUrls: []
 })
 export class NotificationsComponent implements OnInit {
 

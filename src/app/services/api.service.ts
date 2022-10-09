@@ -2,10 +2,8 @@ import {Injectable} from '@angular/core';
 import {ServerService} from './server.service';
 import {User, UserType} from '../data/user';
 import {GlobalService} from './global.service';
-import {global} from '@angular/compiler/src/util';
 import {UserInfo, UserInfoType} from '../data/user-info';
 import {TimeSpan, TimeSpanType} from '../data/timeSpan';
-import {finalize} from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -210,8 +208,15 @@ export class ApiService {
         const url = 'add/addUserInfo.php?'
             + '&name=' + userInfo.name
             + '&value=' + userInfo.value;
-        const back = await this.getEx(url);
-        console.log(this.getLastUrl());
-        return back;
+        return await this.getEx(url);
+    }
+
+    public async addTimeSpan(timeSpan: TimeSpan): Promise<string> {
+        const url = 'add/addTimeSpan.php?'
+            + '&type=' + timeSpan.type
+            + '&date=' + timeSpan.date
+            + '&title=' + timeSpan.title
+            + '&description=' + timeSpan.description;
+        return await this.getEx(url);
     }
 }

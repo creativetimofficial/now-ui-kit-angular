@@ -8,6 +8,7 @@ import {User} from '../../data/user';
 import {BasicModalPageComponent} from '../basic-modal-page/basic-modal-page.component';
 import {NgbDateStruct, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {NotificationService} from '../../services/notification.service';
+import {TimeSpan} from '../../data/timeSpan';
 
 @Component({
     selector: 'app-profile',
@@ -131,6 +132,19 @@ export class ProfileComponent extends BasicModalPageComponent implements OnInit 
     }
 
     addTimeline(c: any) {
-
+        const timeSpan: TimeSpan = new TimeSpan();
+        timeSpan.title = this.inputValues.modalTitle;
+        timeSpan.description = this.inputValues.modalDescription;
+        timeSpan.date = this.model.year + '-' + this.model.month + '-' + this.model.day;
+        this.api.addTimeSpan(timeSpan).then(value => {
+            c();
+            this.inputValues.modalTitle = '';
+            this.inputValues.modalDescription = '';
+            this.model = null;
+            this.api.addTimeSpans(this.displayUser).then();
+        }).catch(reason => {
+            console.log(this.api.getLastUrl());
+            this.notificationService.createErrorNotification(reason);
+        });
     }
 }

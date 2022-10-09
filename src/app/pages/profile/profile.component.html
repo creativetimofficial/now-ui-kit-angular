@@ -79,7 +79,7 @@
                     </div>
                 </ng-template>
 
-                <button *ngIf="isYourself" [routerLink]="['/profile-settings']"
+                <button *ngIf="isYourself()" [routerLink]="['/profile-settings']"
                         class="btn btn-primary btn-round btn-lg" type="button">
                     <i class="fa-regular fa-pen-to-square"></i> Edit
                 </button>
@@ -102,11 +102,19 @@
                     </div>
                 </div>
             </div>
-            <div class="row" *ngIf="displayUser?.timeSpans?.length>0">
+            <div class="row" *ngIf="displayUser?.timeSpans?.length>0 && isYourself()">
                 <div class="timeline-add mr-auto ml-auto">
                     <button class="btn btn-primary btn-icon btn-round" type="button"
                             (click)="open(addTimelineModal,'' , '')">
                         <i class="fa-solid fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="row" *ngIf="displayUser?.timeSpans?.length==0 && isYourself()">
+                <div class="timeline-add mr-auto ml-auto">
+                    <button class="btn btn-primary btn-round" type="button"
+                            (click)="open(addTimelineModal,'' , '')">
+                        <i class="fa-solid fa-plus"></i> New Milestone
                     </button>
                 </div>
             </div>
