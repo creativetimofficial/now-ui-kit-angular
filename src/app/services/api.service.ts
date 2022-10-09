@@ -3,7 +3,8 @@ import {ServerService} from './server.service';
 import {User, UserType} from '../data/user';
 import {GlobalService} from './global.service';
 import {UserInfo, UserInfoType} from '../data/user-info';
-import {TimeSpan, TimeSpanType} from '../data/timeSpan';
+import {TimeSpan} from '../data/timeSpan';
+import {RoomData, TimeSpanUserType} from '../data/room-data';
 
 @Injectable({
     providedIn: 'root'
@@ -163,16 +164,38 @@ export class ApiService {
         user.adduserTimespan(await this.getTimeSpans(user.userId));
     }
 
-    public async getTimeSpans(id: number): Promise<TimeSpan[]> {
+    public async getRoomData(): Promise<RoomData[]> {
+
+        const url = 'get/getTimeSpans.php?';
+        try {
+            const roomData: RoomData[] = [];
+            const data = await this.getEx(url);
+            const raw = JSON.parse(data.toString()) as TimeSpanUserType[];
+            for (const u of raw) {
+                roomData.push(new RoomData(new User(u), new TimeSpan(u)));
+            }
+
+            return roomData;
+
+        } catch (e) {
+            console.log(e);
+            throw new Error('#fail#TimeSpans not found');
+        }
+    }
+
+    public async getTimeSpans(id: number = -1, users: User[] = []): Promise<TimeSpan[]> {
 
         let url = 'get/getTimeSpans.php?';
-        url += '&id=' + id;
+        if (id > 0) {
+            url += '&id=' + id;
+        }
         try {
             const timeSpans: TimeSpan[] = [];
             const data = await this.getEx(url);
-            const raw = JSON.parse(data.toString()) as TimeSpanType[];
+            const raw = JSON.parse(data.toString()) as TimeSpanUserType[];
             for (const u of raw) {
                 timeSpans.push(new TimeSpan(u));
+                users.push(new User(u));
             }
 
             return timeSpans;
@@ -212,11 +235,22 @@ export class ApiService {
     }
 
     public async addTimeSpan(timeSpan: TimeSpan): Promise<string> {
-        const url = 'add/addTimeSpan.php?'
-            + '&type=' + timeSpan.type
-            + '&date=' + timeSpan.date
-            + '&title=' + timeSpan.title
-            + '&description=' + timeSpan.description;
+        let url = 'add/addTimeSpan.php?';
+        if (timeSpan.type != null && timeSpan.type.length > 0) {
+            url += '&type=' + timeSpan.type;
+        }
+        if (timeSpan.date != null && timeSpan.date.length > 0) {
+            url += '&date=' + timeSpan.date;
+        }
+        if (timeSpan.endDate != null && timeSpan.endDate.length > 0) {
+            url += '&endDate=' + timeSpan.endDate;
+        }
+        if (timeSpan.title != null && timeSpan.title.length > 0) {
+            url += '&title=' + timeSpan.title;
+        }
+        if (timeSpan.description != null && timeSpan.description.length > 0) {
+            url += '&description=' + timeSpan.description;
+        }
         return await this.getEx(url);
     }
 }

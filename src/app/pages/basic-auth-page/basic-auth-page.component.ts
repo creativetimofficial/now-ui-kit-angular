@@ -49,4 +49,8 @@ export class BasicAuthPageComponent extends BasicPageComponent implements OnInit
     onYourselfLoaded() {
 
     }
+
+    isLoggedIn(): boolean {
+        return this.user != null;
+    }
 }

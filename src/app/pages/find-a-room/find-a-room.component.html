@@ -1,31 +1,202 @@
 <div class="wrapper landing-page">
-    <div class="page-header page-header-small">
+    <div class="page-header page-header-tiny">
         <div class="page-header-image rellax-header" data-rellax-speed="-8"
-             style="background-image: url('assets/img/Wiederholdstrasse-4-1030x687.jpg');">
+             style="background-image: url('assets/img/Wiederholdstrasse-2-1030x687.jpg');">
         </div>
         <div class="container">
             <div class="content-center">
-                <h1 class="title">Empty Page</h1>
-                <div class="text-center">
-                    <a href="#pablo" class="btn btn-primary btn-icon btn-round">
-                        <i class="fab fa-facebook-square"></i>
-                    </a>
-                    <a href="#pablo" class="btn btn-primary btn-icon btn-round">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="#pablo" class="btn btn-primary btn-icon btn-round">
-                        <i class="fab fa-google-plus"></i>
-                    </a>
-                </div>
+                <h1 class="title" i18n>Find A Room</h1>
             </div>
         </div>
     </div>
     <div class="section section-about-us">
         <div class="container">
             <div class="row">
+                <!--roomer-->
+                <div class="col-md-5 ml-auto  text-center">
+                    <h2 class="title" i18n>You need a room?</h2>
+                    <h5 class="description" i18n>
+                        Your time span is not included
+                    </h5>
+
+                    <div *ngIf="isLoggedIn()">
+                        <div class="send-button">
+                            <a i18n (click)="open(addTimeSpanRequest,'' , '')" class="btn btn-primary btn-round btn-lg">
+                                Request a Room
+                            </a>
+                        </div>
+                        <ng-template #addTimeSpanRequest let-c="close" let-d="dismiss">
+                            <div class="modal-header justify-content-center">
+                                <button type="button" class="close" (click)="d('Cross click')">
+                                    <i class="now-ui-icons ui-1_simple-remove"></i>
+                                </button>
+                                <h4 class="title title-up" i18n>Request a Room</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-12 ml-auto mr-auto text-center">
+                                        <h5 class="description" i18n>Select your timespan</h5>
+                                    </div>
+                                </div>
+                                <div class="row mb-5">
+                                    <div class="col-md-6 ml-auto  text-center">
+                                        <h6 i18n class="ml-2">Start Date</h6>
+                                        <div class="datepicker-container">
+                                            <div class="form-group">
+                                                <input class="form-control datetimepicker" placeholder="2022-05-20..."
+                                                       name="dp" [(ngModel)]="startDate" ngbDatepicker
+                                                       #dpStart="ngbDatepicker"
+                                                       (click)="dpStart.toggle()" data-color="orange">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6  mr-auto text-center">
+                                        <h6 i18n class="ml-2">End Date</h6>
+                                        <div class="datepicker-container">
+                                            <div class="form-group">
+                                                <input class="form-control datetimepicker" placeholder="2022-05-20..."
+                                                       name="dp" [(ngModel)]="endDate" ngbDatepicker
+                                                       #dpEnd="ngbDatepicker"
+                                                       (click)="dpEnd.toggle()" data-color="orange">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12 text-center col-md-8 ml-auto mr-auto">
+                                        <h5 class="description" i18n>Tell us something about you</h5>
+                                        <div class="textarea-container">
+                        <textarea class="form-control" name="name" rows="4" cols="80"
+                                  [(ngModel)]="modalDescription"
+                                  placeholder="Type a message..."></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button i18n type="button" class="btn btn-default" (click)="c('Close click')">Close
+                                </button>
+                                <button i18n type="button" class="btn btn-primary" (click)="requestARoom(c)">Request
+                                </button>
+                            </div>
+                        </ng-template>
+                    </div>
+                </div>
+                <!--resident-->
+                <div class="col-md-5  mr-auto text-center">
+                    <h2 class="title" i18n>You are a resident?</h2>
+                    <h5 class="description" i18n>
+                        You want to offer your room for specific time span?
+                    </h5>
+
+
+                    <div *ngIf="isLoggedIn()">
+                        <div class="send-button">
+                            <a i18n (click)="open(addTimeSpanOffer,'' , '')" class="btn btn-primary btn-round btn-lg">
+                                Offer a Room
+                            </a>
+                        </div>
+                        <ng-template #addTimeSpanOffer let-c="close" let-d="dismiss">
+                            <div class="modal-header justify-content-center">
+                                <button type="button" class="close" (click)="d('Cross click')">
+                                    <i class="now-ui-icons ui-1_simple-remove"></i>
+                                </button>
+                                <h4 class="title title-up" i18n>Offer a Room</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-12 ml-auto mr-auto text-center">
+                                        <h5 class="description" i18n>Select your timespan</h5>
+                                    </div>
+                                </div>
+                                <div class="row mb-5">
+                                    <div class="col-md-6 ml-auto  text-center">
+                                        <h6 i18n class="ml-2">Start Date</h6>
+                                        <div class="datepicker-container">
+                                            <div class="form-group">
+                                                <input class="form-control datetimepicker" placeholder="2022-05-20..."
+                                                       name="dp" [(ngModel)]="startDate" ngbDatepicker
+                                                       #dpStart="ngbDatepicker"
+                                                       (click)="dpStart.toggle()" data-color="orange">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6  mr-auto text-center">
+                                        <h6 i18n class="ml-2">End Date</h6>
+                                        <div class="datepicker-container">
+                                            <div class="form-group">
+                                                <input class="form-control datetimepicker" placeholder="2022-05-20..."
+                                                       name="dp" [(ngModel)]="endDate" ngbDatepicker
+                                                       #dpEnd="ngbDatepicker"
+                                                       (click)="dpEnd.toggle()" data-color="orange">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12 text-center col-md-8 ml-auto mr-auto">
+                                        <h5 class="description" i18n>Tell us something about your room</h5>
+                                        <div class="textarea-container">
+                        <textarea class="form-control" name="name" rows="4" cols="80"
+                                  [(ngModel)]="modalDescription"
+                                  placeholder="Type a message..."></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button i18n type="button" class="btn btn-default" (click)="c('Close click')">Close
+                                </button>
+                                <button i18n type="button" class="btn btn-primary" (click)="offerARoom(c)">Offer
+                                </button>
+                            </div>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <!--roomer-->
                 <div class="col-md-8 ml-auto mr-auto text-center">
-                    <h2 class="title">Empty?</h2>
-                    <h5 class="description">This is a demo Page</h5>
+                    <h2 class="title" i18n>Rooms on offer</h2>
+                    <h5 class="description" i18n>
+                        All rooms on offer at the moment:
+                    </h5>
+                    <div *ngFor="let room of roomOffers ; index as i">
+                        <div class="card team-player">
+                            <div class="row">
+                                <div class="col-md-5 ml-auto mr-auto text-center">
+                                    <h5>{{room.timeSpan.date}}</h5>
+                                    <h5>{{room.timeSpan.endDate}}</h5>
+                                    <p>{{room.timeSpan.description}}</p>
+                                </div>
+                                <div class="col-md-5 ml-auto mr-auto text-center">
+                                    <h3>{{room.user.firstName}} {{room.user.lastName}}</h3>
+                                    <a (click)="requestSelectedRoom(room)" class="btn btn-primary btn-round btn-lg"
+                                       i18n>
+                                        Request
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!--Log in first-->
+            <div class="row mt-5" *ngIf="!isLoggedIn()">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 ml-auto mr-auto text-center">
+                            <h3 class="title" i18n>Please login first</h3>
+                            <h5 class="description" i18n>You need to be logged in to request/offer a room</h5>
+                            <a [routerLink]="'/login'" class="btn btn-primary btn-round btn-lg" i18n>
+                                Login / Register
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

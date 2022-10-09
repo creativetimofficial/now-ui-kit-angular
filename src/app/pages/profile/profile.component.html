@@ -85,14 +85,14 @@
                 </button>
             </div>
             <h3 class="title">About me</h3>
-            <h4 *ngIf="displayUser?.description==''" class="description">No description yet</h4>
+            <h4 *ngIf="displayUser?.getDescription==''" class="description">No description yet</h4>
             <h5 class="description">
-                {{displayUser?.description}}
+                {{displayUser?.getDescription}}
             </h5>
             <h3 class="title">My Timeline</h3>
             <h4 *ngIf="displayUser?.timeSpans?.length==0" class="description">No timeline yet</h4>
             <div class="timeline">
-                <div *ngFor="let t of displayUser?.timeSpans; index as i">
+                <div *ngFor="let t of displayUser?.getMilestones(); index as i">
                     <div class="timeline-container " [ngClass]="{'timeline-left':i%2==0,'timeline-right':i%2!=0}">
                         <div class="timeline-content">
                             <h4>{{t.title}}</h4>

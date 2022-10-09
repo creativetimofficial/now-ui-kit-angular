@@ -44,7 +44,7 @@ export class NotificationService {
         });
     }
 
-    public createErrorNotification(message: string, time: number = 5000, strong: string = 'Error', icon: string = 'objects_support-17') {
+    public createErrorNotification(message: string, time: number = -1, strong: string = 'Error', icon: string = 'objects_support-17') {
         this.createNotification({
             id: Math.random(),
             type: 'danger',

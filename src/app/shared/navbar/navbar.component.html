@@ -37,39 +37,39 @@
                 <li class="nav-item" [ngClass]="{'active':currentPage=='HomeComponent'}">
                     <a class="nav-link" [routerLink]="['/home']">
                         <i class="now-ui-icons objects_planet"></i>
-                        <p>Home</p>
+                        <p i18n>Home</p>
                     </a>
                 </li>
-                <li *ngIf="global.user!=null && global.user?.power>=50" class="nav-item" [ngClass]="{'active':currentPage=='AdminComponent'}">
+                <li class="nav-item" [ngClass]="{'active':currentPage=='FindARoomComponent'}">
                     <a class="nav-link" [routerLink]="['/find-a-room']">
-                        <i class="now-ui-icons ui-2_settings-90"></i>
+                        <i class="now-ui-icons shopping_shop"></i>
                         <!--                        <i class="fa-regular fa-user-crown"></i>-->
-                        <p>Rooms</p>
+                        <p i18n>Rooms</p>
                     </a>
                 </li>
                 <li *ngIf="global.user!=null" class="nav-item" [ngClass]="{'active':currentPage=='ProfileComponent'}">
                     <a class="nav-link" [routerLink]="['/profile']">
                         <i class="now-ui-icons users_single-02"></i>
-                        <p class="d-lg-none d-xl-none">Profile</p>
+                        <p i18n class="d-lg-none d-xl-none">Profile</p>
                     </a>
                 </li>
                 <li *ngIf="global.user!=null && global.user?.power>=50" class="nav-item" [ngClass]="{'active':currentPage=='AdminComponent'}">
                     <a class="nav-link" [routerLink]="['/admin']">
                         <i class="now-ui-icons ui-2_settings-90"></i>
 <!--                        <i class="fa-regular fa-user-crown"></i>-->
-                        <p>Admin</p>
+                        <p i18n>Admin</p>
                     </a>
                 </li>
                 <li *ngIf="global.user==null" class="nav-item" [ngClass]="{'active':currentPage=='LoginComponent'}">
                     <a class="nav-link" [routerLink]="['/login']">
                         <i class="now-ui-icons arrows-1_share-66"></i>
-                        <p>Login</p>
+                        <p i18n>Login</p>
                     </a>
                 </li>
                 <li *ngIf="global.user!=null" class="nav-item" [ngClass]="{'active':currentPage=='LoginComponent'}">
                     <a class="nav-link" (click)="logout()">
                         <i class="now-ui-icons media-1_button-power"></i>
-                        <p>Logout</p>
+                        <p i18n>Logout</p>
                     </a>
                 </li>
                 <li class="nav-item">

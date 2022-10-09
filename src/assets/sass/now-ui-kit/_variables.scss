@@ -21,7 +21,7 @@ $black-color:                #2c2c2c !default;
 $black-hr:                   #444444 !default;
 
 $light-gray:                 #E3E3E3 !default;
-$medium-gray:                #DDDDDD !default;
+$medium-gray:                #999999 !default;
 $dark-gray:                  #9A9A9A !default;
 
 $opacity-gray-3:             rgba(222,222,222, .3) !default;
@@ -42,7 +42,7 @@ $opacity-2:                  rgba(255,255,255, .2) !default;
 $transparent-bg:             transparent !default;
 $dark-background:            #555555 !default;
 
-$default-color:              #888888 !default;
+$default-color:              $light-black !default;// #888888 !default;
 $default-states-color:       lighten($default-color, 6%) !default;
 $default-color-opacity:      rgba(182, 182, 182, .6) !default;
 

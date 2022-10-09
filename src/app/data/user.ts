@@ -1,5 +1,5 @@
 import {UserInfoType, UserInfoTypes} from './user-info';
-import {TimeSpanType} from './timeSpan';
+import {TimeSpanType, TimeSpanTypes} from './timeSpan';
 
 export interface UserType {
     userId: number;
@@ -50,6 +50,10 @@ export class User implements UserType {
                 this[prop] = userType[prop];
             }
         }
+    }
+
+    getMilestones(): TimeSpanType[] {
+        return this.timeSpans.filter(value => value.type === TimeSpanTypes.milestone);
     }
 
     adduserTimespan(timeSpans: TimeSpanType[]): void {
@@ -107,7 +111,7 @@ export class User implements UserType {
         return back;
     }
 
-    get description(): string {
+    get getDescription(): string {
         if (this._description == null) {
             let back = '';
             for (const ui of this.userInfos) {

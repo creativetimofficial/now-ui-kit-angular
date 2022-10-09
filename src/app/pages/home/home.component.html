@@ -105,7 +105,7 @@
                                     {{u.roles}}
                                 </p>
                             </div>
-                            <p class="description">{{u.description}}</p>
+                            <p class="description">{{u.getDescription}}</p>
 
                             <a *ngIf="u.twitter!=null" href="{{u.twitter}}"
                                class="btn btn-primary btn-icon btn-round" target="_blank">
@@ -163,7 +163,7 @@
                                   placeholder="Type a message..."></textarea>
                     </div>
                     <div class="send-button">
-                        <a href="#pablo" class="btn btn-primary btn-round btn-block btn-lg">Send Message</a>
+                        <a (click)="comingSoon()" class="btn btn-primary btn-round btn-block btn-lg">Send Message</a>
                     </div>
                 </div>
             </div>
