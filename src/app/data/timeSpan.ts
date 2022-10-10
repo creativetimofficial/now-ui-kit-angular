@@ -8,7 +8,7 @@ export enum TimeSpanTypes {
 }
 
 export interface TimeSpanType {
-    timespanId: number;
+    timeSpanId: number;
     userId: number;
     date: string;
     endDate: string;
@@ -18,7 +18,7 @@ export interface TimeSpanType {
 }
 
 export class TimeSpan implements TimeSpanType {
-    timespanId: number = -1;
+    timeSpanId: number = -1;
     userId: number = -1;
     date: string = null;
     endDate: string = null;

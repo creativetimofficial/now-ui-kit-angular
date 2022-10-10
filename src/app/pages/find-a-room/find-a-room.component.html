@@ -29,8 +29,12 @@
                                 <div class="col-md-5 ml-auto mr-auto text-center">
                                     <h3>{{room.user.firstName}} {{room.user.lastName}}</h3>
                                     <a (click)="openRequestRoomModal(requestARoomModal,'' , '',room)"
-                                       i18n class="btn btn-primary btn-round btn-lg">
+                                       i18n class="btn btn-primary btn-round btn-lg" *ngIf="isLoggedIn()">
                                         Request
+                                    </a>
+                                    <a  [routerLink]="'/login'"
+                                       i18n class="btn btn-primary btn-round btn-lg" *ngIf="!isLoggedIn()">
+                                        Login / Register
                                     </a>
                                 </div>
 
@@ -38,7 +42,7 @@
                         </div>
                     </div>
 
-                    <ng-template #requestARoomModal let-c="close" let-d="dismiss" let-room="room">
+                    <ng-template #requestARoomModal let-c="close" let-d="dismiss">
                         <div class="modal-header justify-content-center">
                             <button type="button" class="close" (click)="d('Cross click')">
                                 <i class="now-ui-icons ui-1_simple-remove"></i>
@@ -257,7 +261,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-8 ml-auto mr-auto text-center">
-                            <h3 class="title" i18n>Please login first</h3>
+                            <!--                            <h3 class="title" i18n>Please login first</h3>-->
                             <h5 class="description" i18n>You need to be logged in to request/offer a room</h5>
                             <a [routerLink]="'/login'" class="btn btn-primary btn-round btn-lg" i18n>
                                 Login / Register

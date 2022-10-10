@@ -61,4 +61,9 @@ export class BasicPageComponent implements OnInit, OnDestroy {
     comingSoon() {
         this.notificationService.createInfoNotification('Coming soon');
     }
+
+    catchError(reason: any) {
+        console.log(reason);
+        this.notificationService.createErrorNotification(reason);
+    }
 }

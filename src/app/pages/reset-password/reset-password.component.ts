@@ -32,10 +32,7 @@ export class ResetPasswordComponent extends BasicPageComponent {
         this.api.resetPassword(this.inputValues.mail).then(value => {
             this.notificationService.createSuccessNotification('You have received an mail, please also look in the junk mail folder', -1);
             this.router.navigate(['/login']).then();
-        }).catch(reason => {
-            console.log(reason);
-            this.notificationService.createErrorNotification(reason);
-        });
+        }).catch(reason => this.catchError(reason));
 
     }
 }

@@ -259,4 +259,11 @@ export class ApiService {
             + 'mail=' + mail;
         return await this.getEx(url, false, false);
     }
+
+    async requestRoom(room: RoomData, application: string): Promise<string> {
+        const url = 'mail/requestRoom.php?'
+            + '&roomOfferId=' + room.timeSpan.timeSpanId
+            + '&application=' + application;
+        return await this.getEx(url);
+    }
 }

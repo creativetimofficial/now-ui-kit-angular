@@ -74,12 +74,21 @@ export class FindARoomComponent extends BasicModalPageComponent implements OnIni
     }
 
     requestSelectedRoom(room: RoomData, c: any) {
+        if (!this.isLoggedIn()) {
+            this.notificationService.createWarningNotification('You need to be logged in to request a room');
+            return;
+        }
         if (this.modalDescriptionRequest == null || this.modalDescriptionRequest?.length < 20) {
             this.notificationService.createWarningNotification('Your application Text is too short');
             return;
         }
-        this.comingSoon();
-        c();
+        this.api.requestRoom(room, this.modalDescriptionRequest.toString()).then(value => {
+            this.notificationService.createSuccessNotification('Your application was send!');
+            c();
+        }).catch(reason => {
+            console.log(this.api.getLastUrl());
+            this.catchError(reason);
+        });
     }
 
     formatDateForRoomOffer(date: string): string {
