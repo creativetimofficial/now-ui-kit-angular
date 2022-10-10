@@ -17,6 +17,11 @@ export class ApiService {
 
     private setUser(user: User): void {
         this.globalService.updateLogin.next(user);
+        this.server.authService.setLoginToken(user.loginToken);
+    }
+
+    async getContent(url: string): Promise<string> {
+        return await this.server.getResponseRaw(url);
     }
 
     getLastUrl(): string {
@@ -24,7 +29,7 @@ export class ApiService {
     }
 
     async get(urlExtension: string, logout = false, setSession: boolean = true): Promise<string> {
-        return this.server.getResponse(urlExtension, logout, setSession);
+        return await this.server.getResponse(urlExtension, logout, setSession);
     }
 
     async getEx(urlExtension: string, logout = false, setSession: boolean = true): Promise<string> {
@@ -35,7 +40,7 @@ export class ApiService {
             }
             return data.toString();
         } else {
-            return '#fail#';
+            throw new Error('#fail#data is null');
         }
     }
 

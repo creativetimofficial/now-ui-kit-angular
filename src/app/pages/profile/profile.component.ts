@@ -143,4 +143,8 @@ export class ProfileComponent extends BasicModalPageComponent implements OnInit 
             this.notificationService.createErrorNotification(reason);
         });
     }
+
+    resendConfirmCode() {
+        this.comingSoon();
+    }
 }

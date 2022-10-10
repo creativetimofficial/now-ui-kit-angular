@@ -11,7 +11,7 @@ export class UserAuthService {
     private _server = 'https://api.jan-schuettken.de/wiederhold/';
 
     constructor(private http: HttpClient, private router: Router, private cookieService: CookieService) {
-      // tslint:disable-next-line:triple-equals
+        // tslint:disable-next-line:triple-equals
         if (this.session == '') {
             this.session = this.getSession();
         }

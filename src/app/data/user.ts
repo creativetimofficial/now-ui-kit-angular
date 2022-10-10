@@ -19,6 +19,7 @@ export interface UserType {
     imgUrl: string;
     imgUrlSmall: string;
     googleId: number;
+    confirmed: number;
     role: UserRoleType;
     publicProfile: number;
     instagram: string;
@@ -41,6 +42,7 @@ export class User implements UserType {
     imgUrl: string = '';
     imgUrlSmall: string = '';
     googleId: number = -1;
+    confirmed: number = -1;
     role: UserRoleType = UserRoleType.unknown;
     userInfos: UserInfoType[] = [];
     instagram: string;
@@ -146,6 +148,10 @@ export class User implements UserType {
 
     set publicProfileInt(value: boolean) {
         this.publicProfile = value ? 1 : 0;
+    }
+
+    get isConfirmed() {
+        return this.confirmed === 0;
     }
 }
 

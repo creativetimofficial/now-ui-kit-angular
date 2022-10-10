@@ -30,6 +30,10 @@ export class ServerService {
         return url;
     }
 
+    async getResponseRaw(url: string): Promise<string> {
+        return await this.http.post(url, null, {responseType: 'text'}).toPromise() as string;
+    }
+
     async getResponse(urlExtension: string, logout = false, setSession: boolean = true): Promise<string> {
         if (isDevMode() && false) {
             console.log(this.serverRequests++);
@@ -38,7 +42,7 @@ export class ServerService {
         let url = this.createSessionUrl(urlExtension, setSession);
         this.lastUrl = url;
         this.lastUrls.push(this.lastUrl);
-        let data: string = await this.http.post(url, null, {responseType: 'text'}).toPromise() as string;
+        let data: string = await this.getResponseRaw(url);
         // console.log(url);
         // console.log(data);
         if (data.toString().startsWith('#fail#session error')) {

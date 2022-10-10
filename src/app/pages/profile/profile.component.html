@@ -32,7 +32,7 @@
     <div class="section">
         <div class="container">
             <div class="button-container">
-<!--                <a (click)="comingSoon()" class="btn btn-primary btn-round btn-lg">Follow</a>-->
+                <!--                <a (click)="comingSoon()" class="btn btn-primary btn-round btn-lg">Follow</a>-->
 
                 <a *ngIf="displayUser?.twitter!=null" href="{{displayUser?.twitter}}" target="_blank"
                    class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip"
@@ -84,11 +84,19 @@
                     <i class="fa-regular fa-pen-to-square"></i> Edit
                 </button>
             </div>
-            <h3 class="title">About me</h3>
-            <h4 *ngIf="displayUser?.getDescription==''" class="description">No description yet</h4>
-            <h5 class="description">
-                {{displayUser?.getDescription}}
-            </h5>
+            <div class="card" *ngIf="user?.isConfirmed">
+                <h3 class="title badge-danger">Confirm your mail!</h3>
+                <h4 class="description">Please confirm your mail before you continue. ({{user?.mail}})</h4>
+                <h4 class="description"><a (click)="resendConfirmCode()" class="btn btn-round btn-primary">Send code
+                    again</a></h4>
+            </div>
+            <div>
+                <h3 class="title">About me</h3>
+                <h4 *ngIf="displayUser?.getDescription==''" class="description">No description yet</h4>
+                <h5 class="description">
+                    {{displayUser?.getDescription}}
+                </h5>
+            </div>
             <h3 class="title">My Timeline</h3>
             <h4 *ngIf="displayUser?.timeSpans?.length==0" class="description">No timeline yet</h4>
             <div class="timeline">

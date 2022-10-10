@@ -8,6 +8,7 @@ import {ProfileSettingsComponent} from './profile-settings/profile-settings.comp
 import {AdminComponent} from './admin/admin.component';
 import {FindARoomComponent} from './find-a-room/find-a-room.component';
 import {ResetPasswordComponent} from './reset-password/reset-password.component';
+import {ImpressComponent} from './impress/impress.component';
 
 const routes: Routes = [
     {path: 'register', component: RegisterComponent},
@@ -19,6 +20,7 @@ const routes: Routes = [
     {path: 'admin', component: AdminComponent},
     {path: 'find-a-room', component: FindARoomComponent},
     {path: 'reset-password', component: ResetPasswordComponent},
+    {path: 'impress', component: ImpressComponent},
 ];
 
 @NgModule({
