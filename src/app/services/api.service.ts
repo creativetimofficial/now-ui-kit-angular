@@ -253,4 +253,10 @@ export class ApiService {
         }
         return await this.getEx(url);
     }
+
+    public async resetPassword(mail: string) {
+        const url = 'functions/forgotPassword.php?'
+            + 'mail=' + mail;
+        return await this.getEx(url, false, false);
+    }
 }

@@ -19,6 +19,7 @@ import { AdminComponent } from './admin/admin.component';
 import { EmptyComponent } from './empty/empty.component';
 import {ImageCropperModule} from 'ngx-image-cropper';
 import { FindARoomComponent } from './find-a-room/find-a-room.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { FindARoomComponent } from './find-a-room/find-a-room.component';
         ProfileSettingsComponent,
         AdminComponent,
         EmptyComponent,
-        FindARoomComponent
+        FindARoomComponent,
+        ResetPasswordComponent
     ],
     imports: [
         RouterModule,

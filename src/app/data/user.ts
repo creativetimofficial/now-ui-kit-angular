@@ -1,6 +1,14 @@
 import {UserInfoType, UserInfoTypes} from './user-info';
 import {TimeSpanType, TimeSpanTypes} from './timeSpan';
 
+export enum UserRoleType {
+    resident = 'resident',
+    roomer = 'roomer',
+    alumni = 'alumni',
+    staff = 'staff',
+    unknown = 'unknown'
+}
+
 export interface UserType {
     userId: number;
     mail: string;
@@ -11,6 +19,7 @@ export interface UserType {
     imgUrl: string;
     imgUrlSmall: string;
     googleId: number;
+    role: UserRoleType;
     publicProfile: number;
     instagram: string;
     facebook: string;
@@ -32,6 +41,7 @@ export class User implements UserType {
     imgUrl: string = '';
     imgUrlSmall: string = '';
     googleId: number = -1;
+    role: UserRoleType = UserRoleType.unknown;
     userInfos: UserInfoType[] = [];
     instagram: string;
     facebook: string;
@@ -86,6 +96,10 @@ export class User implements UserType {
         }
     }
 
+    capitalizeFirstLetter(string): string {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
     get hasImg(): boolean {
         return this.imgUrlSmall != null || this.imgUrl != null;
     }
@@ -99,14 +113,11 @@ export class User implements UserType {
     }
 
     get roles(): string {
-        let back = '';
+        let back = this.capitalizeFirstLetter(this.role.toString());
         for (const ui of this.userInfos) {
             if (ui.name === 'role') {
-                back += ui.value + ', ';
+                back += ', ' + ui.value;
             }
-        }
-        if (back.length > 0) {
-            back = back.slice(0, back.length - 2);
         }
         return back;
     }
