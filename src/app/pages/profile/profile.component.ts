@@ -9,6 +9,8 @@ import {BasicModalPageComponent} from '../basic-modal-page/basic-modal-page.comp
 import {NgbDateStruct, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {NotificationService} from '../../services/notification.service';
 import {TimeSpan, TimeSpanTypes} from '../../data/timeSpan';
+import {DatePipe} from '@angular/common';
+import {environment} from '../../../environments/environment';
 
 @Component({
     selector: 'app-profile',
@@ -121,14 +123,7 @@ export class ProfileComponent extends BasicModalPageComponent implements OnInit 
     }
 
     formatDateForTimeline(date: string): string {
-        try {
-            let back = date;
-            back = back.split(' ')[0];
-            back = this.replaceAll(back, '-', '.');
-            return back;
-        } catch (e) {
-            return date;
-        }
+        return this.formatDate(date, 'MMMM YYYY');
     }
 
     addTimeline(c: any) {

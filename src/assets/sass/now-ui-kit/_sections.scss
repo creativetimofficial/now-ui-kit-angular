@@ -318,6 +318,18 @@
   }
 }
 
+.team {
+  .description {
+    min-height: 5em;
+  }
+}
+@media (max-width: 768px) {
+  .team {
+    .description {
+      min-height: 0;
+    }
+  }
+}
 
 [data-background-color="orange"] {
   background-color: $orange-bg;

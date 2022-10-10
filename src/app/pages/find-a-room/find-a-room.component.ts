@@ -5,9 +5,9 @@ import {ApiService} from '../../services/api.service';
 import {NgbDateStruct, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {NotificationService} from '../../services/notification.service';
 import {TimeSpan, TimeSpanTypes} from '../../data/timeSpan';
-import {User} from '../../data/user';
 import {RoomData} from '../../data/room-data';
-import {from} from 'rxjs';
+import {DatePipe} from '@angular/common';
+import {environment} from '../../../environments/environment';
 
 @Component({
     selector: 'app-find-a-room',
@@ -35,8 +35,9 @@ export class FindARoomComponent extends BasicModalPageComponent implements OnIni
     }
 
     loadRoomOffers() {
-        this.api.getRoomData().then(value => {
-            this.roomOffers = value;
+        this.api.getRoomData().then(rooms => {
+            this.roomOffers = rooms.filter(room =>
+                this.toDate(room.timeSpan.endDate).getTime() > new Date().getTime());
         });
     }
 
@@ -92,13 +93,6 @@ export class FindARoomComponent extends BasicModalPageComponent implements OnIni
     }
 
     formatDateForRoomOffer(date: string): string {
-        try {
-            let back = date;
-            back = back.split(' ')[0];
-            back = this.replaceAll(back, '-', '.');
-            return back;
-        } catch (e) {
-            return date;
-        }
+        return this.formatDate(date, 'EE, d MMMM YYYY');
     }
 }

@@ -21,18 +21,41 @@
                     <div *ngFor="let room of roomOffers ; index as i">
                         <div class="card team-player">
                             <div class="row">
-                                <div class="col-md-5 ml-auto mr-auto text-center">
-                                    <h5>{{formatDateForRoomOffer(room.timeSpan.date)}}</h5>
-                                    <h5>{{formatDateForRoomOffer(room.timeSpan.endDate)}}</h5>
-                                    <p>{{room.timeSpan.description}}</p>
+                                <div class="col-md-7 ml-auto mr-auto text-center">
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <h5 i18n style="text-align: right">From</h5>
+                                        </div>
+                                        <div class="col-9">
+                                            <h5 i18n style="text-align: left">
+                                                <b>{{formatDateForRoomOffer(room.timeSpan.date)}}</b></h5>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <h5 i18n style="text-align: right">To</h5>
+                                        </div>
+                                        <div class="col-9">
+                                            <h5 i18n style="text-align: left">
+                                                <b>{{formatDateForRoomOffer(room.timeSpan.endDate)}}</b></h5>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <p class="">{{room.timeSpan.description}}</p>
+                                        </div>
+                                    </div>
+                                    <!--                                    <h5 i18n style="text-align: right">From: <b>{{formatDateForRoomOffer(room.timeSpan.date)}}</b></h5>-->
+                                    <!--                                    <h5 i18n style="text-align: right">To: <b>{{formatDateForRoomOffer(room.timeSpan.endDate)}}</b></h5>-->
+
                                 </div>
                                 <div class="col-md-5 ml-auto mr-auto text-center">
-                                    <h3>{{room.user.firstName}} {{room.user.lastName}}</h3>
+                                    <h4>{{room.user.firstName}} {{room.user.lastName}}</h4>
                                     <a (click)="openRequestRoomModal(requestARoomModal,'' , '',room)"
                                        i18n class="btn btn-primary btn-round btn-lg" *ngIf="isLoggedIn()">
                                         Request
                                     </a>
-                                    <a  [routerLink]="'/login'"
+                                    <a [routerLink]="'/login'"
                                        i18n class="btn btn-primary btn-round btn-lg" *ngIf="!isLoggedIn()">
                                         Login / Register
                                     </a>
