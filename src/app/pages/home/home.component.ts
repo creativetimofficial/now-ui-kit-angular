@@ -18,6 +18,9 @@ export class HomeComponent extends BasicAuthPageComponent implements OnInit {
     focus1;
 
     publicUsers: User[] = [];
+    mail: string = '';
+    name: string = '';
+    description: string = '';
 
     constructor(protected global: GlobalService, protected api: ApiService, protected notificationService: NotificationService) {
         super(global, api, notificationService);
@@ -38,5 +41,19 @@ export class HomeComponent extends BasicAuthPageComponent implements OnInit {
 
     showPhone(u: User) {
         this.notificationService.createInfoNotification('The Phone number is: ' + u.phone, -1);
+    }
+
+    askAQuestion() {
+        if (this.mail.length > 7 && this.name.length > 7 && this.description.length > 10) {
+            this.api.askAQuestion(this.mail, this.name, this.description).then(value => {
+                this.notificationService.createSuccessNotification('Your application was send!');
+                this.mail = this.name = this.description = '';
+            }).catch(reason => {
+                console.log(this.api.getLastUrl());
+                this.catchError(reason);
+            });
+        } else {
+            this.notificationService.createWarningNotification('Please fill out all Field correctly');
+        }
     }
 }

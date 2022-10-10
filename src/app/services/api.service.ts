@@ -271,4 +271,12 @@ export class ApiService {
             + '&application=' + application;
         return await this.getEx(url);
     }
+
+    async askAQuestion(mail: string, name: string, description: string): Promise<string> {
+        const url = 'mail/requestInformation.php?'
+            + '&mail=' + mail
+            + '&description=' + description
+            + '&name=' + name;
+        return await this.getEx(url);
+    }
 }

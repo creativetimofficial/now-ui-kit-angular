@@ -160,7 +160,7 @@
                       </span>
                         </div>
                         <input type="text" class="form-control" placeholder="First and Last Name..."
-                               (focus)="focus=true" (blur)="focus=false">
+                               (focus)="focus=true" (blur)="focus=false" [(ngModel)]="name">
                     </div>
                     <div class="input-group input-lg" [ngClass]="{'input-group-focus':focus1===true}">
                         <div class="input-group-prepend">
@@ -169,14 +169,14 @@
                       </span>
                         </div>
                         <input type="text" class="form-control" placeholder="Mail..."
-                               (focus)="focus1=true" (blur)="focus1=false">
+                               (focus)="focus1=true" (blur)="focus1=false" [(ngModel)]="mail" email>
                     </div>
                     <div class="textarea-container">
                         <textarea class="form-control" name="name" rows="4" cols="80"
-                                  placeholder="Type a message..."></textarea>
+                                  placeholder="Type a message..." [(ngModel)]="description"></textarea>
                     </div>
                     <div class="send-button">
-                        <a (click)="comingSoon()" class="btn btn-primary btn-round btn-block btn-lg">Send Message</a>
+                        <a (click)="askAQuestion()" class="btn btn-primary btn-round btn-block btn-lg">Send Message</a>
                     </div>
                 </div>
             </div>
