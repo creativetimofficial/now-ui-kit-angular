@@ -6,25 +6,12 @@
         <div class="container">
             <div class="content-center">
                 <div class="photo-container" style="cursor: pointer">
-                    <app-profile-image [user]="tmpUser" [smallImg]="false" (click)="open(profilePicture,'' , '')"></app-profile-image>
+                    <app-profile-image [user]="tmpUser" [smallImg]="false"
+                                       (click)="open(profilePicture,'' , '')"></app-profile-image>
                 </div>
                 <h3 class="title">{{tmpUser?.firstName}} {{tmpUser?.lastName}}</h3>
                 <p class="category">{{tmpUser?.roles}}</p>
                 <div>
-                    <!--                <div class="content">-->
-                    <!--                    <div class="social-description">-->
-                    <!--                        <h2>26</h2>-->
-                    <!--                        <p>Comments</p>-->
-                    <!--                    </div>-->
-                    <!--                    <div class="social-description">-->
-                    <!--                        <h2>26</h2>-->
-                    <!--                        <p>Comments</p>-->
-                    <!--                    </div>-->
-                    <!--                    <div class="social-description">-->
-                    <!--                        <h2>48</h2>-->
-                    <!--                        <p>Bookmarks</p>-->
-                    <!--                    </div>-->
-                    <!--                </div>-->
                 </div>
             </div>
         </div>
@@ -35,19 +22,12 @@
                 <button [routerLink]="['/profile',user?.userId]" class="btn btn-danger btn-round btn-lg" type="button">
                     <i class="fa-solid fa-xmark"></i> Cancel
                 </button>
-                <button (click)="save()" class="btn btn-success btn-round btn-lg" type="button">
+                <button (click)="save()" class="btn btn-success btn-round btn-lg " type="button"
+                        [disabled]="tmpUser.equals(user)">
                     <i class="fa-regular fa-floppy-disk"></i> Save
                 </button>
             </div>
             <div>
-                <!--            <h3 class="title">About me</h3>-->
-                <!--            <h5 class="description">-->
-                <!--                <div class="input-group form-group-no-border input-lg">-->
-                <!--                <textarea class="input-group form-group-no-border input-lg" [value]="tmpUser.description"-->
-                <!--                          style="width: 100%;">-->
-                <!--                </textarea>-->
-                <!--                </div>-->
-                <!--            </h5>-->
             </div>
             <div class="row">
                 <div class="col-md-8 ml-auto mr-auto">
@@ -159,6 +139,30 @@
                                (blur)="focus.passwordConfirm=false" [(ngModel)]="inputValues.passwordConfirm"
                                name="passwordConfirm"/>
                     </div>
+                    <h6 class="ml-4">Role</h6>
+                    <select class="form-control" name="names" id="role"
+                            [(ngModel)]="tmpUser.role">
+                        <option value="{{UserRoleType.roomer}}">I want to live in the Wiederhold as Roomer</option>
+                        <option value="{{UserRoleType.resident}}">I'm a Resident of the Wiederhold</option>
+                        <option value="{{UserRoleType.alumni}}">I'm a Alumni of the Wiederhold</option>
+                        /
+                        <option value="{{UserRoleType.unknown}}" disabled>Unknown</option>
+                        <option value="{{UserRoleType.staff}}" disabled>Staff</option>
+                    </select>
+                    <!--                    <div class="row">-->
+                    <!--                        <div class="col-md-6 ml-auto text-center">-->
+                    <!--                            <h4 class="description">-->
+                    <!--                                <a i18n (click)="selectRole(UserRoleType.resident)" class="btn btn-round btn-primary">-->
+                    <!--                                    I'm a Resident of the Wiederhold</a>-->
+                    <!--                            </h4>-->
+                    <!--                        </div>-->
+                    <!--                        <div class="col-md-6 mr-auto text-center">-->
+                    <!--                            <h4 class="description">-->
+                    <!--                                <a i18n (click)="selectRole(UserRoleType.roomer)" class="btn btn-round btn-primary">-->
+                    <!--                                    I want to live in the Wiederhold as Roomer</a>-->
+                    <!--                            </h4>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
 
                     <h4 class="title text-center">My Social Data <span class="small">(optional)</span></h4>
 
@@ -200,7 +204,8 @@
                             </div>
                         </div>
                     </div>
-                    <button (click)="open(addUserInfoModal,'' , '')" class="btn btn-primary btn-round btn-lg" type="button">
+                    <button (click)="open(addUserInfoModal,'' , '')" class="btn btn-primary btn-round btn-lg"
+                            type="button">
                         <i class="fa-regular fa-plus"></i> Add Info
                     </button>
 
@@ -218,7 +223,7 @@
                                 <select class="form-control" name="names" id="names"
                                         [(ngModel)]="inputValues.modalName">
                                     <option *ngFor="let ui of UserInfoTypes | enumToArray"
-                                            value="{{ui}}">{{ui}}</option>
+                                            value="{{ui}}" [disabled]="ui == UserInfoTypes.role">{{ui}}</option>
                                 </select>
                             </div>
                             <div>

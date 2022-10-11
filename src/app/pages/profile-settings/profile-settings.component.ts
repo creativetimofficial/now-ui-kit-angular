@@ -4,7 +4,7 @@ import {GlobalService} from '../../services/global.service';
 import {ApiService} from '../../services/api.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {NotificationService} from '../../services/notification.service';
-import {User} from '../../data/user';
+import {User, UserRoleType} from '../../data/user';
 import {UserInfo, UserInfoType, UserInfoTypes} from '../../data/user-info';
 import {ImageCroppedEvent, LoadedImage} from 'ngx-image-cropper';
 import {DOC_ORIENTATION, NgxImageCompressService} from 'ngx-image-compress';
@@ -16,9 +16,9 @@ import {DOC_ORIENTATION, NgxImageCompressService} from 'ngx-image-compress';
 })
 export class ProfileSettingsComponent extends BasicModalPageComponent implements OnInit {
     UserInfoTypes = UserInfoTypes;
+    UserRoleType = UserRoleType;
 
     // 'role','description','facebook','instagram','twitter','phone','publicMail','studies'
-
     focus: {
         first: boolean, last: boolean, mail: boolean, password: boolean, passwordConfirm: boolean,
         instagram: boolean, facebook: boolean, publicMail: boolean, studies: boolean, twitter: boolean, phone: boolean,
@@ -28,8 +28,8 @@ export class ProfileSettingsComponent extends BasicModalPageComponent implements
         instagram: false, facebook: false, publicMail: false, studies: false, twitter: false, phone: false,
         modalName: false, modalValue: false
     };
-    inputValues: { password: string, passwordConfirm: string, modalName: string, modalValue: string, }
-        = {password: '', passwordConfirm: '', modalName: '', modalValue: ''};
+    inputValues: { password: string, passwordConfirm: string, role: string; modalName: string, modalValue: string, }
+        = {password: '', passwordConfirm: '', modalName: '', modalValue: '', role: ''};
     tmpUser: User = new User();
 
     focusArray: boolean[] = [];
@@ -41,6 +41,7 @@ export class ProfileSettingsComponent extends BasicModalPageComponent implements
     //image
     imageChangedEvent: any = '';
     croppedImage: any = '';
+
 
     constructor(public global: GlobalService,
                 protected api: ApiService,
@@ -55,7 +56,9 @@ export class ProfileSettingsComponent extends BasicModalPageComponent implements
     }
 
     onYourselfLoaded() {
-        this.tmpUser = this.user;
+        this.tmpUser = this.user.clone();
+        console.log(this.user);
+        console.log(this.tmpUser);
         this.focusArray = [];
         for (let i = 0; i < this.tmpUser.userInfos.length; i++) {
             this.focusArray.push(false);
@@ -171,5 +174,12 @@ export class ProfileSettingsComponent extends BasicModalPageComponent implements
                 this.forceReloadYourself();
             }
         );
+    }
+
+    selectRole(role: UserRoleType) {
+        this.api.updateUserRole(role).then(value => {
+            this.notificationService.createSuccessNotification('Role updated to: ' + role.toString());
+            this.forceReloadYourself();
+        }).catch(this.catchError);
     }
 }

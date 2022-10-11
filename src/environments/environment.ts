@@ -3,7 +3,17 @@
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
+// import packageInfo from 'package.json';
+import packageInfo from '../../package.json';
+
+const __EMOTION_VERSION__ = packageInfo.version;
+
 export const environment = {
     production: false,
     language: 'en-US',
+    platformAndroid: 'Android',
+    platformTest: 'Test',
+    platformWeb: 'Web',
+    platform: 'Test',
+    version: __EMOTION_VERSION__,
 };

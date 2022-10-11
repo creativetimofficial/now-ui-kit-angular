@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {BasicPageComponent} from '../basic-page/basic-page.component';
 import {GlobalService} from '../../services/global.service';
 import {User} from '../../data/user';
 import {BasicAuthPageComponent} from '../basic-auth-page/basic-auth-page.component';
@@ -24,6 +23,7 @@ export class HomeComponent extends BasicAuthPageComponent implements OnInit {
 
     constructor(protected global: GlobalService, protected api: ApiService, protected notificationService: NotificationService) {
         super(global, api, notificationService);
+        this.forceOnlineLoadYourself = true;
     }
 
     ngOnInit() {
@@ -55,5 +55,9 @@ export class HomeComponent extends BasicAuthPageComponent implements OnInit {
         } else {
             this.notificationService.createWarningNotification('Please fill out all Field correctly');
         }
+    }
+
+    resendConfirmCode() {
+        this.comingSoon();
     }
 }

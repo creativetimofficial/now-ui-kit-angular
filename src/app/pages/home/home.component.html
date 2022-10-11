@@ -22,6 +22,12 @@
     </div>
     <div class="section section-about-us">
         <div class="container">
+            <div class="card text-center" *ngIf="user!=null && !user?.isConfirmed">
+                <h3 class="title badge-danger">Confirm your mail!</h3>
+                <h4 class="description">Please confirm your mail before you continue.<br>The mail was send to: {{user?.mail}}</h4>
+                <h4 class="description"><a (click)="resendConfirmCode()" class="btn btn-round btn-primary">Send code
+                    again</a></h4>
+            </div>
             <div class="row">
                 <div class="col-md-8 ml-auto mr-auto text-center">
                     <h2 class="title">Who we are?</h2>

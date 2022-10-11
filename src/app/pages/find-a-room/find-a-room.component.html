@@ -11,12 +11,16 @@
     </div>
     <div class="section section-about-us">
         <div class="container">
+
             <!--Rooms on offer-->
             <div class="row">
                 <div class="col-md-8 ml-auto mr-auto text-center">
                     <h2 class="title" i18n>Rooms on offer</h2>
-                    <h5 class="description" i18n>
+                    <h5 class="description" i18n *ngIf="roomOffers?.length>0">
                         All rooms on offer at the moment:
+                    </h5>
+                    <h5 class="description" i18n *ngIf="roomOffers?.length==0">
+                        There are no rooms on offer at the moment
                     </h5>
                     <div *ngFor="let room of roomOffers ; index as i">
                         <div class="card team-player">
@@ -291,6 +295,133 @@
                             </a>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <!--Rooms on request-->
+            <div class="row mt-4" *ngIf="isLoggedIn() && user?.isResident">
+                <div class="col-md-8 ml-auto mr-auto text-center">
+                    <h2 class="title" i18n>Requested Rooms</h2>
+                    <h5 class="description" i18n *ngIf="roomRequests?.length>0">
+                        All requested rooms at the moment:
+                    </h5>
+                    <h5 class="description" i18n *ngIf="roomRequests?.length==0">
+                        There are no requested rooms at the moment
+                    </h5>
+                    <div *ngFor="let room of roomRequests ; index as i">
+                        <div class="card team-player">
+                            <div class="row">
+                                <div class="col-md-7 ml-auto mr-auto text-center">
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <h5 i18n style="text-align: right">From</h5>
+                                        </div>
+                                        <div class="col-9">
+                                            <h5 i18n style="text-align: left">
+                                                <b>{{formatDateForRoomOffer(room.timeSpan.date)}}</b></h5>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <h5 i18n style="text-align: right">To</h5>
+                                        </div>
+                                        <div class="col-9">
+                                            <h5 i18n style="text-align: left">
+                                                <b>{{formatDateForRoomOffer(room.timeSpan.endDate)}}</b></h5>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <p class="">{{room.timeSpan.description}}</p>
+                                        </div>
+                                    </div>
+                                    <!--                                    <h5 i18n style="text-align: right">From: <b>{{formatDateForRoomOffer(room.timeSpan.date)}}</b></h5>-->
+                                    <!--                                    <h5 i18n style="text-align: right">To: <b>{{formatDateForRoomOffer(room.timeSpan.endDate)}}</b></h5>-->
+
+                                </div>
+                                <div class="col-md-5 ml-auto mr-auto text-center">
+                                    <h4>{{room.user.firstName}} {{room.user.lastName}}</h4>
+                                    <a (click)="openRequestRoomModal(answerARoomRequestModal,'' , '',room)"
+                                       i18n class="btn btn-primary btn-round btn-lg" *ngIf="isLoggedIn()">
+                                        Respond
+                                    </a>
+                                    <a [routerLink]="'/login'"
+                                       i18n class="btn btn-primary btn-round btn-lg" *ngIf="!isLoggedIn()">
+                                        Login / Register
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <ng-template #answerARoomRequestModal let-c="close" let-d="dismiss">
+                        <div class="modal-header justify-content-center">
+                            <button type="button" class="close" (click)="d('Cross click')">
+                                <i class="now-ui-icons ui-1_simple-remove"></i>
+                            </button>
+                            <h4 class="title title-up" i18n>Request a Room</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12 ml-auto mr-auto text-center">
+                                    <h5 class="description" i18n>Your selected Room</h5>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="row ">
+                                    <div class="col-md-6 ml-auto  text-center">
+                                        <h5 i18n class="ml-2">Move in</h5>
+                                        <div class="datepicker-container">
+                                            <div class="form-group">
+                                                <h6>{{formatDateForRoomOffer(selectedRoom?.timeSpan.date)}}</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6  mr-auto text-center">
+                                        <h5 i18n class="ml-2">Move out</h5>
+                                        <div class="datepicker-container">
+                                            <div class="form-group">
+                                                <h6>{{formatDateForRoomOffer(selectedRoom?.timeSpan.endDate)}}</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 ml-auto mr-auto text-center">
+                                        <h6>Offer Information</h6>
+                                        <p>{{selectedRoom?.timeSpan.description}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 text-center col-md-8 ml-auto mr-auto">
+                                    <h5 class="description" i18n>Write your application</h5>
+                                    <div class="textarea-container">
+                                          <textarea class="form-control" name="name" rows="4" cols="80"
+                                                    [(ngModel)]="modalDescriptionRequest"
+                                                    placeholder="Type a message..."></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb">
+                                <div class="col-md-12 ml-auto mr-auto text-center">
+                                    <h4 class="text-warning">
+                                        Your e-mail address will be send to<br>
+                                        {{selectedRoom?.user.firstName}} {{selectedRoom?.user.lastName}}
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button i18n type="button" class="btn btn-default" (click)="c('Close click')">Close
+                            </button>
+                            <button i18n type="button" class="btn btn-primary"
+                                    (click)="respondToSelectedRequest(selectedRoom, c)">
+                                Respond
+                            </button>
+                        </div>
+                    </ng-template>
                 </div>
             </div>
         </div>

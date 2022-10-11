@@ -1,6 +1,6 @@
 {
-  "name": "now-ui-kit-angular",
-  "version": "1.3.0",
+  "name": "wiederhold",
+  "version": "2.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

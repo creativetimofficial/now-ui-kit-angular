@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
 import {ServerService} from './server.service';
-import {User, UserType} from '../data/user';
+import {User, UserRoleType, UserType} from '../data/user';
 import {GlobalService} from './global.service';
 import {UserInfo, UserInfoType} from '../data/user-info';
-import {TimeSpan} from '../data/timeSpan';
+import {TimeSpan, TimeSpanTypes} from '../data/timeSpan';
 import {RoomData, TimeSpanUserType} from '../data/room-data';
+import {environment} from '../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
@@ -52,6 +53,7 @@ export class ApiService {
                 if (data.startsWith('#fail#')) {
                     throw new Error(data.toString());
                 }
+                localStorage.setItem(cashId, data);
                 return data.toString();
             } else {
                 return '#fail#';
@@ -89,7 +91,7 @@ export class ApiService {
             url += '&userId=' + id;
         }
         try {
-            const data = await this.getExOffline(url, onlineFirst);
+            const data = await this.getExOffline(url, !onlineFirst);
             const user = new User(JSON.parse(data.toString()) as UserType);
             await this.addUserInfos(user);
             await this.addTimeSpans(user);
@@ -169,9 +171,11 @@ export class ApiService {
         user.adduserTimespan(await this.getTimeSpans(user.userId));
     }
 
-    public async getRoomData(): Promise<RoomData[]> {
+    public async getRoomData(type: TimeSpanTypes): Promise<RoomData[]> {
 
-        const url = 'get/getTimeSpans.php?';
+        const url = 'get/getTimeSpans.php?'
+            + '&type=' + type.toString();
+
         try {
             const roomData: RoomData[] = [];
             const data = await this.getEx(url);
@@ -183,7 +187,8 @@ export class ApiService {
             return roomData;
 
         } catch (e) {
-            console.log(e);
+            // console.log(e);
+            // console.log(this.server.createSessionUrl(url));
             throw new Error('#fail#TimeSpans not found');
         }
     }
@@ -213,7 +218,8 @@ export class ApiService {
     public async login(user: { mail: string, password: string }): Promise<void> {
         const url = 'functions/login.php?'
             + '&password=' + user.password
-            + '&mail=' + user.mail;
+            + '&mail=' + user.mail
+            + '&version=' + environment.version;
         const session = await this.getEx(url, false, false);
         this.server.authService.setSession(session);
     }
@@ -221,6 +227,8 @@ export class ApiService {
     public async logout(): Promise<void> {
         await this.server.authService.logout();
         this.globalService.updateLogin.next(null);
+        await this.server.authService.forceLogout();
+
     }
 
     public async register(user: { firstName: string, lastName: string, mail: string, password: string }) {
@@ -272,11 +280,27 @@ export class ApiService {
         return await this.getEx(url);
     }
 
+    async respondToRoomRequest(room: RoomData, application: string): Promise<string> {
+        const url = 'mail/requestRoom.php?'
+            + '&roomOfferId=' + room.timeSpan.timeSpanId
+            + '&application=' + application;
+        return await this.getEx(url);
+    }
+
     async askAQuestion(mail: string, name: string, description: string): Promise<string> {
         const url = 'mail/requestInformation.php?'
             + '&mail=' + mail
             + '&description=' + description
             + '&name=' + name;
+        return await this.getEx(url);
+    }
+
+    async updateUserRole(role: UserRoleType, userId: number = -1): Promise<string> {
+        let url = 'update/updateUserRole.php?'
+            + '&role=' + role.toString();
+        if (userId > 0) {
+            url += '&userId=' + userId;
+        }
         return await this.getEx(url);
     }
 }

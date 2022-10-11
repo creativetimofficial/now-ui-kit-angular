@@ -8,6 +8,7 @@ import {TimeSpan, TimeSpanTypes} from '../../data/timeSpan';
 import {RoomData} from '../../data/room-data';
 import {DatePipe} from '@angular/common';
 import {environment} from '../../../environments/environment';
+import {catchError} from 'rxjs/operators';
 
 @Component({
     selector: 'app-find-a-room',
@@ -21,6 +22,7 @@ export class FindARoomComponent extends BasicModalPageComponent implements OnIni
     modalDescriptionRequest: string;
 
     roomOffers: RoomData[] = [];
+    roomRequests: RoomData[] = [];
 
     constructor(public global: GlobalService,
                 protected api: ApiService,
@@ -35,8 +37,12 @@ export class FindARoomComponent extends BasicModalPageComponent implements OnIni
     }
 
     loadRoomOffers() {
-        this.api.getRoomData().then(rooms => {
+        this.api.getRoomData(TimeSpanTypes.offer).then(rooms => {
             this.roomOffers = rooms.filter(room =>
+                this.toDate(room.timeSpan.endDate).getTime() > new Date().getTime());
+        }).catch(this.catchError);
+        this.api.getRoomData(TimeSpanTypes.searching).then(rooms => {
+            this.roomRequests = rooms.filter(room =>
                 this.toDate(room.timeSpan.endDate).getTime() > new Date().getTime());
         });
     }
@@ -84,6 +90,24 @@ export class FindARoomComponent extends BasicModalPageComponent implements OnIni
             return;
         }
         this.api.requestRoom(room, this.modalDescriptionRequest.toString()).then(value => {
+            this.notificationService.createSuccessNotification('Your application was send!');
+            c();
+        }).catch(reason => {
+            console.log(this.api.getLastUrl());
+            this.catchError(reason);
+        });
+    }
+
+    respondToSelectedRequest(room: RoomData, c: any) {
+        if (!this.isLoggedIn()) {
+            this.notificationService.createWarningNotification('You need to be logged in to request a room');
+            return;
+        }
+        if (this.modalDescriptionRequest == null || this.modalDescriptionRequest?.length < 20) {
+            this.notificationService.createWarningNotification('Your application Text is too short');
+            return;
+        }
+        this.api.respondToRoomRequest(room, this.modalDescriptionRequest.toString()).then(value => {
             this.notificationService.createSuccessNotification('Your application was send!');
             c();
         }).catch(reason => {

@@ -84,11 +84,38 @@
                     <i class="fa-regular fa-pen-to-square"></i> Edit
                 </button>
             </div>
-            <div class="card" *ngIf="user?.isConfirmed">
-                <h3 class="title badge-danger">Confirm your mail!</h3>
-                <h4 class="description">Please confirm your mail before you continue. ({{user?.mail}})</h4>
-                <h4 class="description"><a (click)="resendConfirmCode()" class="btn btn-round btn-primary">Send code
-                    again</a></h4>
+            <div class="row">
+                <div class="card text-center" *ngIf="isYourself() && !user?.isConfirmed">
+                    <h3 class="title badge-danger">Confirm your mail!</h3>
+                    <h4 class="description">Please confirm your mail before you continue.<br>The mail was send
+                        to: {{user?.mail}}</h4>
+                    <h4 class="description"><a i18n (click)="resendConfirmCode()" class="btn btn-round btn-primary">Send
+                        code
+                        again</a></h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card text-center" *ngIf="isYourself() && user?.isRoleUnknown">
+                    <h3 class="title badge-danger">Select who your are!</h3>
+                    <h4 class="description">
+                        Please select where your are living here as a resident with a direct contract from
+                        "Vereinigung Stuttgarter Studentenwohnheime e.V.", or as a roomer who want's to live here for
+                    </h4>
+                    <div class="row">
+                        <div class="col-md-4 ml-auto text-center">
+                            <h4 class="description">
+                                <a i18n (click)="selectRole(UserRoleType.resident)" class="btn btn-round btn-primary">
+                                    I'm a Resident of the Wiederhold</a>
+                            </h4>
+                        </div>
+                        <div class="col-md-4 mr-auto text-center">
+                            <h4 class="description">
+                                <a i18n (click)="selectRole(UserRoleType.roomer)" class="btn btn-round btn-primary">
+                                    I want to live in the Wiederhold as Roomer</a>
+                            </h4>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div>
                 <h3 class="title">About me</h3>

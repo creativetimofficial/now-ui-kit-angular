@@ -22,7 +22,7 @@ export class ServerService {
         return !data.startsWith('#fail#');
     }
 
-    private createSessionUrl(urlExtension: string, setSession: boolean = true): string {
+    createSessionUrl(urlExtension: string, setSession: boolean = true): string {
         let url = this.server + urlExtension;
         if (setSession) {
             url = this.server + urlExtension.replace('?', '?session=' + this.getSession());

@@ -64,6 +64,14 @@ export class User implements UserType {
         }
     }
 
+    clone(): User {
+        return new User(this);
+    }
+
+    equals(user: User): boolean {
+        return JSON.stringify(user) === JSON.stringify(this);
+    }
+
     getMilestones(): TimeSpanType[] {
         return this.timeSpans.filter(value => value.type === TimeSpanTypes.milestone);
     }
@@ -151,7 +159,16 @@ export class User implements UserType {
     }
 
     get isConfirmed() {
-        return this.confirmed === 0;
+        // tslint:disable-next-line:triple-equals
+        return this.confirmed == 1;
+    }
+
+    get isRoleUnknown() {
+        return this.role === UserRoleType.unknown;
+    }
+
+    get isResident() {
+        return this.role === UserRoleType.resident || this.role === UserRoleType.alumni;
     }
 }
 
