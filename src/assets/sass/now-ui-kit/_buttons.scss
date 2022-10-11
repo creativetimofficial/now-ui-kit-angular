@@ -1,3 +1,15 @@
+.btn{
+  &.disabled,
+  &:disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    opacity: 1;
+    background-color: $disabled-color !important;
+    box-shadow: none !important;
+    cursor: no-drop;
+  }
+}
+
 .btn,
 .navbar .navbar-nav > a.btn{
     border-width: $border-thick;

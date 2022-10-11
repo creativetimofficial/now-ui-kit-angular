@@ -44,37 +44,37 @@ $dark-background:            #555555 !default;
 
 $default-color:              $light-black !default;// #888888 !default;
 $default-states-color:       lighten($default-color, 6%) !default;
-$default-color-opacity:      rgba(182, 182, 182, .6) !default;
+$default-color-opacity:      rgba($default-color, .6) !default;
 
 $primary-color:              #3d3d64 !default;
 $primary-states-color:       lighten($primary-color, 6%) !default;
 $primary-color-opacity:      rgba($primary-color, .3) !default;
 $primary-color-alert:        rgba($primary-color, .8) !default;
 
-$accent-color: #8a2600 !default;
+$accent-color:              #8a2600 !default;
 $accent-states-color:       lighten($accent-color, 6%) !default;
 $accent-color-opacity:      rgba($accent-color, .3) !default;
 $accent-color-alert:        rgba($accent-color, .8) !default;
 
-$success-color:              #18ce0f !default;
+$success-color:              #0f8a09 !default;
 $success-states-color:       lighten($success-color, 6%) !default;
-$success-color-opacity:      rgba(24, 206, 15, .3) !default;
-$success-color-alert:        rgba(24, 206, 15, .8) !default;
+$success-color-opacity:      rgba($success-color, .3) !default;
+$success-color-alert:        rgba($success-color, .8) !default;
 
 $info-color:                 #2CA8FF !default;
 $info-states-color:          lighten($info-color, 6%) !default;
-$info-color-opacity:         rgba(44, 168, 255, .3) !default;
-$info-color-alert:           rgba(44, 168, 255, .8) !default;
+$info-color-opacity:         rgba($info-color, .3) !default;
+$info-color-alert:           rgba($info-color, .8) !default;
 
 $warning-color:              #FFB236 !default;
 $warning-states-color:       lighten($warning-color, 6%) !default;
-$warning-color-opacity:      rgba(255, 178, 54, .3) !default;
-$warning-color-alert:        rgba(255, 178, 54, .8) !default;
+$warning-color-opacity:      rgba($warning-color, .3) !default;
+$warning-color-alert:        rgba($warning-color, .8) !default;
 
 $danger-color:               #FF3636 !default;
 $danger-states-color:        lighten($danger-color, 6%) !default;
-$danger-color-opacity:       rgba(255, 54, 54, .3) !default;
-$danger-color-alert:         rgba(255, 54, 54, .8) !default;
+$danger-color-opacity:       rgba($danger-color, .3) !default;
+$danger-color-alert:         rgba($danger-color, .8) !default;
 
 /*     brand Colors              */
 $brand-primary:              $primary-color !default;
@@ -85,6 +85,7 @@ $brand-danger:               $danger-color !default;
 $brand-inverse:              $black-color !default;
 
 $link-disabled-color:        #666666 !default;
+$disabled-color:             $link-disabled-color;
 
 /*      light colors         */
 $light-blue:                 rgba($primary-color, .2);
